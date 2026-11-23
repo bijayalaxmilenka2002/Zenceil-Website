@@ -2,11 +2,29 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { REAL_PROJECT_GALLERY, ProjectPhoto } from "@/data/zenceilData";
-import { ArrowUpRight, X, Building2, Home, Hotel, ShoppingBag, Box, MapPin, Zap } from "lucide-react";
+import { 
+  ArrowUpRight, 
+  ArrowRight, 
+  X, 
+  Building2, 
+  Home, 
+  Hotel, 
+  ShoppingBag, 
+  Box, 
+  MapPin, 
+  Zap, 
+  Layers,
+  Sparkles
+} from "lucide-react";
 import { QuoteModal } from "@/components/ui/QuoteModal";
 
-export const ProjectsSection: React.FC = () => {
+interface ProjectsSectionProps {
+  preview?: boolean;
+}
+
+export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ preview = false }) => {
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [selectedProject, setSelectedProject] = useState<ProjectPhoto | null>(null);
   const [quoteOpen, setQuoteOpen] = useState(false);
@@ -59,10 +77,17 @@ export const ProjectsSection: React.FC = () => {
     },
   ];
 
+  // In preview mode: show 6 iconic projects across sectors
+  const PREVIEW_IDS = ["proj-comm-1", "proj-ret-1", "proj-res-1", "proj-hosp-1", "proj-3d-1", "proj-comm-2"];
+  const previewProjects = REAL_PROJECT_GALLERY.filter(p => PREVIEW_IDS.includes(p.id));
+
+  // In full mode: filter according to category
   const filteredProjects =
     activeCategory === "All"
       ? REAL_PROJECT_GALLERY
       : REAL_PROJECT_GALLERY.filter((p) => p.category === activeCategory);
+
+  const displayedProjects = preview ? previewProjects : filteredProjects;
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
@@ -93,43 +118,64 @@ export const ProjectsSection: React.FC = () => {
             <div className="space-y-3 max-w-2xl">
               <div className="flex items-center gap-2 text-xs font-bold tracking-[0.2em] uppercase text-[#254C38]">
                 <span className="w-2 h-2 rounded-full bg-[#254C38]" />
-                <span>Our Work • Completed Portfolio (36 Projects)</span>
+                <span>
+                  {preview
+                    ? "Section 06 • Portfolio Preview (6 of 36 Projects)"
+                    : "Complete Architectural Portfolio (36 Verified Projects)"}
+                </span>
               </div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#252925] tracking-tight leading-[1.12]">
                 Crafted for Visionary Spaces.
               </h2>
               <p className="text-base sm:text-lg text-[#5E645E] font-normal">
-                Authentic stretch ceiling installations executed by Zenceil across corporate towers, luxury residences, retail gallerias, and 5-star hotels throughout India.
+                {preview
+                  ? "A curated selection of our stretch ceiling installations for prestigious corporations, luxury residences, flagship retail, and 5-star hospitality."
+                  : "Authentic stretch ceiling installations executed by Zenceil across corporate towers, luxury residences, retail gallerias, and 5-star hotels throughout India."}
               </p>
             </div>
 
-            {/* View Mode Toggle */}
-            <div className="flex items-center gap-1.5 p-1 rounded-full bg-white/80 border border-[#254C38]/15 self-start md:self-end shadow-xs">
-              <button
-                onClick={() => setViewMode("grid")}
-                className={`px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider transition-all cursor-pointer ${
-                  viewMode === "grid"
-                    ? "bg-[#254C38] text-[#F7F7F2] shadow-xs"
-                    : "text-[#5E645E] hover:text-[#252925]"
-                }`}
-              >
-                Filtered Grid
-              </button>
-              <button
-                onClick={() => setViewMode("sections")}
-                className={`px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider transition-all cursor-pointer ${
-                  viewMode === "sections"
-                    ? "bg-[#254C38] text-[#F7F7F2] shadow-xs"
-                    : "text-[#5E645E] hover:text-[#252925]"
-                }`}
-              >
-                Section-by-Section
-              </button>
-            </div>
+            {/* FULL MODE ONLY: View Mode Switcher */}
+            {!preview && (
+              <div className="flex items-center gap-1.5 p-1 rounded-full bg-white/80 border border-[#254C38]/15 self-start md:self-end shadow-xs">
+                <button
+                  onClick={() => setViewMode("grid")}
+                  className={`px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider transition-all cursor-pointer ${
+                    viewMode === "grid"
+                      ? "bg-[#254C38] text-[#F7F7F2] shadow-xs"
+                      : "text-[#5E645E] hover:text-[#252925]"
+                  }`}
+                >
+                  Filtered Grid ({REAL_PROJECT_GALLERY.length})
+                </button>
+                <button
+                  onClick={() => setViewMode("sections")}
+                  className={`px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider transition-all cursor-pointer ${
+                    viewMode === "sections"
+                      ? "bg-[#254C38] text-[#F7F7F2] shadow-xs"
+                      : "text-[#5E645E] hover:text-[#252925]"
+                  }`}
+                >
+                  Section-by-Section
+                </button>
+              </div>
+            )}
+
+            {/* PREVIEW MODE ONLY: Link to Full Projects */}
+            {preview && (
+              <div className="self-start md:self-end">
+                <Link
+                  href="/projects"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-[#254C38]/20 text-xs font-bold text-[#254C38] hover:bg-[#254C38] hover:text-[#F7F7F2] transition-all shadow-xs group"
+                >
+                  <span>Explore All 36 Projects</span>
+                  <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+                </Link>
+              </div>
+            )}
           </div>
 
-          {/* Category Filter Pills (Shown in Grid mode) */}
-          {viewMode === "grid" && (
+          {/* FULL MODE ONLY: Category Filter Pills */}
+          {!preview && viewMode === "grid" && (
             <div className="flex items-center gap-2 flex-wrap pt-2">
               {categories.map((cat) => (
                 <button
@@ -156,16 +202,28 @@ export const ProjectsSection: React.FC = () => {
             </div>
           )}
 
-          {/* MODE 1: FILTERED GRID VIEW (ALL 36 PROJECTS) */}
-          {viewMode === "grid" && (
+          {/* PREVIEW MODE: Sector Summary Pills */}
+          {preview && (
+            <div className="flex items-center gap-2 flex-wrap pt-1 text-xs text-[#5E645E]">
+              <span className="font-semibold text-[#252925]">Sectors Executed:</span>
+              <span className="px-3 py-1 rounded-full bg-white border border-[#254C38]/10 font-medium">Commercial (9)</span>
+              <span className="px-3 py-1 rounded-full bg-white border border-[#254C38]/10 font-medium">Retail & Malls (8)</span>
+              <span className="px-3 py-1 rounded-full bg-white border border-[#254C38]/10 font-medium">Luxury Residences (7)</span>
+              <span className="px-3 py-1 rounded-full bg-white border border-[#254C38]/10 font-medium">Hospitality & Spas (7)</span>
+              <span className="px-3 py-1 rounded-full bg-white border border-[#254C38]/10 font-medium">3D & Acoustic Forms (5)</span>
+            </div>
+          )}
+
+          {/* MODE 1: GRID VIEW (6 cards in preview, or filtered in full mode) */}
+          {(preview || viewMode === "grid") && (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {filteredProjects.map((project) => (
+              {displayedProjects.map((project) => (
                 <div
                   key={project.id}
                   onClick={() => setSelectedProject(project)}
                   className="group relative rounded-3xl overflow-hidden bg-[#E8E8DF] border border-[#254C38]/15 hover:border-[#254C38]/40 shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer flex flex-col"
                 >
-                  {/* Image Aspect Box */}
+                  {/* Image Aspect Box - Guaranteed Ceiling Visibility */}
                   <div className="relative aspect-[4/3] w-full overflow-hidden">
                     <Image
                       src={project.image}
@@ -206,8 +264,34 @@ export const ProjectsSection: React.FC = () => {
             </div>
           )}
 
-          {/* MODE 2: SECTION-WISE ARCHITECTURAL SHOWCASE */}
-          {viewMode === "sections" && (
+          {/* PREVIEW MODE: MORE PROJECTS REDIRECT BANNER */}
+          {preview && (
+            <div className="mt-8 p-8 sm:p-10 rounded-3xl bg-white border border-[#254C38]/15 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="space-y-2 text-center md:text-left">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#254C38]/10 text-xs font-semibold text-[#254C38] tracking-wide">
+                  <Layers size={13} />
+                  <span>36 Realized Projects Across 5 Sectors</span>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-extrabold text-[#252925] font-manrope">
+                  Want to explore our complete portfolio?
+                </h3>
+                <p className="text-xs sm:text-sm text-[#5E645E] max-w-xl">
+                  Discover all 36 authentic stretch ceiling installations across Commercial Towers, Luxury Sky Villas, Flagship Malls, 5-Star Hotels, and 3D Acoustic Forms.
+                </p>
+              </div>
+
+              <Link
+                href="/projects"
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#254C38] text-[#F7F7F2] text-xs sm:text-sm font-bold tracking-wider uppercase hover:bg-[#1a3627] active:scale-95 transition-all shadow-md shrink-0 group cursor-pointer"
+              >
+                <span>View Complete Projects (36)</span>
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+          )}
+
+          {/* FULL MODE ONLY: SECTION-WISE ARCHITECTURAL SHOWCASE */}
+          {!preview && viewMode === "sections" && (
             <div className="space-y-16">
               {sectionsList.map((sec, secIdx) => {
                 const secProjects = REAL_PROJECT_GALLERY.filter((p) => p.category === sec.id);
@@ -277,26 +361,28 @@ export const ProjectsSection: React.FC = () => {
             </div>
           )}
 
-          {/* Spec & Inquiry Footer Banner */}
-          <div className="p-6 md:p-8 rounded-3xl bg-white/80 border border-[#254C38]/15 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xs">
-            <div className="space-y-1 text-center sm:text-left">
-              <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#254C38]">
-                Enterprise &amp; Residential Execution
-              </span>
-              <h4 className="text-lg sm:text-xl font-bold text-[#252925] font-manrope">
-                Need CAD Drawings or Lumen Specifications for Your Project?
-              </h4>
-              <p className="text-xs text-[#5E645E]">
-                We partner with architects, interior designers, commercial developers, and homeowners nationwide.
-              </p>
+          {/* FULL MODE ONLY: Spec & Inquiry Footer Banner */}
+          {!preview && (
+            <div className="p-6 md:p-8 rounded-3xl bg-white/80 border border-[#254C38]/15 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xs">
+              <div className="space-y-1 text-center sm:text-left">
+                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#254C38]">
+                  Enterprise &amp; Residential Execution
+                </span>
+                <h4 className="text-lg sm:text-xl font-bold text-[#252925] font-manrope">
+                  Need CAD Drawings or Lumen Specifications for Your Project?
+                </h4>
+                <p className="text-xs text-[#5E645E]">
+                  We partner with architects, interior designers, commercial developers, and homeowners nationwide.
+                </p>
+              </div>
+              <button
+                onClick={() => setQuoteOpen(true)}
+                className="px-7 py-3.5 rounded-full bg-[#254C38] text-[#F7F7F2] text-xs font-semibold tracking-wider uppercase hover:bg-[#1a3627] active:scale-95 transition shadow-sm shrink-0 cursor-pointer"
+              >
+                Request Spec Consultation
+              </button>
             </div>
-            <button
-              onClick={() => setQuoteOpen(true)}
-              className="px-7 py-3.5 rounded-full bg-[#254C38] text-[#F7F7F2] text-xs font-semibold tracking-wider uppercase hover:bg-[#1a3627] active:scale-95 transition shadow-sm shrink-0 cursor-pointer"
-            >
-              Request Spec Consultation
-            </button>
-          </div>
+          )}
         </div>
       </section>
 
@@ -376,6 +462,16 @@ export const ProjectsSection: React.FC = () => {
                   Designed and installed by Zenceil (Aditya Interiors, Est. 2011). Fully dust-free installation with a 10-year manufacturer warranty.
                 </p>
                 <div className="flex gap-3 shrink-0 w-full sm:w-auto">
+                  {preview && (
+                    <Link
+                      href="/projects"
+                      onClick={() => setSelectedProject(null)}
+                      className="px-6 py-3 rounded-full bg-[#254C38]/10 text-[#254C38] hover:bg-[#254C38] hover:text-[#F7F7F2] text-xs font-semibold tracking-wider uppercase transition flex items-center gap-2"
+                    >
+                      <span>All 36 Projects</span>
+                      <ArrowRight size={13} />
+                    </Link>
+                  )}
                   <button
                     onClick={() => {
                       setSelectedProject(null);

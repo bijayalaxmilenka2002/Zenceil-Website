@@ -31,8 +31,8 @@ export default function HomePage() {
       {/* SECTION 05: OUR PRODUCTS (TRANSLUCENT, PRINTED, TEXTURE, LACQUER, 3D FORM) */}
       <ProductsSection />
 
-      {/* SECTION 06: OUR WORK & REAL PROJECTS (36 EXECUTED PROJECTS ACROSS INDIA) */}
-      <ProjectsSection />
+      {/* SECTION 06: OUR WORK & REAL PROJECTS PREVIEW (6 CURATED PROJECTS + REDIRECT TO FULL GALLERY) */}
+      <ProjectsSection preview={true} />
 
       {/* SECTION 07: INSTALLATION PROCESS (4-STEP TIMELINE) */}
       <InstallationSection />

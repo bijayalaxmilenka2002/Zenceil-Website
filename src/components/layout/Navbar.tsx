@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { Logo } from "@/components/ui/Logo";
 import { QuoteModal } from "@/components/ui/QuoteModal";
 import { Menu, X, ArrowUpRight, Phone, Mail, MapPin } from "lucide-react";
@@ -9,6 +11,8 @@ export const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [quoteModalOpen, setQuoteModalOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,19 +28,46 @@ export const Navbar: React.FC = () => {
   }, []);
 
   const navLinks = [
-    { label: "Home", href: "#hero" },
-    { label: "About", href: "#who-we-are" },
-    { label: "Products", href: "#products" },
-    { label: "Projects", href: "#projects" },
-    { label: "Expertise", href: "#expertise" },
-    { label: "Contact", href: "#footer" },
+    { label: "Home", href: "/#hero", targetId: "hero" },
+    { label: "About", href: "/#who-we-are", targetId: "who-we-are" },
+    { label: "Products", href: "/#products", targetId: "products" },
+    { label: "Projects", href: "/projects", isRoute: true },
+    { label: "Expertise", href: "/#expertise", targetId: "expertise" },
+    { label: "Contact", href: "/#footer", targetId: "footer" },
   ];
 
-  const handleNavClick = (href: string) => {
+  const handleNavClick = (link: typeof navLinks[0]) => {
     setMobileMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+
+    if (link.isRoute) {
+      if (pathname === "/projects") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        router.push("/projects");
+      }
+      return;
+    }
+
+    // Anchor navigation
+    if (pathname === "/") {
+      const element = document.getElementById(link.targetId!);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    } else {
+      router.push(link.href);
+    }
+  };
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    if (pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      router.push("/");
     }
   };
 
@@ -94,29 +125,40 @@ export const Navbar: React.FC = () => {
           <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
             {/* LEFT: Authentic Original Zenceil Logo */}
             <a
-              href="#hero"
-              className="focus:outline-none flex items-center"
+              href="/"
+              onClick={handleLogoClick}
+              className="focus:outline-none flex items-center cursor-pointer"
               aria-label="Zenceil Stretch Ceiling Home"
             >
               <Logo theme="light" />
             </a>
 
-            {/* CENTER: Navigation Links (Refined Architectural Typography: Preserved Size, Removed Clunky Boldness) */}
+            {/* CENTER: Navigation Links */}
             <nav className="hidden md:flex items-center space-x-7 lg:space-x-9">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick(link.href);
-                  }}
-                  className="text-base lg:text-[17px] font-medium text-[#252925]/90 hover:text-[#254C38] transition-colors relative group py-1.5 tracking-[-0.01em]"
-                >
-                  {link.label}
-                  <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#254C38] transition-all duration-300 group-hover:w-full rounded-full" />
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = link.isRoute
+                  ? pathname === "/projects"
+                  : pathname === "/" && link.targetId === "hero" && false;
+
+                return (
+                  <button
+                    key={link.label}
+                    onClick={() => handleNavClick(link)}
+                    className={`text-base lg:text-[17px] transition-colors relative group py-1.5 tracking-[-0.01em] cursor-pointer ${
+                      isActive
+                        ? "text-[#254C38] font-bold"
+                        : "font-medium text-[#252925]/90 hover:text-[#254C38]"
+                    }`}
+                  >
+                    <span>{link.label}</span>
+                    <span
+                      className={`absolute bottom-0 left-0 h-[1.5px] bg-[#254C38] transition-all duration-300 rounded-full ${
+                        isActive ? "w-full" : "w-0 group-hover:w-full"
+                      }`}
+                    />
+                  </button>
+                );
+              })}
             </nav>
 
             {/* RIGHT: CTA Button */}
@@ -153,19 +195,22 @@ export const Navbar: React.FC = () => {
         {mobileMenuOpen && (
           <div className="md:hidden bg-[#F7F7F2] border-b border-[#254C38]/15 px-6 py-6 space-y-4 animate-fadeIn shadow-xl">
             <div className="flex flex-col space-y-3">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick(link.href);
-                  }}
-                  className="text-base sm:text-lg font-medium text-[#252925] py-2.5 border-b border-[#252925]/5 hover:text-[#254C38] transition"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = link.isRoute && pathname === "/projects";
+                return (
+                  <button
+                    key={link.label}
+                    onClick={() => handleNavClick(link)}
+                    className={`text-left text-base sm:text-lg py-2.5 border-b border-[#252925]/5 transition cursor-pointer ${
+                      isActive
+                        ? "text-[#254C38] font-bold"
+                        : "font-medium text-[#252925] hover:text-[#254C38]"
+                    }`}
+                  >
+                    {link.label}
+                  </button>
+                );
+              })}
             </div>
             <div className="pt-2 text-xs text-[#5E645E] flex items-center gap-1.5">
               <MapPin size={13} className="text-[#254C38] shrink-0" />
