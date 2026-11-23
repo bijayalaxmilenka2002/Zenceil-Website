@@ -80,6 +80,34 @@ export const HERO_SLIDES: HeroSlide[] = [
     subtitle: "Trusted by premier architects, corporate headquarters, luxury hotels, and modern residences.",
     tagline: "TIMELESS SPATIAL TRANSFORMATION",
   },
+  {
+    id: "slide-4",
+    image: "/images/product-translucent.jpg",
+    title: "Pure Luminous Backlit Illumination.",
+    subtitle: "Even, shadowless light distribution that turns your ceiling into an expansive ambient light source.",
+    tagline: "TRANSLUCENT LIGHTING ARCHITECTURE",
+  },
+  {
+    id: "slide-5",
+    image: "/images/product-lacquer.jpg",
+    title: "Reflective Lacquer Finishes Expanding Space.",
+    subtitle: "High-gloss mirror surfaces doubling vertical room depth and creating opulent luxury interiors.",
+    tagline: "HIGH-GLOSS LACQUER MEMBRANES",
+  },
+  {
+    id: "slide-6",
+    image: "/images/product-3d-form.jpg",
+    title: "Sculptural 3D Parametric Geometries.",
+    subtitle: "Bespoke double-curved fluid canopies, waves, and organic architectural ceiling sculptures.",
+    tagline: "SCULPTURAL 3D SPATIAL FORMS",
+  },
+  {
+    id: "slide-7",
+    image: "/images/product-printed.jpg",
+    title: "Artistic Customized Graphic Ceilings.",
+    subtitle: "Ultra-high definition UV-printed ceiling membranes bringing biophilic art and creative vision to life.",
+    tagline: "HIGH-RESOLUTION BESPOKE PRINTS",
+  },
 ];
 
 export const CLIENT_LOGOS: ClientLogo[] = [

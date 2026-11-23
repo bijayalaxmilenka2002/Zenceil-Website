@@ -3,23 +3,18 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { HERO_SLIDES } from "@/data/zenceilData";
-import { ArrowLeft, ArrowRight, Pause, Play, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
 export const HeroSection: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
   const [progress, setProgress] = useState(0);
 
-  const SLIDE_DURATION = 4000; // 4 seconds autoplay interval
+  // REDUCED AUTOPLAY TIME: 2.5 seconds for snappy, dynamic slide show
+  const SLIDE_DURATION = 2500;
   const UPDATE_FREQ = 25; // 25ms smooth progress bar update
 
   const handleNext = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-    setProgress(0);
-  }, []);
-
-  const handlePrev = useCallback(() => {
-    setCurrentSlide((prev) => (prev === 0 ? HERO_SLIDES.length - 1 : prev - 1));
     setProgress(0);
   }, []);
 
@@ -28,10 +23,8 @@ export const HeroSection: React.FC = () => {
     setProgress(0);
   };
 
-  // Continuous Autoplay Engine (does not stall on hover)
+  // Continuous Autoplay Engine (loops through all 7 slides)
   useEffect(() => {
-    if (!isPlaying) return;
-
     const startTime = Date.now();
     const interval = setInterval(() => {
       const elapsed = Date.now() - startTime;
@@ -47,7 +40,7 @@ export const HeroSection: React.FC = () => {
       clearInterval(interval);
       clearTimeout(timer);
     };
-  }, [currentSlide, isPlaying, handleNext]);
+  }, [currentSlide, handleNext]);
 
   const activeSlideData = HERO_SLIDES[currentSlide];
 
@@ -56,16 +49,16 @@ export const HeroSection: React.FC = () => {
       id="hero"
       className="relative w-full pt-16 md:pt-20 pb-12 md:pb-16 bg-[#F7F7F2] overflow-hidden"
     >
-      {/* FULL-WIDTH HERO PRESENTATION CONTAINER */}
-      <div className="w-full px-3 sm:px-6 md:px-10 lg:px-12 max-w-[1720px] mx-auto">
-        {/* Large, Immersive Full-Screen Visual */}
-        <div className="relative w-full h-[65vh] sm:h-[75vh] md:h-[82vh] lg:h-[86vh] rounded-2xl md:rounded-[2rem] overflow-hidden shadow-2xl border border-[#254C38]/15 bg-[#E8E8DF]">
+      {/* FULL-WIDTH IMMERSIVE PRESENTATION CONTAINER - TAKES COMPLETE SECTION */}
+      <div className="w-full px-2 sm:px-4 md:px-8 max-w-[1920px] mx-auto">
+        {/* Large Full-Screen Architectural Visual */}
+        <div className="relative w-full h-[70vh] sm:h-[78vh] md:h-[84vh] lg:h-[88vh] rounded-2xl md:rounded-[2.5rem] overflow-hidden shadow-2xl border border-[#254C38]/15 bg-[#E8E8DF]">
           {HERO_SLIDES.map((slide, index) => {
             const isActive = index === currentSlide;
             return (
               <div
                 key={slide.id}
-                className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+                className={`absolute inset-0 transition-all duration-700 ease-in-out ${
                   isActive
                     ? "opacity-100 z-10 scale-100 pointer-events-auto"
                     : "opacity-0 z-0 scale-105 pointer-events-none"
@@ -76,16 +69,16 @@ export const HeroSection: React.FC = () => {
                   alt={slide.title}
                   fill
                   priority={index === 0}
-                  className="object-cover object-center transition-transform duration-[4000ms] ease-out"
+                  className="object-cover object-center transition-transform duration-[2500ms] ease-out"
                   sizes="100vw"
                 />
 
                 {/* Subtle Luxury Ambient Vignette */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#252925]/60 via-transparent to-black/15 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#252925]/75 via-[#252925]/15 to-black/20 pointer-events-none" />
 
-                {/* Architectural Tag Badge */}
-                <div className="absolute top-6 left-6 md:top-8 md:left-10 z-20 flex items-center gap-2">
-                  <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold tracking-[0.2em] uppercase bg-[#254C38]/90 text-[#F7F7F2] backdrop-blur-md shadow-lg border border-white/15">
+                {/* Top Corner Architectural Tag */}
+                <div className="absolute top-6 left-6 md:top-8 md:left-10 z-20">
+                  <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold tracking-[0.2em] uppercase bg-[#254C38]/90 text-[#F7F7F2] backdrop-blur-md shadow-lg border border-white/20">
                     <Sparkles size={13} className="text-emerald-300" />
                     <span>{slide.tagline}</span>
                   </span>
@@ -94,51 +87,40 @@ export const HeroSection: React.FC = () => {
             );
           })}
 
-          {/* Minimal Glassmorphic Controls Bar */}
-          <div className="absolute bottom-6 right-6 md:bottom-8 md:right-10 z-20 flex items-center gap-3 bg-[#252925]/75 backdrop-blur-md px-4 py-2.5 rounded-full border border-white/20 text-[#F7F7F2] shadow-xl">
-            <span className="text-xs font-mono font-bold tracking-widest text-[#F7F7F2]/90">
-              0{currentSlide + 1} / 0{HERO_SLIDES.length}
-            </span>
-            <div className="h-4 w-px bg-white/20" />
-            <button
-              onClick={handlePrev}
-              aria-label="Previous slide"
-              className="p-1.5 rounded-full hover:bg-white/20 transition text-[#F7F7F2] active:scale-95"
-            >
-              <ArrowLeft size={16} />
-            </button>
-            <button
-              onClick={() => setIsPlaying(!isPlaying)}
-              aria-label={isPlaying ? "Pause autoplay" : "Start autoplay"}
-              className="p-1.5 rounded-full hover:bg-white/20 transition text-[#F7F7F2] active:scale-95"
-            >
-              {isPlaying ? <Pause size={14} /> : <Play size={14} />}
-            </button>
-            <button
-              onClick={handleNext}
-              aria-label="Next slide"
-              className="p-1.5 rounded-full hover:bg-white/20 transition text-[#F7F7F2] active:scale-95"
-            >
-              <ArrowRight size={16} />
-            </button>
+          {/* EYE-CATCHING TEXT IN THE END PART CENTER OF THE IMAGE */}
+          <div className="absolute bottom-6 sm:bottom-8 md:bottom-10 left-1/2 -translate-x-1/2 z-20 text-center w-full px-4 max-w-4xl pointer-events-none">
+            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#254C38]/85 backdrop-blur-md border border-white/30 text-[#F7F7F2] shadow-2xl mb-2 sm:mb-3 animate-pulse">
+              <span className="w-2 h-2 rounded-full bg-emerald-400" />
+              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em]">
+                ARCHITECTURAL STRETCH CEILINGS
+              </span>
+            </div>
+            
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-white tracking-tight font-manrope drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)] leading-tight">
+              Transforming The Fifth Wall Into Living Art
+            </h2>
+            
+            <p className="text-xs sm:text-sm font-medium text-white/95 tracking-widest uppercase mt-1.5 sm:mt-2 drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
+              Bespoke Engineering • Seamless Light • 1-Day Clean Installation
+            </p>
           </div>
         </div>
 
-        {/* STRICT REQUIREMENT: Text appears in an elegant position BELOW the hero image */}
-        <div className="mt-8 md:mt-10 pt-6 border-t border-[#254C38]/15 grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+        {/* ELEGANT EDITORIAL DETAILS BELOW THE IMAGE */}
+        <div className="mt-6 md:mt-8 pt-5 border-t border-[#254C38]/15 grid grid-cols-1 lg:grid-cols-12 gap-6 items-end">
           {/* Main Headline & Description below image */}
-          <div className="lg:col-span-8 space-y-3">
+          <div className="lg:col-span-8 space-y-2">
             <div className="flex items-center gap-3">
               <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#254C38] bg-[#254C38]/10 px-2.5 py-1 rounded">
-                SLIDE 0{currentSlide + 1} • {activeSlideData.tagline}
+                0{currentSlide + 1} / 0{HERO_SLIDES.length} • {activeSlideData.tagline}
               </span>
               <div className="h-px w-10 bg-[#254C38]/30" />
               <span className="text-xs font-semibold text-[#5E645E] uppercase tracking-wider">
-                Automated Gallery Showcase
+                Automated Architectural Gallery
               </span>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#252925] tracking-tight leading-[1.15] font-manrope transition-all duration-700">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#252925] tracking-tight leading-[1.15] font-manrope transition-all duration-500">
               {activeSlideData.title}
             </h1>
 
@@ -147,9 +129,9 @@ export const HeroSection: React.FC = () => {
             </p>
           </div>
 
-          {/* Minimal Slide Progress Indicator & Timeline */}
-          <div className="lg:col-span-4 flex flex-col justify-end space-y-3.5">
-            <div className="flex items-center gap-2.5">
+          {/* Minimal 7-Slide Progress Bar */}
+          <div className="lg:col-span-4 flex flex-col justify-end space-y-3">
+            <div className="flex items-center gap-1.5">
               {HERO_SLIDES.map((slide, i) => (
                 <button
                   key={slide.id}
@@ -172,13 +154,13 @@ export const HeroSection: React.FC = () => {
 
             <div className="flex items-center justify-between text-xs text-[#5E645E]">
               <div className="flex items-center gap-2">
-                <span className={`w-2 h-2 rounded-full ${isPlaying ? "bg-emerald-500 animate-pulse" : "bg-amber-500"}`} />
-                <span className="font-mono text-[11px] font-semibold tracking-wider">
-                  {isPlaying ? "AUTOPLAY: 4.0 SECONDS" : "AUTOPLAY PAUSED"}
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="font-mono text-[11px] font-semibold tracking-wider text-[#254C38]">
+                  AUTOPLAY: 2.5s INTERVAL (7 SLIDES)
                 </span>
               </div>
-              <span className="font-medium text-xs text-[#254C38]">
-                Click progress bar to jump
+              <span className="font-medium text-[11px] text-[#5E645E]">
+                Click bar to navigate
               </span>
             </div>
           </div>
