@@ -3,7 +3,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { VERIFIED_STATISTICS } from "@/data/zenceilData";
-import { ArrowRight, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { 
+  ArrowRight, 
+  ShieldCheck, 
+  CheckCircle2,
+  Building2,
+  Home,
+  Hotel,
+  ShoppingBag,
+  Plane,
+  Utensils
+} from "lucide-react";
 
 export const WhoWeAreSection: React.FC = () => {
   const [animatedValues, setAnimatedValues] = useState<number[]>(
@@ -51,6 +61,15 @@ export const WhoWeAreSection: React.FC = () => {
 
     return () => observer.disconnect();
   }, [hasAnimated]);
+
+  const sectorIcons: Record<string, React.ReactNode> = {
+    Corporates: <Building2 size={22} />,
+    Residences: <Home size={22} />,
+    Hotels: <Hotel size={22} />,
+    Malls: <ShoppingBag size={22} />,
+    Airports: <Plane size={22} />,
+    Restaurants: <Utensils size={22} />,
+  };
 
   return (
     <section
@@ -156,16 +175,25 @@ export const WhoWeAreSection: React.FC = () => {
             {VERIFIED_STATISTICS.map((stat, idx) => (
               <div
                 key={stat.label}
-                className="p-5 rounded-2xl bg-white/70 border border-[#254C38]/10 hover:border-[#254C38]/30 transition-all duration-300 hover:shadow-sm"
+                className="group p-5 sm:p-6 rounded-2xl bg-white/80 border border-[#254C38]/10 hover:border-[#254C38]/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 flex flex-col justify-between"
               >
-                <div className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#254C38] font-manrope">
-                  {animatedValues[idx].toLocaleString()}
-                  <span>{stat.suffix}</span>
+                <div>
+                  {/* Subject Logo / Icon Badge according to headline */}
+                  <div className="w-11 h-11 rounded-xl bg-[#254C38]/10 text-[#254C38] flex items-center justify-center mb-4 group-hover:bg-[#254C38] group-hover:text-[#F7F7F2] group-hover:scale-105 transition-all duration-300 shadow-xs">
+                    {sectorIcons[stat.label] || <Building2 size={22} />}
+                  </div>
+
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#254C38] font-manrope tracking-tight">
+                    {animatedValues[idx].toLocaleString()}
+                    <span>{stat.suffix}</span>
+                  </div>
+
+                  <div className="text-sm font-bold text-[#252925] mt-1.5 font-manrope">
+                    {stat.label}
+                  </div>
                 </div>
-                <div className="text-sm font-bold text-[#252925] mt-1 font-manrope">
-                  {stat.label}
-                </div>
-                <p className="text-[11px] text-[#5E645E] mt-1 line-clamp-2">
+
+                <p className="text-[11px] text-[#5E645E] mt-2 line-clamp-2 leading-relaxed">
                   {stat.description}
                 </p>
               </div>
