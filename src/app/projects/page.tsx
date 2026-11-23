@@ -12,7 +12,14 @@ export const metadata: Metadata = {
     "Explore 36 authentic stretch ceiling installations executed by Zenceil (Aditya Interiors, Est. 2011) across corporate towers, luxury residences, retail gallerias, and 5-star hospitality throughout India.",
 };
 
-export default function ProjectsPage() {
+export default async function ProjectsPage({
+  searchParams,
+}: {
+  searchParams?: Promise<{ category?: string }>;
+}) {
+  const resolvedParams = searchParams ? await searchParams : undefined;
+  const initialCategory = resolvedParams?.category;
+
   return (
     <main className="min-h-screen flex flex-col bg-[#F7F7F2] text-[#252925]">
       {/* Sticky Header Navigation */}
@@ -115,7 +122,7 @@ export default function ProjectsPage() {
       </section>
 
       {/* FULL PORTFOLIO GALLERY (ALL 36 PROJECTS + CATEGORY FILTERS + SECTION SHOWCASE + LIGHTBOX) */}
-      <ProjectsSection preview={false} />
+      <ProjectsSection preview={false} initialCategory={initialCategory} />
 
       {/* Footer */}
       <FooterSection />

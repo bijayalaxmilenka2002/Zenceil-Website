@@ -22,6 +22,7 @@ import { QuoteModal } from "@/components/ui/QuoteModal";
 
 interface ProjectsSectionProps {
   preview?: boolean;
+  initialCategory?: string;
 }
 
 // 6 HIGHLY IN-DEMAND PRODUCTS WITH CURATED SPECIFICATIONS & ANIMATIONS
@@ -64,12 +65,30 @@ const IN_DEMAND_META = [
   },
 ];
 
-export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ preview = false }) => {
-  const [activeCategory, setActiveCategory] = useState<string>("All");
+export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ preview = false, initialCategory }) => {
+  const [activeCategory, setActiveCategory] = useState<string>(initialCategory || "All");
   const [inDemandFilter, setInDemandFilter] = useState<string>("All");
   const [selectedProject, setSelectedProject] = useState<ProjectPhoto | null>(null);
   const [quoteOpen, setQuoteOpen] = useState(false);
   const [viewMode, setViewMode] = useState<"grid" | "sections">("grid");
+
+  React.useEffect(() => {
+    if (initialCategory) {
+      const decoded = decodeURIComponent(initialCategory);
+      setActiveCategory(decoded);
+    }
+  }, [initialCategory]);
+
+  React.useEffect(() => {
+    const handleCategoryEvent = (e: Event) => {
+      const customEvent = e as CustomEvent<string>;
+      if (customEvent.detail) {
+        setActiveCategory(customEvent.detail);
+      }
+    };
+    window.addEventListener("zenceil-category-change", handleCategoryEvent);
+    return () => window.removeEventListener("zenceil-category-change", handleCategoryEvent);
+  }, []);
 
   const categories = [
     { id: "All", label: "All Projects", count: REAL_PROJECT_GALLERY.length },
