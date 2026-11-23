@@ -296,7 +296,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ preview = fals
                       src={project.image}
                       alt={project.title}
                       fill
-                      className="object-cover object-top origin-top group-hover:scale-108 transition-transform duration-700 ease-out"
+                      className="object-cover object-center group-hover:scale-[1.03] transition-transform duration-700 ease-out"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
 
@@ -355,7 +355,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ preview = fals
                       src={project.image}
                       alt={project.title}
                       fill
-                      className="object-cover object-top origin-top group-hover:scale-105 transition-transform duration-700 ease-out"
+                      className="object-cover object-center group-hover:scale-[1.03] transition-transform duration-700 ease-out"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#252925]/90 via-[#252925]/25 to-transparent opacity-75 group-hover:opacity-90 transition-opacity" />
@@ -450,7 +450,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ preview = fals
                               src={project.image}
                               alt={project.title}
                               fill
-                              className="object-cover object-top origin-top group-hover:scale-105 transition-transform duration-700 ease-out"
+                              className="object-cover object-center group-hover:scale-[1.03] transition-transform duration-700 ease-out"
                               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#252925]/90 via-[#252925]/25 to-transparent opacity-75 group-hover:opacity-90 transition-opacity" />
@@ -517,7 +517,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ preview = fals
                 src={selectedProject.image}
                 alt={selectedProject.title}
                 fill
-                className="object-cover object-top origin-top"
+                className="object-cover object-center"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#252925]/90 via-transparent to-transparent" />
               <button

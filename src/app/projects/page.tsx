@@ -80,7 +80,7 @@ export default function ProjectsPage() {
                   alt="Zenceil Architectural Stretch Ceiling Engineering Visual"
                   fill
                   priority
-                  className="object-cover object-top origin-top group-hover:scale-105 transition-transform duration-700 ease-out"
+                  className="object-cover object-center group-hover:scale-[1.03] transition-transform duration-700 ease-out"
                   sizes="(max-width: 1024px) 100vw, 520px"
                 />
 
