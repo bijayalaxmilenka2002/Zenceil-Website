@@ -317,22 +317,15 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ preview = fals
                       <ArrowUpRight size={16} />
                     </div>
 
-                    {/* In-Card Title Info */}
+                    {/* In-Card Title Info: Main Subject Line First, Location Underneath */}
                     <div className="absolute bottom-4 left-5 right-5 text-white z-10 space-y-1.5">
-                      <div className="flex items-center gap-1.5 text-[11px] text-white/80 font-medium">
-                        <MapPin size={11} className="text-emerald-300 shrink-0" />
-                        <span className="truncate">{project.location}</span>
-                      </div>
-
                       <h3 className="text-base sm:text-lg font-bold font-manrope leading-snug drop-shadow-md">
                         {project.title}
                       </h3>
 
-                      <div className="flex items-center gap-2 pt-1 flex-wrap">
-                        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-md text-[10px] text-emerald-200 border border-white/10 font-mono">
-                          <Sparkles size={10} className="text-emerald-300 shrink-0" />
-                          <span>{project.featureKey}</span>
-                        </div>
+                      <div className="flex items-center gap-1.5 text-[11px] text-white/85 font-medium">
+                        <MapPin size={12} className="text-emerald-300 shrink-0" />
+                        <span className="truncate">{project.location}</span>
                       </div>
                     </div>
                   </div>
@@ -370,15 +363,12 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ preview = fals
                     </div>
 
                     <div className="absolute bottom-4 left-5 right-5 text-white z-10 space-y-1">
-                      <div className="flex items-center gap-1 text-[11px] text-white/80 font-medium">
-                        <MapPin size={11} className="text-emerald-300 shrink-0" />
-                        <span className="truncate">{project.location}</span>
-                      </div>
                       <h3 className="text-base sm:text-lg font-bold font-manrope leading-snug drop-shadow-md">
                         {project.title}
                       </h3>
-                      <div className="text-[11px] text-emerald-200/90 font-mono tracking-wider pt-0.5">
-                        {project.system}
+                      <div className="flex items-center gap-1.5 text-[11px] text-white/85 font-medium">
+                        <MapPin size={12} className="text-emerald-300 shrink-0" />
+                        <span className="truncate">{project.location}</span>
                       </div>
                     </div>
                   </div>
@@ -468,9 +458,10 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ preview = fals
                               <h4 className="text-base sm:text-lg font-bold font-manrope leading-snug drop-shadow-md">
                                 {project.title}
                               </h4>
-                              <p className="text-[11px] text-emerald-200/90 font-mono tracking-wider">
-                                {project.system}
-                              </p>
+                              <div className="flex items-center gap-1.5 text-[11px] text-white/85 font-medium">
+                                <MapPin size={12} className="text-emerald-300 shrink-0" />
+                                <span className="truncate">{project.location}</span>
+                              </div>
                             </div>
                           </div>
                         </div>
