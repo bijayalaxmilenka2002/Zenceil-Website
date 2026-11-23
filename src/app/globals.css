@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --forest: #254c38;
+    --forest-dark: #1a3627;
+    --forest-light: #34634a;
+    --forest-subtle: rgba(37, 76, 56, 0.08);
+    --forest-border: rgba(37, 76, 56, 0.15);
+    
+    --warm-white: #f7f7f2;
+    --warm-white-pure: #fafaf7;
+    --warm-white-card: #f2f2eb;
+    --warm-white-border: #e6e6dc;
+    
+    --charcoal: #252925;
+    --charcoal-light: #3b403b;
+    --charcoal-muted: #5e645e;
+    --charcoal-border: rgba(37, 41, 37, 0.12);
+
+    --font-manrope: "Manrope", "Segoe UI", Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-inter: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--warm-white);
+    color: var(--charcoal);
+  }
+
+  body {
+    background-color: var(--warm-white);
+    color: var(--charcoal);
+    font-family: var(--font-inter);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-manrope);
+    letter-spacing: -0.025em;
+  }
+
+  ::selection {
+    background-color: var(--forest);
+    color: var(--warm-white);
+  }
+}
+
+/* Custom Keyframes for Marquee & Transitions */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Color utility classes for clean syntax */
+.bg-forest {
+  background-color: #254c38;
+}
+
+.text-forest {
+  color: #254c38;
+}
+
+.border-forest {
+  border-color: #254c38;
+}
+
+.bg-warm-white {
+  background-color: #f7f7f2;
+}
+
+.text-warm-white {
+  color: #f7f7f2;
+}
+
+.bg-charcoal {
+  background-color: #252925;
+}
+
+.text-charcoal {
+  color: #252925;
+}
+
+.text-charcoal-muted {
+  color: #5e645e;
+}
