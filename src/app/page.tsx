@@ -12,7 +12,7 @@ import { FooterSection } from "@/components/sections/FooterSection";
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen flex flex-col bg-[#FBF9F4] text-[#1E242B]">
+    <main className="min-h-screen flex flex-col bg-[#EDE7DC] text-[#302820]">
       {/* Sticky Header Navigation */}
       <Navbar />
 

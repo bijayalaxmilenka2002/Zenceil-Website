@@ -9,46 +9,64 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Core Theme: Navy, Ivory & Silver
-        navy: {
-          DEFAULT: "#0B1B33",
-          dark: "#071224",
-          light: "#162F55",
-          subtle: "rgba(11, 27, 51, 0.08)",
-          border: "rgba(11, 27, 51, 0.15)",
+        // Luxury Palette: Warm Beige, Espresso & Pure White
+        espresso: {
+          DEFAULT: "#302820",
+          dark: "#211B15",
+          light: "#4A3F33",
+          subtle: "rgba(48, 40, 32, 0.08)",
+          border: "rgba(48, 40, 32, 0.15)",
         },
-        ivory: {
-          DEFAULT: "#FBF9F4",
-          pure: "#FFFDF9",
-          card: "#F5F1E8",
-          border: "#EDE8DC",
+        warmBeige: {
+          DEFAULT: "#EDE7DC",
+          light: "#F5F1EA",
+          dark: "#DFD7C8",
+          border: "#D8CEBE",
         },
-        silver: {
-          DEFAULT: "#8A99AC",
-          light: "#D8DFE8",
-          metallic: "#C0C7D0",
-          dark: "#4B596A",
-          border: "rgba(138, 153, 172, 0.25)",
-        },
-        charcoal: {
-          DEFAULT: "#1E242B",
-          light: "#333D47",
-          muted: "#5F6C7B",
-          border: "rgba(30, 36, 43, 0.12)",
+        pureWhite: {
+          DEFAULT: "#FFFFFF",
+          card: "#FFFFFF",
+          border: "#F0ECE4",
         },
         // Backward compatibility mappings
+        navy: {
+          DEFAULT: "#302820",
+          dark: "#211B15",
+          light: "#4A3F33",
+          subtle: "rgba(48, 40, 32, 0.08)",
+          border: "rgba(48, 40, 32, 0.15)",
+        },
+        ivory: {
+          DEFAULT: "#EDE7DC",
+          pure: "#FFFFFF",
+          card: "#FFFFFF",
+          border: "#DFD7C8",
+        },
+        silver: {
+          DEFAULT: "#DFD7C8",
+          light: "#EDE7DC",
+          metallic: "#C8BEAE",
+          dark: "#5C5248",
+          border: "rgba(48, 40, 32, 0.15)",
+        },
+        charcoal: {
+          DEFAULT: "#302820",
+          light: "#4A3F33",
+          muted: "#6E6256",
+          border: "rgba(48, 40, 32, 0.12)",
+        },
         forest: {
-          DEFAULT: "#0B1B33",
-          dark: "#071224",
-          light: "#162F55",
-          subtle: "rgba(11, 27, 51, 0.08)",
-          border: "rgba(11, 27, 51, 0.15)",
+          DEFAULT: "#302820",
+          dark: "#211B15",
+          light: "#4A3F33",
+          subtle: "rgba(48, 40, 32, 0.08)",
+          border: "rgba(48, 40, 32, 0.15)",
         },
         warmWhite: {
-          DEFAULT: "#FBF9F4",
-          pure: "#FFFDF9",
-          card: "#F5F1E8",
-          border: "#EDE8DC",
+          DEFAULT: "#EDE7DC",
+          pure: "#FFFFFF",
+          card: "#FFFFFF",
+          border: "#DFD7C8",
         },
       },
       fontFamily: {

@@ -40,7 +40,7 @@ export const HeroSection: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative w-full pt-20 sm:pt-24 md:pt-28 bg-[#FBF9F4] overflow-hidden select-none"
+      className="relative w-full pt-20 sm:pt-24 md:pt-28 bg-[#EDE7DC] overflow-hidden select-none"
     >
       {/* 100% FULL-BLEED EDGE-TO-EDGE HERO VISUAL */}
       <div 
@@ -48,7 +48,7 @@ export const HeroSection: React.FC = () => {
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
-        <div className="relative w-full h-[76vh] sm:h-[82vh] md:h-[88vh] lg:h-[92vh] overflow-hidden bg-[#071224]">
+        <div className="relative w-full h-[76vh] sm:h-[82vh] md:h-[88vh] lg:h-[92vh] overflow-hidden bg-[#211B15]">
           {HERO_SLIDES.map((slide, index) => {
             const isActive = index === currentSlide;
             return (
@@ -81,7 +81,7 @@ export const HeroSection: React.FC = () => {
           <button
             onClick={handlePrev}
             aria-label="Previous Slide"
-            className="hidden md:flex absolute left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-black/40 hover:bg-[#0B1B33] text-white backdrop-blur-md border border-white/15 items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 active:scale-95 cursor-pointer shadow-lg"
+            className="hidden md:flex absolute left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-black/40 hover:bg-[#302820] text-white backdrop-blur-md border border-white/15 items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 active:scale-95 cursor-pointer shadow-lg"
           >
             <ChevronLeft size={20} />
           </button>
@@ -89,7 +89,7 @@ export const HeroSection: React.FC = () => {
           <button
             onClick={handleNext}
             aria-label="Next Slide"
-            className="hidden md:flex absolute right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-black/40 hover:bg-[#0B1B33] text-white backdrop-blur-md border border-white/15 items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 active:scale-95 cursor-pointer shadow-lg"
+            className="hidden md:flex absolute right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-black/40 hover:bg-[#302820] text-white backdrop-blur-md border border-white/15 items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 active:scale-95 cursor-pointer shadow-lg"
           >
             <ChevronRight size={20} />
           </button>
@@ -97,8 +97,8 @@ export const HeroSection: React.FC = () => {
           {/* REFINED ARCHITECTURAL TEXT OVERLAY */}
           <div className="absolute bottom-8 sm:bottom-12 md:bottom-14 left-1/2 -translate-x-1/2 z-20 text-center w-full px-4 sm:px-6 max-w-4xl pointer-events-none">
             {/* Tagline Badge */}
-            <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 rounded-full bg-black/55 backdrop-blur-md text-[10px] sm:text-[11px] font-mono font-semibold tracking-widest text-[#D8DFE8] border border-white/20 mb-2.5 sm:mb-3 uppercase shadow-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#8A99AC] animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 rounded-full bg-black/55 backdrop-blur-md text-[10px] sm:text-[11px] font-mono font-semibold tracking-widest text-[#FFFFFF] border border-white/20 mb-2.5 sm:mb-3 uppercase shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#EDE7DC] animate-pulse" />
               <span>{activeSlideData.tagline}</span>
             </div>
 

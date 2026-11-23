@@ -78,22 +78,22 @@ export const FooterSection: React.FC = () => {
     <>
       <footer
         id="footer"
-        className="bg-[#071224] text-white pt-16 sm:pt-20 md:pt-28 pb-12 border-t border-white/10"
+        className="bg-[#241E18] text-[#EDE7DC] pt-16 sm:pt-20 md:pt-28 pb-12 border-t border-white/10"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 space-y-12 sm:space-y-16">
-          {/* PRIMARY CTA BLOCK: Navy, Ivory & Silver Theme */}
-          <div className="p-6 sm:p-10 md:p-12 lg:p-14 rounded-2xl sm:rounded-3xl bg-[#0B1B33] border border-[#8A99AC]/30 shadow-2xl relative overflow-hidden">
+          {/* PRIMARY CTA BLOCK: Warm Beige, Espresso & Pure White Theme */}
+          <div className="p-6 sm:p-10 md:p-12 lg:p-14 rounded-2xl sm:rounded-3xl bg-[#302820] border border-white/15 shadow-2xl relative overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               {/* Left Column: Heading, Narrative & Action Buttons */}
               <div className="lg:col-span-7 space-y-5 sm:space-y-6 text-left">
                 <div className="space-y-2.5 sm:space-y-3">
-                  <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#D8DFE8] block">
+                  <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#EDE7DC]/80 block">
                     Start Your Architectural Transformation
                   </span>
                   <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.12] font-manrope">
                     Let&apos;s Create Something Extraordinary.
                   </h2>
-                  <p className="text-xs sm:text-sm md:text-base text-[#D8DFE8]/90 font-normal leading-relaxed max-w-xl">
+                  <p className="text-xs sm:text-sm md:text-base text-[#EDE7DC]/90 font-normal leading-relaxed max-w-xl">
                     Have a project in mind? Talk to our team. We partner with architects, interior designers, commercial developers, and homeowners nationwide.
                   </p>
                 </div>
@@ -102,7 +102,7 @@ export const FooterSection: React.FC = () => {
                 <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 pt-2">
                   <button
                     onClick={() => setQuoteOpen(true)}
-                    className="w-full sm:w-auto px-7 sm:px-8 py-3.5 sm:py-4 rounded-full bg-[#FBF9F4] text-[#0B1B33] text-xs font-bold tracking-wider uppercase hover:bg-white hover:shadow-lg transition flex items-center justify-center gap-2 active:scale-95 cursor-pointer shadow-sm"
+                    className="w-full sm:w-auto px-7 sm:px-8 py-3.5 sm:py-4 rounded-full bg-[#EDE7DC] text-[#302820] text-xs font-bold tracking-wider uppercase hover:bg-white hover:shadow-lg transition flex items-center justify-center gap-2 active:scale-95 cursor-pointer shadow-sm"
                   >
                     <span>Get a Free Consultation</span>
                     <ArrowRight size={16} />
@@ -111,7 +111,7 @@ export const FooterSection: React.FC = () => {
                     href="tel:+919819846701"
                     className="w-full sm:w-auto px-7 sm:px-8 py-3.5 sm:py-4 rounded-full border border-white/35 text-white text-xs font-bold tracking-wider uppercase hover:bg-white/10 transition flex items-center justify-center gap-2 active:scale-95 cursor-pointer"
                   >
-                    <Phone size={16} className="text-[#8A99AC]" />
+                    <Phone size={16} className="text-[#EDE7DC]" />
                     <span>Call Directly</span>
                   </a>
                 </div>
@@ -119,7 +119,7 @@ export const FooterSection: React.FC = () => {
 
               {/* Right Column: Architectural Visual */}
               <div className="lg:col-span-5">
-                <div className="relative aspect-[16/10] sm:aspect-[16/10] w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-xl border border-white/15 bg-[#071224] group">
+                <div className="relative aspect-[16/10] sm:aspect-[16/10] w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-xl border border-white/15 bg-[#241E18] group">
                   <Image
                     src="/images/cta-architecture-lounge.jpg"
                     alt="Luxury Architectural Lounge with Multi-Level Fluid Wave Stretch Ceiling"
@@ -138,13 +138,13 @@ export const FooterSection: React.FC = () => {
             {/* Col 1: Brand Info & Social Media Logos (4 cols) */}
             <div className="lg:col-span-4 space-y-5 sm:space-y-6">
               <Logo theme="dark" />
-              <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#EDE7DC]/70 leading-relaxed">
                 Operating under <strong>Aditya Interiors</strong> (Est. 2011). Pioneers in high-precision stretch ceiling membranes, integrated lighting, and acoustic architectural systems across India.
               </p>
 
               {/* SOCIAL MEDIA LOGOS */}
               <div className="space-y-2.5 pt-2">
-                <span className="text-[11px] font-bold uppercase tracking-widest text-white/80 block">
+                <span className="text-[11px] font-bold uppercase tracking-widest text-[#EDE7DC]/80 block">
                   Connect With Us
                 </span>
                 <div className="flex items-center gap-2.5 flex-wrap">
@@ -154,7 +154,7 @@ export const FooterSection: React.FC = () => {
                       href={s.href}
                       target="_blank"
                       rel="noreferrer"
-                      className="w-9 h-9 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-white/80 hover:text-white hover:bg-[#162F55] hover:border-[#8A99AC]/50 hover:scale-105 transition-all shadow-sm"
+                      className="w-9 h-9 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-[#EDE7DC]/80 hover:text-white hover:bg-[#302820] hover:border-white/30 hover:scale-105 transition-all shadow-sm"
                       aria-label={s.name}
                       title={s.name}
                     >
@@ -167,10 +167,10 @@ export const FooterSection: React.FC = () => {
 
             {/* Col 2: Quick Links (2 cols) */}
             <div className="lg:col-span-2 space-y-4">
-              <h4 className="text-xs font-bold uppercase tracking-widest text-[#D8DFE8]">
+              <h4 className="text-xs font-bold uppercase tracking-widest text-[#EDE7DC]">
                 Navigation
               </h4>
-              <ul className="space-y-2.5 text-xs sm:text-sm text-gray-400">
+              <ul className="space-y-2.5 text-xs sm:text-sm text-[#EDE7DC]/70">
                 {quickLinks.map((link) => (
                   <li key={link.label}>
                     <a
@@ -186,10 +186,10 @@ export const FooterSection: React.FC = () => {
 
             {/* Col 3: Product Range (3 cols) */}
             <div className="lg:col-span-3 space-y-4">
-              <h4 className="text-xs font-bold uppercase tracking-widest text-[#D8DFE8]">
+              <h4 className="text-xs font-bold uppercase tracking-widest text-[#EDE7DC]">
                 Ceiling Solutions
               </h4>
-              <ul className="space-y-2.5 text-xs sm:text-sm text-gray-400">
+              <ul className="space-y-2.5 text-xs sm:text-sm text-[#EDE7DC]/70">
                 {productLinks.map((prod) => (
                   <li key={prod.label}>
                     <a
@@ -197,7 +197,7 @@ export const FooterSection: React.FC = () => {
                       className="hover:text-white transition-colors flex items-center justify-between group"
                     >
                       <span>{prod.label}</span>
-                      <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity text-[#8A99AC]" />
+                      <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity text-[#EDE7DC]" />
                     </a>
                   </li>
                 ))}
@@ -206,12 +206,12 @@ export const FooterSection: React.FC = () => {
 
             {/* Col 4: Verified Contact Info (3 cols) */}
             <div className="lg:col-span-3 space-y-4">
-              <h4 className="text-xs font-bold uppercase tracking-widest text-[#D8DFE8]">
+              <h4 className="text-xs font-bold uppercase tracking-widest text-[#EDE7DC]">
                 Verified Contact
               </h4>
-              <ul className="space-y-3 text-xs sm:text-sm text-gray-400">
+              <ul className="space-y-3 text-xs sm:text-sm text-[#EDE7DC]/70">
                 <li className="flex items-start gap-2.5">
-                  <Phone size={16} className="text-[#8A99AC] shrink-0 mt-0.5" />
+                  <Phone size={16} className="text-[#EDE7DC] shrink-0 mt-0.5" />
                   <div className="flex flex-col">
                     <a href="tel:+919819846701" className="hover:text-white">
                       +91 9819846701
@@ -223,15 +223,15 @@ export const FooterSection: React.FC = () => {
                 </li>
 
                 <li className="flex items-center gap-2.5">
-                  <Mail size={16} className="text-[#8A99AC] shrink-0" />
+                  <Mail size={16} className="text-[#EDE7DC] shrink-0" />
                   <a href="mailto:info@zenceil.com" className="hover:text-white">
                     info@zenceil.com
                   </a>
                 </li>
 
                 <li className="flex items-start gap-2.5">
-                  <MapPin size={16} className="text-[#8A99AC] shrink-0 mt-0.5" />
-                  <span className="text-[12px] leading-relaxed text-gray-400">
+                  <MapPin size={16} className="text-[#EDE7DC] shrink-0 mt-0.5" />
+                  <span className="text-[12px] leading-relaxed text-[#EDE7DC]/70">
                     Unit 5 &amp; 6, Vinayak Industrial Estate, Navghar, Vasai East, Palghar – 401208, Maharashtra.
                   </span>
                 </li>
@@ -240,29 +240,29 @@ export const FooterSection: React.FC = () => {
           </div>
 
           {/* BRANCH OFFICES STRIP */}
-          <div className="pt-6 sm:pt-8 border-t border-white/10 grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 text-xs text-gray-400">
+          <div className="pt-6 sm:pt-8 border-t border-white/10 grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 text-xs text-[#EDE7DC]/70">
             <div>
               <span className="text-white font-semibold block mb-1">New Delhi Office</span>
-              <p className="text-[11px] leading-relaxed text-gray-400">
+              <p className="text-[11px] leading-relaxed text-[#EDE7DC]/70">
                 B1/630-631, 2nd Floor (Above Maruti Suzuki Showroom), Janakpuri East, New Delhi – 110058
               </p>
             </div>
             <div>
               <span className="text-white font-semibold block mb-1">Bangalore Office</span>
-              <p className="text-[11px] leading-relaxed text-gray-400">
+              <p className="text-[11px] leading-relaxed text-[#EDE7DC]/70">
                 Plot no 22, Rangalata Bhavan, 2nd Floor, Gokula Layout, Balagere Road, Varthur, Bangalore – 560087
               </p>
             </div>
             <div>
               <span className="text-white font-semibold block mb-1">Bhubaneswar Office</span>
-              <p className="text-[11px] leading-relaxed text-gray-400">
+              <p className="text-[11px] leading-relaxed text-[#EDE7DC]/70">
                 Plot No - 6, S1/22, BDA Colony, ATM Square, Niladri Vihar, Bhubaneswar, Odisha – 751021
               </p>
             </div>
           </div>
 
           {/* BOTTOM COPYRIGHT */}
-          <div className="pt-6 sm:pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-4">
+          <div className="pt-6 sm:pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-[#EDE7DC]/60 gap-4">
             <p>© Zenceil. All Rights Reserved. Operating under Aditya Interiors.</p>
             <div className="flex items-center gap-4 sm:gap-6 flex-wrap justify-center">
               <span>Privacy Policy</span>
