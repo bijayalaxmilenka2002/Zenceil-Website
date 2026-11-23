@@ -3,49 +3,61 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { HERO_SLIDES } from "@/data/zenceilData";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export const HeroSection: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
-  // Snappy, dynamic 2.5s autoplay interval
-  const SLIDE_DURATION = 2500;
+  // Cinematic 4-second autoplay interval
+  const SLIDE_DURATION = 4000;
 
   const handleNext = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+  }, []);
+
+  const handlePrev = useCallback(() => {
+    setCurrentSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
   }, []);
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
   };
 
-  // Continuous Autoplay Engine across all 7 slides
+  // Continuous Autoplay Engine with pause-on-hover
   useEffect(() => {
+    if (isPaused) return;
+
     const timer = setInterval(() => {
       handleNext();
     }, SLIDE_DURATION);
 
     return () => clearInterval(timer);
-  }, [handleNext]);
+  }, [handleNext, isPaused]);
 
   const activeSlideData = HERO_SLIDES[currentSlide];
 
   return (
     <section
       id="hero"
-      className="relative w-full pt-24 md:pt-28 bg-[#F7F7F2] overflow-hidden"
+      className="relative w-full pt-24 md:pt-28 bg-[#F7F7F2] overflow-hidden select-none"
     >
-      {/* 100% FULL-BLEED EDGE-TO-EDGE HERO VISUAL (ZERO SIDE BORDER SPACE) */}
-      <div className="w-full">
-        <div className="relative w-full h-[78vh] sm:h-[84vh] md:h-[88vh] lg:h-[92vh] overflow-hidden bg-[#E8E8DF]">
+      {/* 100% FULL-BLEED EDGE-TO-EDGE HERO VISUAL */}
+      <div 
+        className="w-full relative group"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        <div className="relative w-full h-[78vh] sm:h-[84vh] md:h-[88vh] lg:h-[92vh] overflow-hidden bg-[#1C1F1D]">
           {HERO_SLIDES.map((slide, index) => {
             const isActive = index === currentSlide;
             return (
               <div
                 key={slide.id}
-                className={`absolute inset-0 transition-all duration-700 ease-in-out ${
+                className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
                   isActive
-                    ? "opacity-100 z-10 scale-100 pointer-events-auto"
-                    : "opacity-0 z-0 scale-105 pointer-events-none"
+                    ? "opacity-100 z-10 pointer-events-auto"
+                    : "opacity-0 z-0 pointer-events-none"
                 }`}
               >
                 <Image
@@ -53,40 +65,82 @@ export const HeroSection: React.FC = () => {
                   alt={slide.title}
                   fill
                   priority={index === 0}
-                  className="object-cover object-center transition-transform duration-[2000ms] ease-out"
+                  className={`object-cover object-center transition-transform duration-[4500ms] ease-out ${
+                    isActive ? "scale-100" : "scale-[1.04]"
+                  }`}
                   sizes="100vw"
                 />
 
-                {/* Ambient Balanced Vignette - Soft contrast for text while preserving full natural room illumination */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/10 pointer-events-none" />
+                {/* Ambient Balanced Architectural Vignette */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/10 pointer-events-none" />
               </div>
             );
           })}
 
-          {/* REFINED, COMPACT ARCHITECTURAL TEXT (NO GREEN BADGES, REDUCED TEXT SIZE) */}
-          <div className="absolute bottom-8 sm:bottom-10 md:bottom-12 left-1/2 -translate-x-1/2 z-20 text-center w-full px-6 max-w-3xl pointer-events-none">
-            <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white tracking-tight font-manrope drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)] leading-snug transition-all duration-500">
+          {/* PREV / NEXT ARROWS (Visible on hover on desktop) */}
+          <button
+            onClick={handlePrev}
+            aria-label="Previous Slide"
+            className="hidden md:flex absolute left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-black/40 hover:bg-[#254C38] text-white backdrop-blur-md border border-white/15 items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 active:scale-95 cursor-pointer shadow-lg"
+          >
+            <ChevronLeft size={20} />
+          </button>
+
+          <button
+            onClick={handleNext}
+            aria-label="Next Slide"
+            className="hidden md:flex absolute right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-black/40 hover:bg-[#254C38] text-white backdrop-blur-md border border-white/15 items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 active:scale-95 cursor-pointer shadow-lg"
+          >
+            <ChevronRight size={20} />
+          </button>
+
+          {/* REFINED ARCHITECTURAL TEXT OVERLAY */}
+          <div className="absolute bottom-10 sm:bottom-12 md:bottom-14 left-1/2 -translate-x-1/2 z-20 text-center w-full px-6 max-w-4xl pointer-events-none">
+            {/* Tagline Badge */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-black/50 backdrop-blur-md text-[11px] font-mono font-semibold tracking-widest text-emerald-300 border border-white/15 mb-3 uppercase shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span>{activeSlideData.tagline}</span>
+            </div>
+
+            {/* Slide Title */}
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-white tracking-tight font-manrope drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)] leading-tight transition-all duration-500">
               {activeSlideData.title}
             </h1>
 
-            <p className="text-xs sm:text-sm text-white/85 font-normal tracking-wide mt-1.5 drop-shadow-[0_1px_8px_rgba(0,0,0,0.7)] max-w-xl mx-auto">
+            {/* Subtitle */}
+            <p className="text-xs sm:text-sm md:text-base text-white/90 font-normal tracking-wide mt-2 drop-shadow-[0_1px_8px_rgba(0,0,0,0.7)] max-w-2xl mx-auto leading-relaxed">
               {activeSlideData.subtitle}
             </p>
 
-            {/* Minimal Navigational Dots */}
-            <div className="flex items-center justify-center gap-1.5 mt-4 pointer-events-auto">
-              {HERO_SLIDES.map((slide, i) => (
-                <button
-                  key={slide.id}
-                  onClick={() => goToSlide(i)}
-                  aria-label={`Go to slide ${i + 1}`}
-                  className={`h-1 rounded-full transition-all duration-300 cursor-pointer ${
-                    i === currentSlide
-                      ? "w-6 bg-white shadow-md"
-                      : "w-1.5 bg-white/40 hover:bg-white/80"
-                  }`}
-                />
-              ))}
+            {/* AUTOPLAY PROGRESS BARS & NAVIGATION DOTS */}
+            <div className="flex items-center justify-center gap-2.5 mt-6 pointer-events-auto">
+              {HERO_SLIDES.map((slide, i) => {
+                const isActive = i === currentSlide;
+                return (
+                  <button
+                    key={slide.id}
+                    onClick={() => goToSlide(i)}
+                    aria-label={`Go to slide ${i + 1}`}
+                    className="relative h-1.5 rounded-full overflow-hidden transition-all duration-300 cursor-pointer group/dot focus:outline-none"
+                    style={{
+                      width: isActive ? "42px" : "14px",
+                      backgroundColor: isActive ? "rgba(255, 255, 255, 0.3)" : "rgba(255, 255, 255, 0.4)",
+                    }}
+                  >
+                    {isActive && (
+                      <span
+                        key={`${slide.id}-${isPaused ? 'paused' : 'running'}`}
+                        className="absolute inset-0 bg-white rounded-full"
+                        style={{
+                          animation: isPaused
+                            ? "none"
+                            : `heroProgress ${SLIDE_DURATION}ms linear forwards`,
+                        }}
+                      />
+                    )}
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>

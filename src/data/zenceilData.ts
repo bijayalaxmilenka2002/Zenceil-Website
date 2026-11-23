@@ -77,46 +77,39 @@ export interface TestimonialItem {
   company: string;
 }
 
-// 1. AUTHENTIC HERO SLIDES (Showcasing authentic stretch ceiling designs across all sectors)
+// 1. AUTHENTIC HERO SLIDES (5 Curated Flagship Stretch Ceiling Systems)
 export const HERO_SLIDES: HeroSlide[] = [
   {
     id: "slide-1",
-    image: "/images/hero-translucent.jpg",
+    image: "/images/hero-1-translucent.jpg",
     title: "Tired Of Staring At A Boring Ceiling?",
     subtitle: "Transform your interiors with luminous, shadowless architectural stretch ceilings engineered for seamless brilliance.",
     tagline: "TRANSLUCENT LUMINOUS MEMBRANE",
   },
   {
     id: "slide-2",
-    image: "/images/hero-lacquer.jpg",
+    image: "/images/hero-2-lacquer.jpg",
     title: "Want Your Interior To Look Truly Unique?",
     subtitle: "Over 85% mirror optical reflection visually doubles room height, creating breathtaking vertical drama and luxury.",
     tagline: "HIGH-GLOSS MIRROR LACQUER CEILING",
   },
   {
     id: "slide-3",
-    image: "/images/original/banner-img-1.jpg",
-    title: "Attract Potential Buyers Or Impress Your Clients.",
-    subtitle: "Monumental tensioned architectural domes and canopies engineered for landmark commercial venues.",
-    tagline: "MONUMENTAL ARCHITECTURAL DOMES",
-  },
-  {
-    id: "slide-4",
-    image: "/images/projects/18.png",
-    title: "Be Inspired By Our Incredible Portfolio.",
-    subtitle: "Explore parametric 3D wave forms, multi-level acoustic canopies, and bespoke tensioned ceilings across India.",
+    image: "/images/hero-3-3d-wave.jpg",
+    title: "Parametric 3D Forms & Acoustic Canopies.",
+    subtitle: "Sculptural multi-level curved stretch ceilings engineered with lightweight aluminum framing and acoustic dampening.",
     tagline: "PARAMETRIC 3D ACOUSTIC CANOPY",
   },
   {
-    id: "slide-5",
-    image: "/images/projects/19.png",
+    id: "slide-4",
+    image: "/images/hero-4-starlight.jpg",
     title: "Ceilings Beyond Imagination.",
-    subtitle: "Bespoke large-format UV printed artwork integrated with starlight fiber optic constellations for majestic night skies.",
+    subtitle: "Bespoke acoustic stretch ceilings embedded with twinkling fiber optic starlight constellations and celestial nebulae.",
     tagline: "PRINTED ART & FIBER OPTIC STARLIGHT",
   },
   {
-    id: "slide-6",
-    image: "/images/projects/7-1.png",
+    id: "slide-5",
+    image: "/images/hero-5-spa-pool.jpg",
     title: "100% Moisture-Proof Spa & Wellness Atriums.",
     subtitle: "Impervious to steam, chlorinated pool vapor, and humidity with a 10-year anti-sag guarantee across 5-star hotels.",
     tagline: "WELLNESS & SPA MEMBRANE SYSTEMS",
