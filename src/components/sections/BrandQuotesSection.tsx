@@ -17,7 +17,7 @@ export const BrandQuotesSection: React.FC = () => {
   const valueIcons = [Clock, Sliders, Award, RefreshCw, Sparkles, Shield];
 
   return (
-    <section className="py-24 md:py-32 bg-[#254C38] text-[#F7F7F2] relative overflow-hidden">
+    <section className="py-20 sm:py-24 md:py-32 bg-[#0B1B33] text-[#FBF9F4] relative overflow-hidden">
       {/* Background Architectural Grid Pattern */}
       <div
         className="absolute inset-0 opacity-5 pointer-events-none"
@@ -27,59 +27,59 @@ export const BrandQuotesSection: React.FC = () => {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-20 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 space-y-16 sm:space-y-20 relative z-10">
         {/* TOP: Brand Statements & Typography */}
-        <div className="text-center max-w-4xl mx-auto space-y-6">
-          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-[0.25em] uppercase text-[#F7F7F2]/75">
-            <span className="w-1.5 h-1.5 rounded-full bg-white" />
+        <div className="text-center max-w-4xl mx-auto space-y-5 sm:space-y-6">
+          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-[0.25em] uppercase text-[#D8DFE8]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#8A99AC]" />
             <span>Section 07 • Brand Philosophy</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#F7F7F2] tracking-tight leading-[1.1] font-manrope">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#FBF9F4] tracking-tight leading-[1.12] font-manrope">
             &ldquo;An Ordinary Ceiling Covers a Space. An Extraordinary Ceiling Defines It.&rdquo;
           </h2>
 
-          <p className="text-lg sm:text-xl font-medium text-[#F7F7F2]/90 tracking-wide font-manrope">
+          <p className="text-base sm:text-xl font-medium text-[#D8DFE8] tracking-wide font-manrope">
             Designed to inspire. Built to transform.
           </p>
 
           {/* Dynamic Rotating Statement */}
-          <div className="pt-4 h-12 flex items-center justify-center">
-            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs sm:text-sm font-medium tracking-wide text-[#F7F7F2] transition-all duration-700">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <div className="pt-2 sm:pt-4 h-12 flex items-center justify-center">
+            <div className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-[#8A99AC]/30 text-xs sm:text-sm font-medium tracking-wide text-[#FBF9F4] transition-all duration-700">
+              <span className="w-2 h-2 rounded-full bg-[#8A99AC] animate-pulse" />
               <span>{ROTATING_STATEMENTS[statementIndex]}</span>
             </div>
           </div>
         </div>
 
         {/* BOTTOM: Value Proposition Benefits (6 Cards) */}
-        <div className="pt-10 border-t border-white/15">
-          <div className="text-center mb-10">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#F7F7F2]/80">
+        <div className="pt-8 sm:pt-10 border-t border-white/15">
+          <div className="text-center mb-8 sm:mb-10">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#D8DFE8]">
               The Zenceil Advantage
             </span>
-            <h3 className="text-2xl font-bold text-[#F7F7F2] mt-1 font-manrope">
-              Engineered Precision & Lasting Quality
+            <h3 className="text-xl sm:text-2xl font-bold text-[#FBF9F4] mt-1 font-manrope">
+              Engineered Precision &amp; Lasting Quality
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {VALUE_PROPOSITIONS.map((prop, idx) => {
               const IconComponent = valueIcons[idx];
               return (
                 <div
                   key={prop.title}
-                  className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-white/25 hover:bg-white/10 transition-all duration-300 group"
+                  className="p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[#8A99AC]/50 hover:bg-white/10 transition-all duration-300 group"
                 >
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <div className="w-10 h-10 rounded-xl bg-white/10 text-[#D8DFE8] flex items-center justify-center group-hover:scale-110 transition-transform border border-white/15">
                       <IconComponent size={20} />
                     </div>
                     <div>
-                      <h4 className="text-base font-bold text-white font-manrope">
+                      <h4 className="text-sm sm:text-base font-bold text-white font-manrope">
                         {prop.title}
                       </h4>
-                      <span className="text-[11px] text-white/70 font-mono">
+                      <span className="text-[11px] text-[#D8DFE8]/80 font-mono">
                         {prop.subtitle}
                       </span>
                     </div>

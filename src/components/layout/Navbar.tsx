@@ -206,7 +206,7 @@ export const Navbar: React.FC = () => {
   };
 
   const handleMouseLeave = () => {
-    if (isPinned) return; // Keep open if user explicitly clicked to open
+    if (isPinned) return;
     if (dropdownTimeoutRef.current) {
       clearTimeout(dropdownTimeoutRef.current);
     }
@@ -328,42 +328,42 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-40" data-navbar-menu>
-        {/* TOP BAR ABOVE NAVBAR (Contact Info & Office Address) */}
+        {/* TOP BAR: Navy, Ivory & Silver Theme */}
         <div
-          className={`bg-[#254C38] text-[#F7F7F2] text-xs border-b border-white/10 transition-all duration-300 ${
+          className={`bg-[#0B1B33] text-[#FBF9F4] text-xs border-b border-white/10 transition-all duration-300 ${
             scrolled ? "hidden" : "block"
           }`}
         >
-          <div className="max-w-7xl mx-auto px-6 md:px-12 py-2 flex items-center justify-between">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-2 flex items-center justify-between">
             {/* Left: Contact Numbers & Email */}
-            <div className="flex items-center gap-5 sm:gap-6 flex-wrap">
+            <div className="flex items-center gap-4 sm:gap-6 flex-wrap">
               <a
                 href="tel:+919819846701"
-                className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
+                className="inline-flex items-center gap-1.5 hover:text-white transition-colors text-[11px] sm:text-xs"
               >
-                <Phone size={12} className="text-emerald-300" />
+                <Phone size={12} className="text-[#8A99AC]" />
                 <span>+91 9819846701</span>
               </a>
               <a
                 href="tel:+919892970087"
-                className="hidden sm:inline-flex items-center gap-1.5 hover:text-white transition-colors"
+                className="hidden sm:inline-flex items-center gap-1.5 hover:text-white transition-colors text-[11px] sm:text-xs"
               >
-                <Phone size={12} className="text-emerald-300" />
+                <Phone size={12} className="text-[#8A99AC]" />
                 <span>+91 9892970087</span>
               </a>
               <a
                 href="mailto:info@zenceil.com"
-                className="hidden md:inline-flex items-center gap-1.5 hover:text-white transition-colors"
+                className="hidden md:inline-flex items-center gap-1.5 hover:text-white transition-colors text-[11px] sm:text-xs"
               >
-                <Mail size={12} className="text-emerald-300" />
+                <Mail size={12} className="text-[#8A99AC]" />
                 <span>info@zenceil.com</span>
               </a>
             </div>
 
             {/* Right: Office Address */}
-            <div className="hidden sm:flex items-center gap-2 text-white/90 text-[11px] md:text-xs">
-              <MapPin size={13} className="text-emerald-300 shrink-0" />
-              <span>Unit 5 &amp; 6, Vinayak Ind. Estate, Vasai East, Palghar – 401208, Mumbai (MH)</span>
+            <div className="hidden sm:flex items-center gap-2 text-white/85 text-[11px] md:text-xs truncate max-w-md">
+              <MapPin size={13} className="text-[#8A99AC] shrink-0" />
+              <span className="truncate">Vinayak Ind. Estate, Vasai East, Palghar – 401208, Mumbai (MH)</span>
             </div>
           </div>
         </div>
@@ -372,12 +372,12 @@ export const Navbar: React.FC = () => {
         <div
           className={`transition-all duration-300 ${
             scrolled
-              ? "bg-[#F7F7F2]/95 backdrop-blur-md shadow-sm border-b border-[#254C38]/10 py-3"
-              : "bg-[#F7F7F2] py-4 border-b border-[#254C38]/5"
+              ? "bg-[#FBF9F4]/95 backdrop-blur-md shadow-sm border-b border-[#0B1B33]/10 py-3"
+              : "bg-[#FBF9F4] py-3.5 sm:py-4 border-b border-[#0B1B33]/5"
           }`}
         >
-          <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-            {/* LEFT: Authentic Original Zenceil Logo */}
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 flex items-center justify-between">
+            {/* LEFT: Authentic Zenceil Logo */}
             <a
               href="/"
               onClick={handleLogoClick}
@@ -387,8 +387,8 @@ export const Navbar: React.FC = () => {
               <Logo theme="light" />
             </a>
 
-            {/* CENTER: Navigation Links with Interactive Clickable & Hover Dropdowns */}
-            <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
+            {/* CENTER: Navigation Links (Desktop: lg screens and above) */}
+            <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
               {navLinks.map((link) => {
                 const isActive = link.isRoute
                   ? pathname === "/projects"
@@ -410,10 +410,10 @@ export const Navbar: React.FC = () => {
                           e.stopPropagation();
                           toggleDropdown(link.dropdownKey);
                         }}
-                        className={`text-base lg:text-[17px] transition-colors relative group py-1.5 px-1.5 tracking-[-0.01em] cursor-pointer inline-flex items-center gap-1.5 select-none rounded-lg hover:bg-[#254C38]/5 ${
+                        className={`text-[15px] xl:text-[17px] transition-colors relative group py-1.5 px-2 tracking-[-0.01em] cursor-pointer inline-flex items-center gap-1.5 select-none rounded-lg hover:bg-[#0B1B33]/5 ${
                           isActive || isOpen
-                            ? "text-[#254C38] font-bold"
-                            : "font-medium text-[#252925]/90 hover:text-[#254C38]"
+                            ? "text-[#0B1B33] font-bold"
+                            : "font-medium text-[#1E242B]/90 hover:text-[#0B1B33]"
                         }`}
                         aria-expanded={isOpen}
                         aria-haspopup="true"
@@ -422,17 +422,17 @@ export const Navbar: React.FC = () => {
                         <ChevronDown
                           size={14}
                           className={`transition-transform duration-200 ${
-                            isOpen ? "rotate-180 text-[#254C38]" : "text-[#252925]/50 group-hover:text-[#254C38]"
+                            isOpen ? "rotate-180 text-[#0B1B33]" : "text-[#8A99AC] group-hover:text-[#0B1B33]"
                           }`}
                         />
                         <span
-                          className={`absolute bottom-0 left-1.5 right-1.5 h-[2px] bg-[#254C38] transition-all duration-300 rounded-full ${
+                          className={`absolute bottom-0 left-2 right-2 h-[2px] bg-[#0B1B33] transition-all duration-300 rounded-full ${
                             isActive || isOpen ? "opacity-100" : "opacity-0 group-hover:opacity-100"
                           }`}
                         />
                       </button>
 
-                      {/* Dropdown Container with Hitbox Bridge */}
+                      {/* Dropdown Container */}
                       {isOpen && (
                         <div 
                           className="absolute top-full left-1/2 -translate-x-1/2 pt-2.5 z-50 animate-fadeIn"
@@ -441,12 +441,12 @@ export const Navbar: React.FC = () => {
                         >
                           {link.dropdownKey === "products" ? (
                             /* PRODUCTS DROPDOWN CARD */
-                            <div className="w-[390px] bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-[#254C38]/15 overflow-hidden p-2.5 space-y-1">
-                              <div className="px-3 pt-2 pb-1.5 flex items-center justify-between border-b border-[#254C38]/10 text-xs text-[#5E645E]">
-                                <span className="font-bold uppercase tracking-wider text-[11px] text-[#254C38]">
+                            <div className="w-[390px] bg-[#FFFDF9] backdrop-blur-xl rounded-2xl shadow-2xl border border-[#0B1B33]/15 overflow-hidden p-2.5 space-y-1">
+                              <div className="px-3 pt-2 pb-1.5 flex items-center justify-between border-b border-[#0B1B33]/10 text-xs text-[#5F6C7B]">
+                                <span className="font-bold uppercase tracking-wider text-[11px] text-[#0B1B33]">
                                   Stretch Ceiling Solutions
                                 </span>
-                                <span className="font-mono text-[10px] bg-[#254C38]/10 text-[#254C38] px-2 py-0.5 rounded-full font-bold">
+                                <span className="font-mono text-[10px] bg-[#0B1B33]/10 text-[#0B1B33] px-2 py-0.5 rounded-full font-bold">
                                   5 Finishes
                                 </span>
                               </div>
@@ -457,21 +457,21 @@ export const Navbar: React.FC = () => {
                                     key={item.id}
                                     href={item.href}
                                     onClick={(e) => handleProductSelect(item.id, e)}
-                                    className="w-full group/item flex items-center gap-3.5 p-2.5 rounded-xl hover:bg-[#254C38]/8 text-left transition-all duration-200 cursor-pointer block"
+                                    className="w-full group/item flex items-center gap-3.5 p-2.5 rounded-xl hover:bg-[#0B1B33]/8 text-left transition-all duration-200 cursor-pointer block"
                                   >
-                                    <div className="w-9 h-9 rounded-xl bg-[#254C38]/10 text-[#254C38] flex items-center justify-center shrink-0 group-hover/item:bg-[#254C38] group-hover/item:text-[#F7F7F2] transition-colors shadow-sm">
+                                    <div className="w-9 h-9 rounded-xl bg-[#0B1B33]/10 text-[#0B1B33] flex items-center justify-center shrink-0 group-hover/item:bg-[#0B1B33] group-hover/item:text-[#FBF9F4] transition-colors shadow-sm">
                                       <item.icon size={18} />
                                     </div>
                                     <div className="flex-1 min-w-0">
                                       <div className="flex items-center justify-between">
-                                        <span className="text-sm font-bold text-[#252925] group-hover/item:text-[#254C38] transition-colors">
+                                        <span className="text-sm font-bold text-[#1E242B] group-hover/item:text-[#0B1B33] transition-colors">
                                           {item.name}
                                         </span>
-                                        <span className="text-[10px] font-mono text-[#5E645E]">
+                                        <span className="text-[10px] font-mono text-[#5F6C7B]">
                                           {item.finish.split("•")[0]}
                                         </span>
                                       </div>
-                                      <p className="text-[11px] text-[#5E645E] truncate">
+                                      <p className="text-[11px] text-[#5F6C7B] truncate">
                                         {item.desc}
                                       </p>
                                     </div>
@@ -480,11 +480,11 @@ export const Navbar: React.FC = () => {
                               </div>
 
                               {/* Bottom CTA */}
-                              <div className="pt-2 border-t border-[#254C38]/10">
+                              <div className="pt-2 border-t border-[#0B1B33]/10">
                                 <Link
                                   href="/#products"
                                   onClick={(e) => handleAllProductsClick(e)}
-                                  className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold text-[#254C38] hover:bg-[#254C38]/10 transition-colors cursor-pointer group/cta block"
+                                  className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold text-[#0B1B33] hover:bg-[#0B1B33]/10 transition-colors cursor-pointer group/cta block"
                                 >
                                   <span>Explore All 5 Products &amp; Finishes</span>
                                   <ArrowRight size={14} className="group-hover/cta:translate-x-1 transition-transform inline" />
@@ -493,12 +493,12 @@ export const Navbar: React.FC = () => {
                             </div>
                           ) : (
                             /* PROJECTS DROPDOWN CARD */
-                            <div className="w-[415px] bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-[#254C38]/15 overflow-hidden p-2.5 space-y-1">
-                              <div className="px-3 pt-2 pb-1.5 flex items-center justify-between border-b border-[#254C38]/10 text-xs text-[#5E645E]">
-                                <span className="font-bold uppercase tracking-wider text-[11px] text-[#254C38]">
+                            <div className="w-[415px] bg-[#FFFDF9] backdrop-blur-xl rounded-2xl shadow-2xl border border-[#0B1B33]/15 overflow-hidden p-2.5 space-y-1">
+                              <div className="px-3 pt-2 pb-1.5 flex items-center justify-between border-b border-[#0B1B33]/10 text-xs text-[#5F6C7B]">
+                                <span className="font-bold uppercase tracking-wider text-[11px] text-[#0B1B33]">
                                   Architectural Archive
                                 </span>
-                                <span className="font-mono text-[10px] bg-[#254C38]/10 text-[#254C38] px-2 py-0.5 rounded-full font-bold">
+                                <span className="font-mono text-[10px] bg-[#0B1B33]/10 text-[#0B1B33] px-2 py-0.5 rounded-full font-bold">
                                   36 Projects • 5 Sectors
                                 </span>
                               </div>
@@ -509,21 +509,21 @@ export const Navbar: React.FC = () => {
                                     key={item.category}
                                     href={item.href}
                                     onClick={(e) => handleProjectCategorySelect(item.category, e)}
-                                    className="w-full group/item flex items-center gap-3.5 p-2.5 rounded-xl hover:bg-[#254C38]/8 text-left transition-all duration-200 cursor-pointer block"
+                                    className="w-full group/item flex items-center gap-3.5 p-2.5 rounded-xl hover:bg-[#0B1B33]/8 text-left transition-all duration-200 cursor-pointer block"
                                   >
-                                    <div className="w-9 h-9 rounded-xl bg-[#254C38]/10 text-[#254C38] flex items-center justify-center shrink-0 group-hover/item:bg-[#254C38] group-hover/item:text-[#F7F7F2] transition-colors shadow-sm">
+                                    <div className="w-9 h-9 rounded-xl bg-[#0B1B33]/10 text-[#0B1B33] flex items-center justify-center shrink-0 group-hover/item:bg-[#0B1B33] group-hover/item:text-[#FBF9F4] transition-colors shadow-sm">
                                       <item.icon size={18} />
                                     </div>
                                     <div className="flex-1 min-w-0">
                                       <div className="flex items-center justify-between">
-                                        <span className="text-sm font-bold text-[#252925] group-hover/item:text-[#254C38] transition-colors">
+                                        <span className="text-sm font-bold text-[#1E242B] group-hover/item:text-[#0B1B33] transition-colors">
                                           {item.name}
                                         </span>
-                                        <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-[#254C38]/10 text-[#254C38]">
+                                        <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-[#0B1B33]/10 text-[#0B1B33]">
                                           {item.count}
                                         </span>
                                       </div>
-                                      <p className="text-[11px] text-[#5E645E] truncate">
+                                      <p className="text-[11px] text-[#5F6C7B] truncate">
                                         {item.desc}
                                       </p>
                                     </div>
@@ -532,11 +532,11 @@ export const Navbar: React.FC = () => {
                               </div>
 
                               {/* Bottom CTA */}
-                              <div className="pt-2 border-t border-[#254C38]/10">
+                              <div className="pt-2 border-t border-[#0B1B33]/10">
                                 <Link
                                   href="/projects"
                                   onClick={(e) => handleProjectCategorySelect("All", e)}
-                                  className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold text-[#254C38] hover:bg-[#254C38]/10 transition-colors cursor-pointer group/cta block"
+                                  className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold text-[#0B1B33] hover:bg-[#0B1B33]/10 transition-colors cursor-pointer group/cta block"
                                 >
                                   <span>Explore Full 36-Project Archive</span>
                                   <ArrowRight size={14} className="group-hover/cta:translate-x-1 transition-transform inline" />
@@ -554,15 +554,15 @@ export const Navbar: React.FC = () => {
                   <button
                     key={link.label}
                     onClick={() => handleNavClick(link)}
-                    className={`text-base lg:text-[17px] transition-colors relative group py-1.5 px-1.5 tracking-[-0.01em] cursor-pointer rounded-lg hover:bg-[#254C38]/5 ${
+                    className={`text-[15px] xl:text-[17px] transition-colors relative group py-1.5 px-2 tracking-[-0.01em] cursor-pointer rounded-lg hover:bg-[#0B1B33]/5 ${
                       isActive
-                        ? "text-[#254C38] font-bold"
-                        : "font-medium text-[#252925]/90 hover:text-[#254C38]"
+                        ? "text-[#0B1B33] font-bold"
+                        : "font-medium text-[#1E242B]/90 hover:text-[#0B1B33]"
                     }`}
                   >
                     <span>{link.label}</span>
                     <span
-                      className={`absolute bottom-0 left-1.5 right-1.5 h-[2px] bg-[#254C38] transition-all duration-300 rounded-full ${
+                      className={`absolute bottom-0 left-2 right-2 h-[2px] bg-[#0B1B33] transition-all duration-300 rounded-full ${
                         isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
                       }`}
                     />
@@ -571,28 +571,28 @@ export const Navbar: React.FC = () => {
               })}
             </nav>
 
-            {/* RIGHT: CTA Button */}
-            <div className="hidden md:flex items-center gap-4">
+            {/* RIGHT: CTA Button (Desktop: lg screens and up) */}
+            <div className="hidden lg:flex items-center gap-3">
               <button
                 onClick={() => setQuoteModalOpen(true)}
-                className="px-6 py-2.5 rounded-full text-xs sm:text-sm font-bold tracking-wider uppercase bg-[#254C38] text-[#F7F7F2] hover:bg-[#1a3627] transition-all duration-200 shadow-sm hover:shadow flex items-center gap-2 active:scale-95 cursor-pointer"
+                className="px-6 py-2.5 rounded-full text-xs font-bold tracking-wider uppercase bg-[#0B1B33] text-[#FBF9F4] hover:bg-[#071224] border border-[#8A99AC]/30 transition-all duration-200 shadow-sm hover:shadow flex items-center gap-2 active:scale-95 cursor-pointer"
               >
                 <span>Get a Quote</span>
-                <ArrowUpRight size={15} />
+                <ArrowUpRight size={15} className="text-[#8A99AC]" />
               </button>
             </div>
 
-            {/* Mobile Hamburger Toggle */}
-            <div className="flex items-center md:hidden gap-3">
+            {/* Mobile / Tablet Header Controls (Visible below lg) */}
+            <div className="flex items-center lg:hidden gap-2 sm:gap-3">
               <button
                 onClick={() => setQuoteModalOpen(true)}
-                className="px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-wide uppercase bg-[#254C38] text-[#F7F7F2]"
+                className="px-3 py-1.5 rounded-full text-[11px] font-bold tracking-wide uppercase bg-[#0B1B33] text-[#FBF9F4] border border-[#8A99AC]/30 active:scale-95"
               >
                 Quote
               </button>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 text-[#252925] focus:outline-none"
+                className="p-2 text-[#1E242B] focus:outline-none rounded-lg hover:bg-[#0B1B33]/5 transition"
                 aria-label="Toggle menu"
               >
                 {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -603,29 +603,29 @@ export const Navbar: React.FC = () => {
 
         {/* Mobile Navigation Drawer with Accordion Dropdowns */}
         {mobileMenuOpen && (
-          <div className="md:hidden bg-[#F7F7F2] border-b border-[#254C38]/15 px-6 py-6 space-y-4 animate-fadeIn shadow-2xl max-h-[85vh] overflow-y-auto">
+          <div className="lg:hidden bg-[#FBF9F4] border-b border-[#0B1B33]/15 px-5 sm:px-8 py-6 space-y-4 animate-fadeIn shadow-2xl max-h-[85vh] overflow-y-auto">
             <div className="flex flex-col space-y-1">
               {navLinks.map((link) => {
                 const isActive = link.isRoute && pathname === "/projects";
 
                 if (link.dropdownKey === "products") {
                   return (
-                    <div key={link.label} className="border-b border-[#252925]/5 py-1">
+                    <div key={link.label} className="border-b border-[#1E242B]/5 py-1">
                       <button
                         type="button"
                         onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
-                        className="w-full flex items-center justify-between text-left text-base sm:text-lg py-2.5 font-medium text-[#252925] hover:text-[#254C38] transition cursor-pointer"
+                        className="w-full flex items-center justify-between text-left text-base sm:text-lg py-2.5 font-medium text-[#1E242B] hover:text-[#0B1B33] transition cursor-pointer"
                       >
                         <div className="flex items-center gap-2">
                           <span>Products</span>
-                          <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-[#254C38]/10 text-[#254C38]">
+                          <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-[#0B1B33]/10 text-[#0B1B33]">
                             5 Finishes
                           </span>
                         </div>
                         <ChevronDown
                           size={18}
-                          className={`text-[#252925]/60 transition-transform duration-200 ${
-                            mobileProductsOpen ? "rotate-180 text-[#254C38]" : ""
+                          className={`text-[#8A99AC] transition-transform duration-200 ${
+                            mobileProductsOpen ? "rotate-180 text-[#0B1B33]" : ""
                           }`}
                         />
                       </button>
@@ -637,21 +637,21 @@ export const Navbar: React.FC = () => {
                               key={item.id}
                               href={item.href}
                               onClick={(e) => handleProductSelect(item.id, e)}
-                              className="w-full text-left p-2.5 rounded-xl flex items-center gap-3 hover:bg-[#254C38]/10 transition-colors block"
+                              className="w-full text-left p-2.5 rounded-xl flex items-center gap-3 hover:bg-[#0B1B33]/8 transition-colors block"
                             >
-                              <div className="w-8 h-8 rounded-lg bg-[#254C38]/10 text-[#254C38] flex items-center justify-center shrink-0">
+                              <div className="w-8 h-8 rounded-lg bg-[#0B1B33]/10 text-[#0B1B33] flex items-center justify-center shrink-0">
                                 <item.icon size={16} />
                               </div>
                               <div className="min-w-0">
-                                <div className="text-xs font-bold text-[#252925]">{item.name}</div>
-                                <div className="text-[10px] text-[#5E645E] truncate">{item.finish}</div>
+                                <div className="text-xs font-bold text-[#1E242B]">{item.name}</div>
+                                <div className="text-[10px] text-[#5F6C7B] truncate">{item.finish}</div>
                               </div>
                             </Link>
                           ))}
                           <Link
                             href="/#products"
                             onClick={(e) => handleAllProductsClick(e)}
-                            className="w-full text-left p-2.5 text-xs font-bold text-[#254C38] flex items-center justify-between pt-2.5 border-t border-[#254C38]/10 block"
+                            className="w-full text-left p-2.5 text-xs font-bold text-[#0B1B33] flex items-center justify-between pt-2.5 border-t border-[#0B1B33]/10 block"
                           >
                             <span>Explore All 5 Products &amp; Finishes</span>
                             <ArrowRight size={13} className="inline" />
@@ -664,24 +664,24 @@ export const Navbar: React.FC = () => {
 
                 if (link.dropdownKey === "projects") {
                   return (
-                    <div key={link.label} className="border-b border-[#252925]/5 py-1">
+                    <div key={link.label} className="border-b border-[#1E242B]/5 py-1">
                       <button
                         type="button"
                         onClick={() => setMobileProjectsOpen(!mobileProjectsOpen)}
-                        className="w-full flex items-center justify-between text-left text-base sm:text-lg py-2.5 font-medium text-[#252925] hover:text-[#254C38] transition cursor-pointer"
+                        className="w-full flex items-center justify-between text-left text-base sm:text-lg py-2.5 font-medium text-[#1E242B] hover:text-[#0B1B33] transition cursor-pointer"
                       >
                         <div className="flex items-center gap-2">
-                          <span className={pathname === "/projects" ? "text-[#254C38] font-bold" : ""}>
+                          <span className={pathname === "/projects" ? "text-[#0B1B33] font-bold" : ""}>
                             Projects
                           </span>
-                          <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-[#254C38]/10 text-[#254C38]">
+                          <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-[#0B1B33]/10 text-[#0B1B33]">
                             36 Projects
                           </span>
                         </div>
                         <ChevronDown
                           size={18}
-                          className={`text-[#252925]/60 transition-transform duration-200 ${
-                            mobileProjectsOpen ? "rotate-180 text-[#254C38]" : ""
+                          className={`text-[#8A99AC] transition-transform duration-200 ${
+                            mobileProjectsOpen ? "rotate-180 text-[#0B1B33]" : ""
                           }`}
                         />
                       </button>
@@ -693,18 +693,18 @@ export const Navbar: React.FC = () => {
                               key={item.category}
                               href={item.href}
                               onClick={(e) => handleProjectCategorySelect(item.category, e)}
-                              className="w-full text-left p-2.5 rounded-xl flex items-center justify-between hover:bg-[#254C38]/10 transition-colors block"
+                              className="w-full text-left p-2.5 rounded-xl flex items-center justify-between hover:bg-[#0B1B33]/8 transition-colors block"
                             >
                               <div className="flex items-center gap-3 min-w-0">
-                                <div className="w-8 h-8 rounded-lg bg-[#254C38]/10 text-[#254C38] flex items-center justify-center shrink-0">
+                                <div className="w-8 h-8 rounded-lg bg-[#0B1B33]/10 text-[#0B1B33] flex items-center justify-center shrink-0">
                                   <item.icon size={16} />
                                 </div>
                                 <div className="min-w-0">
-                                  <div className="text-xs font-bold text-[#252925] truncate">{item.name}</div>
-                                  <div className="text-[10px] text-[#5E645E] truncate">{item.tag}</div>
+                                  <div className="text-xs font-bold text-[#1E242B] truncate">{item.name}</div>
+                                  <div className="text-[10px] text-[#5F6C7B] truncate">{item.tag}</div>
                                 </div>
                               </div>
-                              <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-[#254C38]/10 text-[#254C38] shrink-0">
+                              <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-[#0B1B33]/10 text-[#0B1B33] shrink-0">
                                 {item.count}
                               </span>
                             </Link>
@@ -712,7 +712,7 @@ export const Navbar: React.FC = () => {
                           <Link
                             href="/projects"
                             onClick={(e) => handleProjectCategorySelect("All", e)}
-                            className="w-full text-left p-2.5 text-xs font-bold text-[#254C38] flex items-center justify-between pt-2.5 border-t border-[#254C38]/10 block"
+                            className="w-full text-left p-2.5 text-xs font-bold text-[#0B1B33] flex items-center justify-between pt-2.5 border-t border-[#0B1B33]/10 block"
                           >
                             <span>Explore Full 36-Project Archive</span>
                             <ArrowRight size={13} className="inline" />
@@ -727,10 +727,10 @@ export const Navbar: React.FC = () => {
                   <button
                     key={link.label}
                     onClick={() => handleNavClick(link)}
-                    className={`text-left text-base sm:text-lg py-2.5 border-b border-[#252925]/5 transition cursor-pointer ${
+                    className={`text-left text-base sm:text-lg py-2.5 border-b border-[#1E242B]/5 transition cursor-pointer ${
                       isActive
-                        ? "text-[#254C38] font-bold"
-                        : "font-medium text-[#252925] hover:text-[#254C38]"
+                        ? "text-[#0B1B33] font-bold"
+                        : "font-medium text-[#1E242B] hover:text-[#0B1B33]"
                     }`}
                   >
                     {link.label}
@@ -739,8 +739,8 @@ export const Navbar: React.FC = () => {
               })}
             </div>
             
-            <div className="pt-2 text-xs text-[#5E645E] flex items-center gap-1.5">
-              <MapPin size={13} className="text-[#254C38] shrink-0" />
+            <div className="pt-2 text-xs text-[#5F6C7B] flex items-center gap-1.5">
+              <MapPin size={13} className="text-[#0B1B33] shrink-0" />
               <span>Vasai East, Palghar – 401208, Mumbai (MH)</span>
             </div>
             <button
@@ -748,10 +748,10 @@ export const Navbar: React.FC = () => {
                 setMobileMenuOpen(false);
                 setQuoteModalOpen(true);
               }}
-              className="w-full py-3.5 rounded-full text-xs font-bold tracking-wider uppercase bg-[#254C38] text-[#F7F7F2] flex items-center justify-center gap-2 shadow-md hover:bg-[#1a3627] transition"
+              className="w-full py-3.5 rounded-full text-xs font-bold tracking-wider uppercase bg-[#0B1B33] text-[#FBF9F4] border border-[#8A99AC]/30 flex items-center justify-center gap-2 shadow-md hover:bg-[#071224] transition"
             >
               <span>Get an Architectural Quote</span>
-              <ArrowUpRight size={14} />
+              <ArrowUpRight size={14} className="text-[#8A99AC]" />
             </button>
           </div>
         )}

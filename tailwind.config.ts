@@ -9,24 +9,46 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        forest: {
-          DEFAULT: "#254C38",
-          dark: "#1a3627",
-          light: "#34634a",
-          subtle: "rgba(37, 76, 56, 0.08)",
-          border: "rgba(37, 76, 56, 0.15)",
+        // Core Theme: Navy, Ivory & Silver
+        navy: {
+          DEFAULT: "#0B1B33",
+          dark: "#071224",
+          light: "#162F55",
+          subtle: "rgba(11, 27, 51, 0.08)",
+          border: "rgba(11, 27, 51, 0.15)",
         },
-        warmWhite: {
-          DEFAULT: "#F7F7F2",
-          pure: "#FAFAF7",
-          card: "#F2F2EB",
-          border: "#E6E6DC",
+        ivory: {
+          DEFAULT: "#FBF9F4",
+          pure: "#FFFDF9",
+          card: "#F5F1E8",
+          border: "#EDE8DC",
+        },
+        silver: {
+          DEFAULT: "#8A99AC",
+          light: "#D8DFE8",
+          metallic: "#C0C7D0",
+          dark: "#4B596A",
+          border: "rgba(138, 153, 172, 0.25)",
         },
         charcoal: {
-          DEFAULT: "#252925",
-          light: "#3B403B",
-          muted: "#5E645E",
-          border: "rgba(37, 41, 37, 0.12)",
+          DEFAULT: "#1E242B",
+          light: "#333D47",
+          muted: "#5F6C7B",
+          border: "rgba(30, 36, 43, 0.12)",
+        },
+        // Backward compatibility mappings
+        forest: {
+          DEFAULT: "#0B1B33",
+          dark: "#071224",
+          light: "#162F55",
+          subtle: "rgba(11, 27, 51, 0.08)",
+          border: "rgba(11, 27, 51, 0.15)",
+        },
+        warmWhite: {
+          DEFAULT: "#FBF9F4",
+          pure: "#FFFDF9",
+          card: "#F5F1E8",
+          border: "#EDE8DC",
         },
       },
       fontFamily: {

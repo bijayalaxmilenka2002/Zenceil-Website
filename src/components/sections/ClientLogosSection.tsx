@@ -178,17 +178,17 @@ export const ClientLogosSection: React.FC = () => {
   const marqueeList = [...brands, ...brands, ...brands];
 
   return (
-    <section className="py-14 md:py-20 bg-[#F7F7F2] border-y border-[#254C38]/10 overflow-hidden">
+    <section className="py-14 md:py-20 bg-[#FBF9F4] border-y border-[#0B1B33]/10 overflow-hidden">
       {/* SECTION HEADER: SUBJECT HEADLINE "WHO WE WORK WITH" */}
       <div className="max-w-7xl mx-auto px-6 md:px-12 text-center mb-10 space-y-2">
-        <span className="text-xs font-bold tracking-[0.25em] uppercase text-[#254C38] block">
+        <span className="text-xs font-bold tracking-[0.25em] uppercase text-[#0B1B33] block">
           PARTNERS IN EXCELLENCE • COMMERCIAL &amp; RETAIL
         </span>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#252925] tracking-tight font-manrope">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1E242B] tracking-tight font-manrope">
           Who We Work With
         </h2>
-        <div className="w-16 h-1 bg-[#254C38] mx-auto rounded-full mt-2" />
-        <p className="text-sm md:text-base text-[#5E645E] max-w-2xl mx-auto pt-2 font-normal">
+        <div className="w-16 h-1 bg-[#0B1B33] mx-auto rounded-full mt-2" />
+        <p className="text-sm md:text-base text-[#5F6C7B] max-w-2xl mx-auto pt-2 font-normal">
           Partnering with India&apos;s premier commercial developers, retail mall operators, luxury hospitality destinations, and architectural studios.
         </p>
       </div>
@@ -196,14 +196,14 @@ export const ClientLogosSection: React.FC = () => {
       {/* CONTINUOUS HORIZONTAL MARQUEE WITH COLORFUL LOGOS */}
       <div className="relative w-full overflow-hidden">
         {/* Subtle Edge Vignettes */}
-        <div className="absolute top-0 bottom-0 left-0 w-16 md:w-36 bg-gradient-to-r from-[#F7F7F2] to-transparent z-10 pointer-events-none" />
-        <div className="absolute top-0 bottom-0 right-0 w-16 md:w-36 bg-gradient-to-l from-[#F7F7F2] to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 bottom-0 left-0 w-16 md:w-36 bg-gradient-to-r from-[#FBF9F4] to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 bottom-0 right-0 w-16 md:w-36 bg-gradient-to-l from-[#FBF9F4] to-transparent z-10 pointer-events-none" />
 
         <div className="animate-marquee flex items-center gap-8 md:gap-10 py-4 cursor-pointer">
           {marqueeList.map((brand, index) => (
             <div
               key={`${brand.id}-${index}`}
-              className="flex items-center px-6 py-4 rounded-2xl bg-white border border-[#254C38]/15 shadow-sm hover:shadow-xl hover:border-[#254C38]/40 hover:-translate-y-1 transition-all duration-300 shrink-0 group"
+              className="flex items-center px-6 py-4 rounded-2xl bg-white border border-[#0B1B33]/15 shadow-sm hover:shadow-xl hover:border-[#8A99AC]/50 hover:-translate-y-1 transition-all duration-300 shrink-0 group"
             >
               {/* Colorful Logo Component */}
               <div className="shrink-0 transition-transform duration-300 group-hover:scale-105">
@@ -215,7 +215,7 @@ export const ClientLogosSection: React.FC = () => {
       </div>
 
       <div className="text-center mt-6">
-        <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#5E645E] bg-[#254C38]/5 px-4 py-1.5 rounded-full border border-[#254C38]/10">
+        <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#5F6C7B] bg-[#0B1B33]/5 px-4 py-1.5 rounded-full border border-[#0B1B33]/10">
           Over 7,200+ Enterprise Ceiling Installations Delivered Nationwide
         </span>
       </div>

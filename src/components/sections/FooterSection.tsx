@@ -10,19 +10,20 @@ export const FooterSection: React.FC = () => {
   const [quoteOpen, setQuoteOpen] = useState(false);
 
   const quickLinks = [
-    { label: "Home", href: "#hero" },
-    { label: "About Us", href: "#who-we-are" },
-    { label: "Products", href: "#products" },
-    { label: "Expertise", href: "#expertise" },
-    { label: "Installation Process", href: "#installation" },
+    { label: "Home", href: "/#hero" },
+    { label: "About Us", href: "/#who-we-are" },
+    { label: "Products", href: "/#products" },
+    { label: "Projects Archive", href: "/projects" },
+    { label: "Expertise", href: "/#expertise" },
+    { label: "Installation Process", href: "/#installation" },
   ];
 
   const productLinks = [
-    { label: "Translucent Ceilings", href: "#products" },
-    { label: "Printed Ceilings", href: "#products" },
-    { label: "Textured Acoustic Ceilings", href: "#products" },
-    { label: "Lacquer Reflective Ceilings", href: "#products" },
-    { label: "3D Form Sculptural Ceilings", href: "#products" },
+    { label: "Translucent Ceilings", href: "/#product-translucent" },
+    { label: "Printed Ceilings", href: "/#product-printed" },
+    { label: "Textured Acoustic Ceilings", href: "/#product-texture" },
+    { label: "Lacquer Reflective Ceilings", href: "/#product-lacquer" },
+    { label: "3D Form Sculptural Ceilings", href: "/#product-3d-form" },
   ];
 
   const socialLinks = [
@@ -77,48 +78,48 @@ export const FooterSection: React.FC = () => {
     <>
       <footer
         id="footer"
-        className="bg-[#252925] text-white pt-20 md:pt-28 pb-12 border-t border-white/10"
+        className="bg-[#071224] text-white pt-16 sm:pt-20 md:pt-28 pb-12 border-t border-white/10"
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-16">
-          {/* PRIMARY CTA BLOCK: "Let's Create Something Extraordinary." - EXACT DESIGN AS REQUESTED */}
-          <div className="p-8 sm:p-10 md:p-12 lg:p-14 rounded-3xl bg-[#254C38] border border-white/15 shadow-2xl relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 space-y-12 sm:space-y-16">
+          {/* PRIMARY CTA BLOCK: Navy, Ivory & Silver Theme */}
+          <div className="p-6 sm:p-10 md:p-12 lg:p-14 rounded-2xl sm:rounded-3xl bg-[#0B1B33] border border-[#8A99AC]/30 shadow-2xl relative overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               {/* Left Column: Heading, Narrative & Action Buttons */}
-              <div className="lg:col-span-7 space-y-6 text-left">
-                <div className="space-y-3">
-                  <span className="text-xs font-bold tracking-[0.2em] uppercase text-white/80 block">
+              <div className="lg:col-span-7 space-y-5 sm:space-y-6 text-left">
+                <div className="space-y-2.5 sm:space-y-3">
+                  <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#D8DFE8] block">
                     Start Your Architectural Transformation
                   </span>
-                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.12] font-manrope">
+                  <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.12] font-manrope">
                     Let&apos;s Create Something Extraordinary.
                   </h2>
-                  <p className="text-sm sm:text-base text-white/85 font-normal leading-relaxed max-w-xl">
+                  <p className="text-xs sm:text-sm md:text-base text-[#D8DFE8]/90 font-normal leading-relaxed max-w-xl">
                     Have a project in mind? Talk to our team. We partner with architects, interior designers, commercial developers, and homeowners nationwide.
                   </p>
                 </div>
 
-                {/* Action Buttons positioned directly on the left under text */}
-                <div className="flex flex-col sm:flex-row items-center gap-4 pt-2">
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 pt-2">
                   <button
                     onClick={() => setQuoteOpen(true)}
-                    className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#F7F7F2] text-[#252925] text-xs font-bold tracking-wider uppercase hover:bg-white hover:shadow-lg transition flex items-center justify-center gap-2 active:scale-95 cursor-pointer shadow-sm"
+                    className="w-full sm:w-auto px-7 sm:px-8 py-3.5 sm:py-4 rounded-full bg-[#FBF9F4] text-[#0B1B33] text-xs font-bold tracking-wider uppercase hover:bg-white hover:shadow-lg transition flex items-center justify-center gap-2 active:scale-95 cursor-pointer shadow-sm"
                   >
                     <span>Get a Free Consultation</span>
                     <ArrowRight size={16} />
                   </button>
                   <a
                     href="tel:+919819846701"
-                    className="w-full sm:w-auto px-8 py-4 rounded-full border border-white/35 text-white text-xs font-bold tracking-wider uppercase hover:bg-white/10 transition flex items-center justify-center gap-2 active:scale-95 cursor-pointer"
+                    className="w-full sm:w-auto px-7 sm:px-8 py-3.5 sm:py-4 rounded-full border border-white/35 text-white text-xs font-bold tracking-wider uppercase hover:bg-white/10 transition flex items-center justify-center gap-2 active:scale-95 cursor-pointer"
                   >
-                    <Phone size={16} />
+                    <Phone size={16} className="text-[#8A99AC]" />
                     <span>Call Directly</span>
                   </a>
                 </div>
               </div>
 
-              {/* Right Column: Architectural Lounge with Multi-Level Fluid Wave Stretch Ceiling */}
+              {/* Right Column: Architectural Visual */}
               <div className="lg:col-span-5">
-                <div className="relative aspect-[16/10] sm:aspect-[16/10] w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-xl border border-white/10 bg-[#1C1F1D] group">
+                <div className="relative aspect-[16/10] sm:aspect-[16/10] w-full rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-xl border border-white/15 bg-[#071224] group">
                   <Image
                     src="/images/cta-architecture-lounge.jpg"
                     alt="Luxury Architectural Lounge with Multi-Level Fluid Wave Stretch Ceiling"
@@ -126,22 +127,22 @@ export const FooterSection: React.FC = () => {
                     className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                     sizes="(max-width: 1024px) 100vw, 550px"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60 pointer-events-none" />
                 </div>
               </div>
             </div>
           </div>
 
           {/* MAIN FOOTER COLUMNS */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pt-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 md:gap-12 pt-6 sm:pt-8">
             {/* Col 1: Brand Info & Social Media Logos (4 cols) */}
-            <div className="lg:col-span-4 space-y-6">
+            <div className="lg:col-span-4 space-y-5 sm:space-y-6">
               <Logo theme="dark" />
               <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">
                 Operating under <strong>Aditya Interiors</strong> (Est. 2011). Pioneers in high-precision stretch ceiling membranes, integrated lighting, and acoustic architectural systems across India.
               </p>
 
-              {/* SOCIAL MEDIA LOGOS IN FOOTER */}
+              {/* SOCIAL MEDIA LOGOS */}
               <div className="space-y-2.5 pt-2">
                 <span className="text-[11px] font-bold uppercase tracking-widest text-white/80 block">
                   Connect With Us
@@ -153,7 +154,7 @@ export const FooterSection: React.FC = () => {
                       href={s.href}
                       target="_blank"
                       rel="noreferrer"
-                      className="w-9 h-9 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-white/80 hover:text-white hover:bg-[#254C38] hover:border-emerald-400/50 hover:scale-105 transition-all shadow-sm"
+                      className="w-9 h-9 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-white/80 hover:text-white hover:bg-[#162F55] hover:border-[#8A99AC]/50 hover:scale-105 transition-all shadow-sm"
                       aria-label={s.name}
                       title={s.name}
                     >
@@ -166,10 +167,10 @@ export const FooterSection: React.FC = () => {
 
             {/* Col 2: Quick Links (2 cols) */}
             <div className="lg:col-span-2 space-y-4">
-              <h4 className="text-xs font-bold uppercase tracking-widest text-white/90">
+              <h4 className="text-xs font-bold uppercase tracking-widest text-[#D8DFE8]">
                 Navigation
               </h4>
-              <ul className="space-y-2 text-xs sm:text-sm text-gray-400">
+              <ul className="space-y-2.5 text-xs sm:text-sm text-gray-400">
                 {quickLinks.map((link) => (
                   <li key={link.label}>
                     <a
@@ -185,10 +186,10 @@ export const FooterSection: React.FC = () => {
 
             {/* Col 3: Product Range (3 cols) */}
             <div className="lg:col-span-3 space-y-4">
-              <h4 className="text-xs font-bold uppercase tracking-widest text-white/90">
+              <h4 className="text-xs font-bold uppercase tracking-widest text-[#D8DFE8]">
                 Ceiling Solutions
               </h4>
-              <ul className="space-y-2 text-xs sm:text-sm text-gray-400">
+              <ul className="space-y-2.5 text-xs sm:text-sm text-gray-400">
                 {productLinks.map((prod) => (
                   <li key={prod.label}>
                     <a
@@ -196,7 +197,7 @@ export const FooterSection: React.FC = () => {
                       className="hover:text-white transition-colors flex items-center justify-between group"
                     >
                       <span>{prod.label}</span>
-                      <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity text-[#8A99AC]" />
                     </a>
                   </li>
                 ))}
@@ -205,12 +206,12 @@ export const FooterSection: React.FC = () => {
 
             {/* Col 4: Verified Contact Info (3 cols) */}
             <div className="lg:col-span-3 space-y-4">
-              <h4 className="text-xs font-bold uppercase tracking-widest text-white/90">
+              <h4 className="text-xs font-bold uppercase tracking-widest text-[#D8DFE8]">
                 Verified Contact
               </h4>
               <ul className="space-y-3 text-xs sm:text-sm text-gray-400">
                 <li className="flex items-start gap-2.5">
-                  <Phone size={16} className="text-emerald-400 shrink-0 mt-0.5" />
+                  <Phone size={16} className="text-[#8A99AC] shrink-0 mt-0.5" />
                   <div className="flex flex-col">
                     <a href="tel:+919819846701" className="hover:text-white">
                       +91 9819846701
@@ -222,14 +223,14 @@ export const FooterSection: React.FC = () => {
                 </li>
 
                 <li className="flex items-center gap-2.5">
-                  <Mail size={16} className="text-emerald-400 shrink-0" />
+                  <Mail size={16} className="text-[#8A99AC] shrink-0" />
                   <a href="mailto:info@zenceil.com" className="hover:text-white">
                     info@zenceil.com
                   </a>
                 </li>
 
                 <li className="flex items-start gap-2.5">
-                  <MapPin size={16} className="text-emerald-400 shrink-0 mt-0.5" />
+                  <MapPin size={16} className="text-[#8A99AC] shrink-0 mt-0.5" />
                   <span className="text-[12px] leading-relaxed text-gray-400">
                     Unit 5 &amp; 6, Vinayak Industrial Estate, Navghar, Vasai East, Palghar – 401208, Maharashtra.
                   </span>
@@ -239,31 +240,31 @@ export const FooterSection: React.FC = () => {
           </div>
 
           {/* BRANCH OFFICES STRIP */}
-          <div className="pt-8 border-t border-white/10 grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-gray-400">
+          <div className="pt-6 sm:pt-8 border-t border-white/10 grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 text-xs text-gray-400">
             <div>
               <span className="text-white font-semibold block mb-1">New Delhi Office</span>
-              <p className="text-[11px] leading-relaxed">
+              <p className="text-[11px] leading-relaxed text-gray-400">
                 B1/630-631, 2nd Floor (Above Maruti Suzuki Showroom), Janakpuri East, New Delhi – 110058
               </p>
             </div>
             <div>
               <span className="text-white font-semibold block mb-1">Bangalore Office</span>
-              <p className="text-[11px] leading-relaxed">
+              <p className="text-[11px] leading-relaxed text-gray-400">
                 Plot no 22, Rangalata Bhavan, 2nd Floor, Gokula Layout, Balagere Road, Varthur, Bangalore – 560087
               </p>
             </div>
             <div>
               <span className="text-white font-semibold block mb-1">Bhubaneswar Office</span>
-              <p className="text-[11px] leading-relaxed">
+              <p className="text-[11px] leading-relaxed text-gray-400">
                 Plot No - 6, S1/22, BDA Colony, ATM Square, Niladri Vihar, Bhubaneswar, Odisha – 751021
               </p>
             </div>
           </div>
 
           {/* BOTTOM COPYRIGHT */}
-          <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
+          <div className="pt-6 sm:pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-4">
             <p>© Zenceil. All Rights Reserved. Operating under Aditya Interiors.</p>
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4 sm:gap-6 flex-wrap justify-center">
               <span>Privacy Policy</span>
               <span>•</span>
               <span>Terms of Service</span>
