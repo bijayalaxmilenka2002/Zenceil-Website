@@ -77,56 +77,49 @@ export interface TestimonialItem {
   company: string;
 }
 
-// 1. AUTHENTIC HERO SLIDES (Using real banner images and real copy from zenceil.com)
+// 1. AUTHENTIC HERO SLIDES (Showcasing authentic stretch ceiling designs across all sectors)
 export const HERO_SLIDES: HeroSlide[] = [
   {
     id: "slide-1",
-    image: "/images/original/banner-img-1-1.jpg",
+    image: "/images/hero-translucent.jpg",
     title: "Tired Of Staring At A Boring Ceiling?",
-    subtitle: "Transform your space with a beautiful, low-maintenance ceiling solution installed quickly and easily.",
-    tagline: "ARCHITECTURAL MEMBRANE SYSTEMS",
+    subtitle: "Transform your interiors with luminous, shadowless architectural stretch ceilings engineered for seamless brilliance.",
+    tagline: "TRANSLUCENT LUMINOUS MEMBRANE",
   },
   {
     id: "slide-2",
-    image: "/images/original/banner-img-2-1.jpg",
+    image: "/images/hero-lacquer.jpg",
     title: "Want Your Interior To Look Truly Unique?",
-    subtitle: "Zenceil can even install printed ceilings featuring your favorite artwork or photos, making your space truly unique.",
-    tagline: "INNOVATIVE INTERIOR CRAFTSMANSHIP",
+    subtitle: "Over 85% mirror optical reflection visually doubles room height, creating breathtaking vertical drama and luxury.",
+    tagline: "HIGH-GLOSS MIRROR LACQUER CEILING",
   },
   {
     id: "slide-3",
     image: "/images/original/banner-img-1.jpg",
     title: "Attract Potential Buyers Or Impress Your Clients.",
-    subtitle: "Give your offices, malls, hotels, and luxury residences a look that makes people say wow.",
-    tagline: "COMMERCIAL & RESIDENTIAL EXCELLENCE",
+    subtitle: "Monumental tensioned architectural domes and canopies engineered for landmark commercial venues.",
+    tagline: "MONUMENTAL ARCHITECTURAL DOMES",
   },
   {
     id: "slide-4",
-    image: "/images/original/cta-banner-1.jpg",
+    image: "/images/projects/18.png",
     title: "Be Inspired By Our Incredible Portfolio.",
-    subtitle: "See how Zenceil stretch ceilings have transformed ordinary spaces into extraordinary experiences.",
-    tagline: "PROVEN PROJECT EXECUTION",
+    subtitle: "Explore parametric 3D wave forms, multi-level acoustic canopies, and bespoke tensioned ceilings across India.",
+    tagline: "PARAMETRIC 3D ACOUSTIC CANOPY",
   },
   {
     id: "slide-5",
-    image: "/images/original/f453dca0-bfb5-48a2-a894-266995756d05.jpg",
+    image: "/images/projects/19.png",
     title: "Ceilings Beyond Imagination.",
-    subtitle: "Zenceil stretch ceilings offer a world of design possibilities to unlock the full potential of any room.",
-    tagline: "LIMITLESS DESIGN FREEDOM",
+    subtitle: "Bespoke large-format UV printed artwork integrated with starlight fiber optic constellations for majestic night skies.",
+    tagline: "PRINTED ART & FIBER OPTIC STARLIGHT",
   },
   {
     id: "slide-6",
-    image: "/images/original/6.jpg",
-    title: "Picture Your Dream Space: See It. Believe It. Achieve It.",
-    subtitle: "Let Zenceil turn your vision into a reality and create your own dream architectural ceiling.",
-    tagline: "BESPOKE SPATIAL TRANSFORMATION",
-  },
-  {
-    id: "slide-7",
-    image: "/images/original/4.jpg",
-    title: "Stop Dreaming, Start Creating.",
-    subtitle: "Elevate your everyday experience with a custom Zenceil ceiling that speaks volumes about your style.",
-    tagline: "TIMELESS ARCHITECTURAL LUXURY",
+    image: "/images/projects/7-1.png",
+    title: "100% Moisture-Proof Spa & Wellness Atriums.",
+    subtitle: "Impervious to steam, chlorinated pool vapor, and humidity with a 10-year anti-sag guarantee across 5-star hotels.",
+    tagline: "WELLNESS & SPA MEMBRANE SYSTEMS",
   },
 ];
 
@@ -671,7 +664,7 @@ export const INSTALLATION_STEPS: InstallationStep[] = [
     title: "Consultation & Planning",
     description: "Understand the space, site dimensions, design requirements, and lighting expectations.",
     visual: "Professional site consultation and laser ceiling measurements.",
-    image: "/images/original/f453dca0-bfb5-48a2-a894-266995756d05.jpg",
+    image: "/images/projects/1-4.png",
   },
   {
     step: "STEP 02",
@@ -679,7 +672,7 @@ export const INSTALLATION_STEPS: InstallationStep[] = [
     title: "Design & Lighting",
     description: "Plan the ceiling finish, perimeter aluminum framework, and GOQ LED lighting layout.",
     visual: "Architectural CAD planning, structural framing, and lighting calculation.",
-    image: "/images/original/6.jpg",
+    image: "/images/projects/24.png",
   },
   {
     step: "STEP 03",
@@ -687,7 +680,7 @@ export const INSTALLATION_STEPS: InstallationStep[] = [
     title: "Professional Installation",
     description: "Execute the stretch ceiling installation with a clean, dust-free process in as little as 1 day.",
     visual: "Certified technicians securing precision harpoon membrane into aluminum tracks.",
-    image: "/images/original/4.jpg",
+    image: "/images/projects/2-4.png",
   },
   {
     step: "STEP 04",
@@ -695,7 +688,7 @@ export const INSTALLATION_STEPS: InstallationStep[] = [
     title: "Final Handover & Warranty",
     description: "Review completed ceiling tension, activate warranty, and deliver the finished space.",
     visual: "Flawless tension inspection and handover of the completed interior.",
-    image: "/images/original/banner-img-1-1.jpg",
+    image: "/images/projects/1-2.png",
   },
 ];
 
