@@ -33,6 +33,21 @@ export interface ProductItem {
   image: string;
   visualDirection: string;
   features: string[];
+  specs: {
+    lightingBrand: string;
+    colorTemp: string;
+    viewingAngle: string;
+    operatingTemp: string;
+    brightness: string;
+    mounting: string;
+  };
+}
+
+export interface ProjectPhoto {
+  id: string;
+  title: string;
+  category: string;
+  image: string;
 }
 
 export interface InstallationStep {
@@ -58,184 +73,272 @@ export interface TestimonialItem {
   company: string;
 }
 
+// 1. AUTHENTIC HERO SLIDES (Using real banner images and real copy from zenceil.com)
 export const HERO_SLIDES: HeroSlide[] = [
   {
     id: "slide-1",
-    image: "/images/hero-slide-1.jpg",
-    title: "Transform Your Space with Beautiful Ceilings.",
-    subtitle: "Architectural stretch ceiling solutions engineered for modern luxury and acoustic perfection.",
+    image: "/images/original/banner-img-1-1.jpg",
+    title: "Tired Of Staring At A Boring Ceiling?",
+    subtitle: "Transform your space with a beautiful, low-maintenance ceiling solution installed quickly and easily.",
     tagline: "ARCHITECTURAL MEMBRANE SYSTEMS",
   },
   {
     id: "slide-2",
-    image: "/images/hero-slide-2.jpg",
-    title: "Turn Your Ceiling into a Work of Art.",
-    subtitle: "Custom lighting, sculptural 3D forms, and flawless finishes that elevate every room.",
+    image: "/images/original/banner-img-2-1.jpg",
+    title: "Want Your Interior To Look Truly Unique?",
+    subtitle: "Zenceil can even install printed ceilings featuring your favorite artwork or photos, making your space truly unique.",
     tagline: "INNOVATIVE INTERIOR CRAFTSMANSHIP",
   },
   {
     id: "slide-3",
-    image: "/images/hero-slide-3.jpg",
-    title: "Make Every Interior Unforgettable.",
-    subtitle: "Trusted by premier architects, corporate headquarters, luxury hotels, and modern residences.",
-    tagline: "TIMELESS SPATIAL TRANSFORMATION",
+    image: "/images/original/banner-img-1.jpg",
+    title: "Attract Potential Buyers Or Impress Your Clients.",
+    subtitle: "Give your offices, malls, hotels, and luxury residences a look that makes people say wow.",
+    tagline: "COMMERCIAL & RESIDENTIAL EXCELLENCE",
   },
   {
     id: "slide-4",
-    image: "/images/product-translucent.jpg",
-    title: "Pure Luminous Backlit Illumination.",
-    subtitle: "Even, shadowless light distribution that turns your ceiling into an expansive ambient light source.",
-    tagline: "TRANSLUCENT LIGHTING ARCHITECTURE",
+    image: "/images/original/cta-banner-1.jpg",
+    title: "Be Inspired By Our Incredible Portfolio.",
+    subtitle: "See how Zenceil stretch ceilings have transformed ordinary spaces into extraordinary experiences.",
+    tagline: "PROVEN PROJECT EXECUTION",
   },
   {
     id: "slide-5",
-    image: "/images/product-lacquer.jpg",
-    title: "Reflective Lacquer Finishes Expanding Space.",
-    subtitle: "High-gloss mirror surfaces doubling vertical room depth and creating opulent luxury interiors.",
-    tagline: "HIGH-GLOSS LACQUER MEMBRANES",
+    image: "/images/original/f453dca0-bfb5-48a2-a894-266995756d05.jpg",
+    title: "Ceilings Beyond Imagination.",
+    subtitle: "Zenceil stretch ceilings offer a world of design possibilities to unlock the full potential of any room.",
+    tagline: "LIMITLESS DESIGN FREEDOM",
   },
   {
     id: "slide-6",
-    image: "/images/product-3d-form.jpg",
-    title: "Sculptural 3D Parametric Geometries.",
-    subtitle: "Bespoke double-curved fluid canopies, waves, and organic architectural ceiling sculptures.",
-    tagline: "SCULPTURAL 3D SPATIAL FORMS",
+    image: "/images/original/6.jpg",
+    title: "Picture Your Dream Space: See It. Believe It. Achieve It.",
+    subtitle: "Let Zenceil turn your vision into a reality and create your own dream architectural ceiling.",
+    tagline: "BESPOKE SPATIAL TRANSFORMATION",
   },
   {
     id: "slide-7",
-    image: "/images/product-printed.jpg",
-    title: "Artistic Customized Graphic Ceilings.",
-    subtitle: "Ultra-high definition UV-printed ceiling membranes bringing biophilic art and creative vision to life.",
-    tagline: "HIGH-RESOLUTION BESPOKE PRINTS",
+    image: "/images/original/4.jpg",
+    title: "Stop Dreaming, Start Creating.",
+    subtitle: "Elevate your everyday experience with a custom Zenceil ceiling that speaks volumes about your style.",
+    tagline: "TIMELESS ARCHITECTURAL LUXURY",
   },
 ];
 
+// 2. CLIENT BRANDS
 export const CLIENT_LOGOS: ClientLogo[] = [
   { id: "godrej", name: "Godrej", industry: "Real Estate & Commercial" },
-  { id: "nexus", name: "Nexus", industry: "Malls & Retail" },
-  { id: "shoppers-stop", name: "Shoppers Stop", industry: "Retail Department Stores" },
-  { id: "mac", name: "MAC Cosmetics", industry: "Luxury Beauty Retail" },
+  { id: "nexus", name: "Nexus Malls", industry: "Retail Destinations" },
+  { id: "shoppers-stop", name: "Shoppers Stop", industry: "Department Stores" },
+  { id: "mac", name: "MAC Cosmetics", industry: "Speciality Luxury Retail" },
   { id: "dlf", name: "DLF", industry: "Corporate Parks & Towers" },
-  { id: "oberoi", name: "Oberoi Realty", industry: "Luxury Hospitality & Living" },
+  { id: "oberoi", name: "Oberoi Realty", industry: "Luxury Living & Hospitality" },
   { id: "phoenix", name: "Phoenix Mills", industry: "Premium Retail Centers" },
   { id: "tata", name: "Tata Projects", industry: "Infrastructure & Engineering" },
 ];
 
+// 3. AUTHENTIC STATISTICS FROM ZENCEIL.COM
 export const VERIFIED_STATISTICS: Statistic[] = [
-  { label: "Corporates", value: 7203, suffix: "+", description: "Commercial & corporate office spaces" },
-  { label: "Residences", value: 276, suffix: "+", description: "Bespoke luxury residential homes" },
-  { label: "Hotels", value: 189, suffix: "+", description: "Hospitality & wellness developments" },
-  { label: "Malls", value: 81, suffix: "+", description: "Flagship retail destinations" },
-  { label: "Airports", value: 12, suffix: "+", description: "Major transit & terminal ceilings" },
+  { label: "Corporates", value: 7203, suffix: "+", description: "Commercial office towers and headquarters" },
+  { label: "Residences", value: 276, suffix: "+", description: "Bespoke luxury residences & penthouses" },
+  { label: "Hotels", value: 189, suffix: "+", description: "Hospitality, resorts & wellness spas" },
+  { label: "Malls", value: 81, suffix: "+", description: "Flagship retail destinations & shopping malls" },
+  { label: "Airports", value: 12, suffix: "+", description: "Aviation terminals & transit hubs" },
   { label: "Restaurants", value: 165, suffix: "+", description: "Fine dining & hospitality venues" },
 ];
 
+// 4. EXPERTISE & TECHNICAL CAPABILITIES FROM ZENCEIL.COM
 export const EXPERTISE_FEATURES: ExpertiseFeature[] = [
   {
     number: "01",
     title: "Custom Ceiling Designs",
-    description: "Bespoke shapes, multilevel geometries, and unique acoustic formulations tailored to every interior blueprint.",
+    description: "Bespoke geometries, parametric curves, and multilevel framing tailored to every architectural blueprint.",
   },
   {
     number: "02",
     title: "Integrated Lighting Possibilities",
-    description: "Seamless incorporation of uniform backlighting, tunable white illumination, magnetic tracks, and perimeter ambient glows.",
+    description: "Seamless integration with GOQ Korean LED modules, 150° viewing angles, and tunable white color temperatures (3200K–7100K).",
   },
   {
     number: "03",
     title: "Professional Installation",
-    description: "Certified technicians delivering rapid, dust-free installation in as little as one day without construction debris.",
+    description: "Certified technicians delivering rapid, clean, and dust-free installations in as little as one day with zero construction debris.",
   },
   {
     number: "04",
     title: "Durable and Recyclable Solutions",
-    description: "100% recyclable, moisture-resistant, antimicrobial, and non-flammable membrane solutions built to last for decades.",
+    description: "100% recyclable, lightweight, moisture-resistant, antimicrobial, and Euroclass B-s1, d0 fire-rated membranes.",
   },
 ];
 
+// 5. AUTHENTIC PRODUCTS DATA (With real photos and exact specs from zenceil.com)
 export const PRODUCTS_DATA: ProductItem[] = [
   {
     id: "translucent",
     number: "01",
     name: "Translucent",
-    description: "Create beautiful lighting effects with translucent stretch ceilings.",
-    image: "/images/product-translucent.jpg",
+    description: "Imagine the feeling of a spa-like retreat in your own home or office. Translucent ceilings diffuse natural or artificial light, creating a luxurious and airy ambiance.",
+    image: "/images/original/1-2.png",
     visualDirection: "Backlit translucent ceiling casting soft, shadowless architectural illumination.",
-    features: ["Diffused Light Distribution", "Tunable White & RGBW Options", "Seamless Up to 50 sqm Single Sheets"],
+    features: [
+      "100% Recyclable Material",
+      "Quick and Clean Installation",
+      "Highly Durable & Lightweight",
+      "Perimeter Aluminium Track Mounted",
+    ],
+    specs: {
+      lightingBrand: "GOQ (Korean Premium LED Modules)",
+      colorTemp: "7100K, 5000K, 4100K, 3200K (Warm to Cool White)",
+      viewingAngle: "150° Ultra-Wide Optical Lens",
+      operatingTemp: "-40ºC to +60ºC",
+      brightness: "130–102 Lumens/Module (195–153 Lumens/Ft.)",
+      mounting: "Perimeter Aluminum Track Profile",
+    },
   },
   {
     id: "printed",
     number: "02",
     name: "Printed",
-    description: "Bring your creative vision to life with customized ceiling designs.",
-    image: "/images/product-printed.jpg",
+    description: "Turn your ceiling into a personal masterpiece. The choices are infinite (photos or geometric patterns). High-precision large-format printing on architectural membranes.",
+    image: "/images/original/2-1.png",
     visualDirection: "High-definition custom graphic print ceiling with artistic spatial depth.",
-    features: ["Ultra-High Definition UV Printing", "Colorfast & Non-Fading", "Architectural Artwork & Biophilic Designs"],
+    features: [
+      "Infinite Design Choices (Photos or Patterns)",
+      "Large-Format UV Direct Printing",
+      "Colorfast & Non-Fading Longevity",
+      "Enhances Room Decor Seamlessly",
+    ],
+    specs: {
+      lightingBrand: "Optional Perimeter or Backlit GOQ LEDs",
+      colorTemp: "3200K–7100K Compatible",
+      viewingAngle: "150° Dispersion",
+      operatingTemp: "-40ºC to +60ºC",
+      brightness: "Customizable Architectural Lux Levels",
+      mounting: "Perimeter Aluminum Track Profile",
+    },
   },
   {
     id: "texture",
     number: "03",
     name: "Texture",
-    description: "Add depth, character and elegance to your interiors.",
-    image: "/images/product-texture.jpg",
+    description: "Add depth and character to your interiors. Textured stretch ceilings provide rich tactile surface reliefs, acoustic dampening, and elegant architectural sophistication.",
+    image: "/images/original/3-1.png",
     visualDirection: "Detailed tactile textured stretch ceiling membrane with micro-grain relief.",
-    features: ["Acoustic Dampening Micro-Perforations", "Tactile Matte & Satin Finishes", "Sophisticated Organic Textures"],
+    features: [
+      "Acoustic Dampening Micro-Perforations",
+      "Tactile Matte, Satin & Suede Textures",
+      "Moisture Resistant & Sag-Proof",
+      "100% Recyclable Eco-Friendly Poly",
+    ],
+    specs: {
+      lightingBrand: "Compatible with Recessed Spotlights & Tracks",
+      colorTemp: "Tunable Ambient Light Options",
+      viewingAngle: "150° Standard",
+      operatingTemp: "-40ºC to +60ºC",
+      brightness: "Integrated Spot & Grazing Lighting",
+      mounting: "Perimeter Aluminum Track Profile",
+    },
   },
   {
     id: "lacquer",
     number: "04",
     name: "Lacquer",
-    description: "Enhance your interiors with elegant reflective ceiling finishes.",
-    image: "/images/product-lacquer.jpg",
+    description: "The main feature of lacquer finish is to reflect direct and indirect light. This makes the setting wider and brighter, increasing room volume and height like a mirror.",
+    image: "/images/original/4-1.png",
     visualDirection: "High-gloss reflective mirror finish expanding vertical spatial perception.",
-    features: ["Mirror-Like Optical Reflection", "Enhances Room Height & Volume", "Stain & Water Resistant Surface"],
+    features: [
+      "Mirror-Like Optical Reflection",
+      "Increases Perceived Room Height & Volume",
+      "Available in Mirror, Chrome & Rich Colors",
+      "Stain, Dust & Moisture Resistant",
+    ],
+    specs: {
+      lightingBrand: "Reflective Ambient & Chandelier Accents",
+      colorTemp: "All Architectural Light Temperatures",
+      viewingAngle: "Direct Specular Reflection",
+      operatingTemp: "-40ºC to +60ºC",
+      brightness: "Doubles Ambient Spatial Illumination",
+      mounting: "Perimeter Aluminum Track Profile",
+    },
   },
   {
     id: "3d-form",
     number: "05",
     name: "3D Form",
-    description: "Create distinctive spaces with sculptural ceiling designs.",
-    image: "/images/product-3d-form.jpg",
+    description: "The stretched ceiling is structured to give 3D architectural structures by integrating multilevel framing. Unlocks extraordinarily creative, dynamic, and inviting spaces.",
+    image: "/images/original/5-1.png",
     visualDirection: "Sophisticated curved or sculptural multi-level 3D spatial installation.",
-    features: ["Free-Form Parametric Curves", "Wave, Cone & Vaulted Geometries", "Structural Lightweight Aluminum Framing"],
+    features: [
+      "Multilevel 3-Dimensional Aluminum Framing",
+      "Waves, Cones, Domes & Vaulted Geometries",
+      "Versatile Dynamic Spatial Aesthetics",
+      "Structural Lightweight Engineering",
+    ],
+    specs: {
+      lightingBrand: "Custom Curved Linear & Modular LEDs",
+      colorTemp: "3200K, 4100K, 5000K, 7100K",
+      viewingAngle: "150° Radial Dispersion",
+      operatingTemp: "-40ºC to +60ºC",
+      brightness: "Engineered Lumens for Volumetric Spaces",
+      mounting: "Custom Formed Aluminum Structural Frames",
+    },
   },
 ];
 
+// 6. REAL PROJECT GALLERY PHOTOGRAPHS FROM ZENCEIL.COM
+export const REAL_PROJECT_GALLERY: ProjectPhoto[] = [
+  { id: "p1", title: "Corporate Headquarters Translucent Ceiling", category: "Commercial", image: "/images/original/10.png" },
+  { id: "p2", title: "Luxury Penthouse Reflective Lacquer Ceiling", category: "Residential", image: "/images/original/11.png" },
+  { id: "p3", title: "Shopping Mall Flagship Curved Form", category: "Retail", image: "/images/original/12.png" },
+  { id: "p4", title: "Hotel Grand Atrium Ambient Ceiling", category: "Hospitality", image: "/images/original/13.png" },
+  { id: "p5", title: "Executive Boardroom Custom Printed Art Ceiling", category: "Commercial", image: "/images/original/14.png" },
+  { id: "p6", title: "Wellness Spa Luminous Light Ceiling", category: "Hospitality", image: "/images/original/15.png" },
+  { id: "p7", title: "Modern Villa Double-Height Living Room", category: "Residential", image: "/images/original/16.png" },
+  { id: "p8", title: "High-End Retail Showroom Track Ceiling", category: "Retail", image: "/images/original/17.png" },
+  { id: "p9", title: "Parametric 3D Curved Auditorium Installation", category: "Commercial", image: "/images/original/18.png" },
+  { id: "p10", title: "Luxury Master Suite Soft Glow Ceiling", category: "Residential", image: "/images/original/19.png" },
+  { id: "p11", title: "Fine Dining Restaurant Textured Acoustic Ceiling", category: "Hospitality", image: "/images/original/20.png" },
+  { id: "p12", title: "Airport Transit Terminal Membrane Canopy", category: "Commercial", image: "/images/original/21.png" },
+];
+
+// 7. INSTALLATION STEPS (Authentic Zenceil Methodology)
 export const INSTALLATION_STEPS: InstallationStep[] = [
   {
     step: "STEP 01",
     number: "01",
     title: "Consultation & Planning",
-    description: "Understand the space, requirements and design expectations.",
+    description: "Understand the space, site dimensions, design requirements, and lighting expectations.",
     visual: "Professional site consultation and laser ceiling measurements.",
-    image: "/images/step-consultation.jpg",
+    image: "/images/original/f453dca0-bfb5-48a2-a894-266995756d05.jpg",
   },
   {
     step: "STEP 02",
     number: "02",
     title: "Design & Lighting",
-    description: "Plan the ceiling finish, structure and compatible lighting.",
-    visual: "Architectural planning, structural 3D CAD framing and lighting layout.",
-    image: "/images/step-design.jpg",
+    description: "Plan the ceiling finish, perimeter aluminum framework, and GOQ LED lighting layout.",
+    visual: "Architectural CAD planning, structural framing, and lighting calculation.",
+    image: "/images/original/6.jpg",
   },
   {
     step: "STEP 03",
     number: "03",
     title: "Professional Installation",
-    description: "Execute the stretch ceiling installation with a clean and efficient process.",
-    visual: "Certified technicians securing precision harpoon membrane into profiles.",
-    image: "/images/step-installation.jpg",
+    description: "Execute the stretch ceiling installation with a clean, dust-free process in as little as 1 day.",
+    visual: "Certified technicians securing precision harpoon membrane into aluminum tracks.",
+    image: "/images/original/4.jpg",
   },
   {
     step: "STEP 04",
     number: "04",
-    title: "Final Handover",
-    description: "Review the completed ceiling and bring the project to completion.",
-    visual: "Finished premium interior with a flawless stretch ceiling handover.",
-    image: "/images/step-handover.svg",
+    title: "Final Handover & Warranty",
+    description: "Review completed ceiling tension, activate warranty, and deliver the finished space.",
+    visual: "Flawless tension inspection and handover of the completed interior.",
+    image: "/images/original/banner-img-1-1.jpg",
   },
 ];
 
+// 8. BRAND STATEMENTS FROM ZENCEIL.COM
 export const ROTATING_STATEMENTS: string[] = [
   "Your ceiling deserves more than ordinary.",
   "Light, design and innovation — beautifully connected.",
@@ -243,39 +346,41 @@ export const ROTATING_STATEMENTS: string[] = [
   "Every space has a story. Let your ceiling tell it.",
 ];
 
+// 9. CORE VALUE PROPOSITIONS FROM ZENCEIL.COM
 export const VALUE_PROPOSITIONS: ValueProposition[] = [
   {
     title: "Rapid Installation",
     subtitle: "In as little as one day",
-    description: "Installed quickly without mess, painting delays, or heavy structural remodeling.",
+    description: "Installed quickly without mess, wet plastering, painting fumes, or long construction delays.",
   },
   {
     title: "Complete Customisation",
     subtitle: "Limitless architectural freedom",
-    description: "Custom curves, colors, dimensions, and seamless acoustic lighting integrations.",
+    description: "Custom curves, digital printed art, mirror lacquer, 3D forms, and integrated lighting systems.",
   },
   {
     title: "Professional Expertise",
-    subtitle: "Over 10 years of experience",
-    description: "Pioneers in Indian architectural membrane installations since 2011.",
+    subtitle: "Established in 2011",
+    description: "Operating under Aditya Interiors with over 13+ years of dedicated stretch ceiling mastery.",
   },
   {
     title: "Recyclable Materials",
     subtitle: "100% recyclable & safe",
-    description: "Eco-friendly, European-grade polymer membranes meeting strict safety standards.",
+    description: "European-certified polymer membranes, non-toxic, antimicrobial, and Euroclass B-s1, d0 fire rated.",
   },
   {
     title: "Clean Installation",
     subtitle: "Dust-free & non-invasive",
-    description: "Zero demolition dust or wet plastering, preserving existing luxury interiors.",
+    description: "Zero demolition debris, protecting existing flooring, furniture, and corporate workflows.",
   },
   {
     title: "Durable Solutions",
     subtitle: "Moisture & sag resistant",
-    description: "Will never crack, peel, or fade, providing lasting beauty for decades to come.",
+    description: "Will never crack, peel, or discolor, providing enduring beauty for decades to come.",
   },
 ];
 
+// 10. AUTHENTIC TESTIMONIALS FROM ZENCEIL.COM
 export const TESTIMONIALS_DATA: TestimonialItem[] = [
   {
     id: "testimonial-1",
@@ -299,6 +404,7 @@ export const TESTIMONIALS_DATA: TestimonialItem[] = [
   },
 ];
 
+// 11. AUTHENTIC CONTACT DETAILS FROM ZENCEIL.COM
 export const CONTACT_DETAILS = {
   brand: "Zenceil Stretch Ceiling",
   company: "Aditya Interiors",
@@ -324,32 +430,10 @@ export const CONTACT_DETAILS = {
     },
   ],
   socials: [
-    { name: "LinkedIn", href: "https://www.linkedin.com/company/zenceil" },
-    { name: "Instagram", href: "https://www.instagram.com/zenceilceilings" },
-    { name: "Facebook", href: "https://www.facebook.com/zenceil" },
+    { name: "WhatsApp", href: "https://wa.me/+919819846701" },
+    { name: "Facebook", href: "https://www.facebook.com/zenceilstretchceiling" },
+    { name: "Instagram", href: "https://www.instagram.com/zenceil_stretch_ceiling/" },
+    { name: "LinkedIn", href: "https://www.linkedin.com/company/zenceil-stretch-ceiling/" },
+    { name: "YouTube", href: "https://www.youtube.com/@stretchceilinginteriors7362" },
   ],
-};
-
-// CENTRAL MEDIA ASSET REGISTRY - TO STRICTLY PREVENT DUPLICATE IMAGE USAGE
-export const MEDIA_REGISTRY = {
-  hero: [
-    "/images/hero-slide-1.jpg",
-    "/images/hero-slide-2.jpg",
-    "/images/hero-slide-3.jpg",
-  ],
-  whoWeAre: "/images/who-we-are.jpg",
-  expertise: "/images/expertise-visual.jpg",
-  products: {
-    translucent: "/images/product-translucent.jpg",
-    printed: "/images/product-printed.jpg",
-    texture: "/images/product-texture.jpg",
-    lacquer: "/images/product-lacquer.jpg",
-    threeDForm: "/images/product-3d-form.jpg",
-  },
-  installation: {
-    step1: "/images/step-consultation.jpg",
-    step2: "/images/step-design.jpg",
-    step3: "/images/step-installation.jpg",
-    step4: "/images/step-handover.svg",
-  },
 };

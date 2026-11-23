@@ -28,7 +28,7 @@ export const ExpertiseSection: React.FC = () => {
             <div className="lg:col-span-6 order-1 lg:order-1">
               <div className="relative aspect-[4/3] sm:aspect-[16/11] rounded-3xl overflow-hidden shadow-2xl border border-[#254C38]/15 bg-[#E8E8DF] group">
                 <Image
-                  src="/images/expertise-visual.jpg"
+                  src="/images/original/24.png"
                   alt="Zenceil Stretch Ceiling Installation & Precision Lighting"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -93,7 +93,7 @@ export const ExpertiseSection: React.FC = () => {
               <div className="pt-2">
                 <button
                   onClick={() => setQuoteOpen(true)}
-                  className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#254C38] text-[#F7F7F2] text-xs font-semibold tracking-wider uppercase hover:bg-[#1a3627] active:scale-95 transition-all shadow-md group"
+                  className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#254C38] text-[#F7F7F2] text-xs font-semibold tracking-wider uppercase hover:bg-[#1a3627] active:scale-95 transition-all shadow-md group cursor-pointer"
                 >
                   <span>Explore Our Expertise</span>
                   <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />

@@ -4,6 +4,7 @@ import { ClientLogosSection } from "@/components/sections/ClientLogosSection";
 import { WhoWeAreSection } from "@/components/sections/WhoWeAreSection";
 import { ExpertiseSection } from "@/components/sections/ExpertiseSection";
 import { ProductsSection } from "@/components/sections/ProductsSection";
+import { ProjectsGallerySection } from "@/components/sections/ProjectsGallerySection";
 import { InstallationSection } from "@/components/sections/InstallationSection";
 import { BrandQuotesSection } from "@/components/sections/BrandQuotesSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
@@ -21,25 +22,28 @@ export default function HomePage() {
       {/* SECTION 02: CLIENT LOGO SLIDER */}
       <ClientLogosSection />
 
-      {/* SECTION 03: WHO WE ARE */}
+      {/* SECTION 03: WHO WE ARE (ADITYA INTERIORS EST. 2011 & VERIFIED NUMBERS) */}
       <WhoWeAreSection />
 
-      {/* SECTION 04: OUR EXPERTISE / ABOUT OUR SOLUTIONS */}
+      {/* SECTION 04: OUR EXPERTISE / ARCHITECTURAL CAPABILITIES */}
       <ExpertiseSection />
 
-      {/* SECTION 05: OUR PRODUCTS */}
+      {/* SECTION 05: OUR PRODUCTS (TRANSLUCENT, PRINTED, TEXTURE, LACQUER, 3D FORM) */}
       <ProductsSection />
 
-      {/* SECTION 06: INSTALLATION PROCESS */}
+      {/* SECTION 06: REAL WORK PORTFOLIO GALLERY (ORIGINAL PROJECT PHOTOS) */}
+      <ProjectsGallerySection />
+
+      {/* SECTION 07: INSTALLATION PROCESS (4-STEP TIMELINE) */}
       <InstallationSection />
 
-      {/* SECTION 07: BRAND QUOTES / VALUE PROPOSITION */}
+      {/* SECTION 08: BRAND QUOTES / VALUE PROPOSITION */}
       <BrandQuotesSection />
 
-      {/* SECTION 08: CUSTOMER TESTIMONIALS */}
+      {/* SECTION 09: CUSTOMER TESTIMONIALS */}
       <TestimonialsSection />
 
-      {/* SECTION 09: FOOTER */}
+      {/* SECTION 10: FOOTER */}
       <FooterSection />
     </main>
   );

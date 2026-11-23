@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { VERIFIED_STATISTICS } from "@/data/zenceilData";
-import { ArrowRight, ShieldCheck } from "lucide-react";
+import { ArrowRight, ShieldCheck, CheckCircle2 } from "lucide-react";
 
 export const WhoWeAreSection: React.FC = () => {
   const [animatedValues, setAnimatedValues] = useState<number[]>(
@@ -59,7 +59,7 @@ export const WhoWeAreSection: React.FC = () => {
       className="py-20 md:py-28 bg-[#F7F7F2] text-[#252925] border-b border-[#254C38]/10"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-16">
-        {/* Main Grid: Narrative & Image */}
+        {/* Main Grid: Narrative & Authentic Image */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Narrative Content */}
           <div className="lg:col-span-7 space-y-6">
@@ -73,39 +73,59 @@ export const WhoWeAreSection: React.FC = () => {
             </h2>
 
             <p className="text-base sm:text-lg text-[#5E645E] leading-relaxed font-normal">
-              Zenceil transforms ordinary ceilings into extraordinary design experiences through innovative stretch ceiling solutions. We combine creativity, technology and professional execution to bring your interior vision to life.
+              Zenceil transforms ordinary ceilings into extraordinary design experiences through innovative stretch ceiling solutions. Operating under <strong>Aditya Interiors</strong> since 2011, we combine creativity, engineering technology, and professional execution to bring your architectural vision to life.
             </p>
+
+            {/* Core Architectural Pillars */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              <div className="flex items-center gap-2 text-xs font-medium text-[#252925]">
+                <CheckCircle2 size={16} className="text-[#254C38] shrink-0" />
+                <span>10-Year Comprehensive Warranty</span>
+              </div>
+              <div className="flex items-center gap-2 text-xs font-medium text-[#252925]">
+                <CheckCircle2 size={16} className="text-[#254C38] shrink-0" />
+                <span>Euroclass B-s1, d0 Fire Retardant</span>
+              </div>
+              <div className="flex items-center gap-2 text-xs font-medium text-[#252925]">
+                <CheckCircle2 size={16} className="text-[#254C38] shrink-0" />
+                <span>Anti-Microbial &amp; 100% Moisture Proof</span>
+              </div>
+              <div className="flex items-center gap-2 text-xs font-medium text-[#252925]">
+                <CheckCircle2 size={16} className="text-[#254C38] shrink-0" />
+                <span>Dust-Free 1–2 Day Clean Installation</span>
+              </div>
+            </div>
 
             <div className="pt-2 flex flex-wrap items-center gap-6">
               <a
                 href="#products"
                 className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-[#254C38] text-[#F7F7F2] text-xs font-semibold tracking-wider uppercase hover:bg-[#1a3627] active:scale-95 transition-all shadow-sm"
               >
-                <span>Discover Zenceil</span>
+                <span>Discover Products</span>
                 <ArrowRight size={15} />
               </a>
 
               <div className="flex items-center gap-2 text-xs text-[#5E645E]">
                 <ShieldCheck className="text-[#254C38]" size={18} />
-                <span>Operating under Aditya Interiors since 2011</span>
+                <span>Pioneers in Architectural Membranes since 2011</span>
               </div>
             </div>
           </div>
 
-          {/* Premium Architectural Visual */}
+          {/* Authentic Zenceil Project Visual from zenceil.com */}
           <div className="lg:col-span-5">
             <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border border-[#254C38]/15 bg-[#E8E8DF] group">
               <Image
-                src="/images/who-we-are.jpg"
-                alt="Zenceil Architectural Stretch Ceiling Interior"
+                src="/images/original/home-product-img.png"
+                alt="Zenceil Architectural Stretch Ceiling Interior Installation"
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 sizes="(max-width: 1024px) 100vw, 500px"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#252925]/60 via-transparent to-transparent opacity-80" />
-              <div className="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-white/80 backdrop-blur-md border border-white/20">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#252925]/75 via-transparent to-transparent opacity-80" />
+              <div className="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-white/90 backdrop-blur-md border border-white/20">
                 <span className="text-[11px] font-bold uppercase tracking-widest text-[#254C38] block">
-                  Authentic Execution
+                  Authentic Zenceil Execution
                 </span>
                 <span className="text-xs text-[#252925] font-medium">
                   Engineered membrane tension systems tailored to bespoke architectural geometries.
