@@ -101,7 +101,7 @@ export const Navbar: React.FC = () => {
               <Logo theme="light" />
             </a>
 
-            {/* CENTER: Navigation Links */}
+            {/* CENTER: Navigation Links (Refined Architectural Typography: Preserved Size, Removed Clunky Boldness) */}
             <nav className="hidden md:flex items-center space-x-7 lg:space-x-9">
               {navLinks.map((link) => (
                 <a
@@ -111,10 +111,10 @@ export const Navbar: React.FC = () => {
                     e.preventDefault();
                     handleNavClick(link.href);
                   }}
-                  className="text-base lg:text-[17px] font-bold text-[#252925] hover:text-[#254C38] transition-colors relative group py-1.5"
+                  className="text-base lg:text-[17px] font-medium text-[#252925]/90 hover:text-[#254C38] transition-colors relative group py-1.5 tracking-[-0.01em]"
                 >
                   {link.label}
-                  <span className="absolute bottom-0 left-0 w-0 h-[2.5px] bg-[#254C38] transition-all duration-300 group-hover:w-full rounded-full" />
+                  <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#254C38] transition-all duration-300 group-hover:w-full rounded-full" />
                 </a>
               ))}
             </nav>
@@ -161,7 +161,7 @@ export const Navbar: React.FC = () => {
                     e.preventDefault();
                     handleNavClick(link.href);
                   }}
-                  className="text-lg font-bold text-[#252925] py-2.5 border-b border-[#252925]/5 hover:text-[#254C38] transition"
+                  className="text-base sm:text-lg font-medium text-[#252925] py-2.5 border-b border-[#252925]/5 hover:text-[#254C38] transition"
                 >
                   {link.label}
                 </a>
