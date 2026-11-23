@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { Logo } from "@/components/ui/Logo";
 import { QuoteModal } from "@/components/ui/QuoteModal";
 import { Phone, Mail, MapPin, ArrowUpRight, ArrowRight } from "lucide-react";
@@ -79,35 +80,55 @@ export const FooterSection: React.FC = () => {
         className="bg-[#252925] text-white pt-20 md:pt-28 pb-12 border-t border-white/10"
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-16">
-          {/* PRIMARY CTA BLOCK: "Let's Create Something Extraordinary." */}
-          <div className="p-8 sm:p-12 md:p-16 rounded-3xl bg-[#254C38] border border-white/15 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-2xl relative overflow-hidden">
-            <div className="space-y-3 text-center lg:text-left max-w-2xl relative z-10">
-              <span className="text-xs font-semibold tracking-widest uppercase text-white/70">
-                Start Your Architectural Transformation
-              </span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight font-manrope">
-                Let&apos;s Create Something Extraordinary.
-              </h2>
-              <p className="text-sm sm:text-base text-white/85">
-                Have a project in mind? Talk to our team. We partner with architects, interior designers, commercial developers, and homeowners nationwide.
-              </p>
-            </div>
+          {/* PRIMARY CTA BLOCK: "Let's Create Something Extraordinary." - EXACT DESIGN AS REQUESTED */}
+          <div className="p-8 sm:p-10 md:p-12 lg:p-14 rounded-3xl bg-[#254C38] border border-white/15 shadow-2xl relative overflow-hidden">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              {/* Left Column: Heading, Narrative & Action Buttons */}
+              <div className="lg:col-span-7 space-y-6 text-left">
+                <div className="space-y-3">
+                  <span className="text-xs font-bold tracking-[0.2em] uppercase text-white/80 block">
+                    Start Your Architectural Transformation
+                  </span>
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.12] font-manrope">
+                    Let&apos;s Create Something Extraordinary.
+                  </h2>
+                  <p className="text-sm sm:text-base text-white/85 font-normal leading-relaxed max-w-xl">
+                    Have a project in mind? Talk to our team. We partner with architects, interior designers, commercial developers, and homeowners nationwide.
+                  </p>
+                </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 shrink-0 relative z-10 w-full sm:w-auto">
-              <button
-                onClick={() => setQuoteOpen(true)}
-                className="px-8 py-4 rounded-full bg-[#F7F7F2] text-[#252925] text-xs font-bold tracking-wider uppercase hover:bg-white hover:shadow-lg transition flex items-center justify-center gap-2 active:scale-95 cursor-pointer"
-              >
-                <span>Get a Free Consultation</span>
-                <ArrowRight size={16} />
-              </button>
-              <a
-                href="tel:+919819846701"
-                className="px-8 py-4 rounded-full border border-white/30 text-white text-xs font-bold tracking-wider uppercase hover:bg-white/10 transition flex items-center justify-center gap-2"
-              >
-                <Phone size={16} />
-                <span>Call Directly</span>
-              </a>
+                {/* Action Buttons positioned directly on the left under text */}
+                <div className="flex flex-col sm:flex-row items-center gap-4 pt-2">
+                  <button
+                    onClick={() => setQuoteOpen(true)}
+                    className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#F7F7F2] text-[#252925] text-xs font-bold tracking-wider uppercase hover:bg-white hover:shadow-lg transition flex items-center justify-center gap-2 active:scale-95 cursor-pointer shadow-sm"
+                  >
+                    <span>Get a Free Consultation</span>
+                    <ArrowRight size={16} />
+                  </button>
+                  <a
+                    href="tel:+919819846701"
+                    className="w-full sm:w-auto px-8 py-4 rounded-full border border-white/35 text-white text-xs font-bold tracking-wider uppercase hover:bg-white/10 transition flex items-center justify-center gap-2 active:scale-95 cursor-pointer"
+                  >
+                    <Phone size={16} />
+                    <span>Call Directly</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Right Column: Architectural Lounge with Multi-Level Fluid Wave Stretch Ceiling */}
+              <div className="lg:col-span-5">
+                <div className="relative aspect-[16/10] sm:aspect-[16/10] w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-xl border border-white/10 bg-[#1C1F1D] group">
+                  <Image
+                    src="/images/cta-architecture-lounge.jpg"
+                    alt="Luxury Architectural Lounge with Multi-Level Fluid Wave Stretch Ceiling"
+                    fill
+                    className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                    sizes="(max-width: 1024px) 100vw, 550px"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 pointer-events-none" />
+                </div>
+              </div>
             </div>
           </div>
 
