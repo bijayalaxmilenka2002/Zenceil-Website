@@ -24,8 +24,49 @@ interface ProjectsSectionProps {
   preview?: boolean;
 }
 
+// 6 HIGHLY IN-DEMAND PRODUCTS WITH CURATED SPECIFICATIONS & ANIMATIONS
+const IN_DEMAND_META = [
+  {
+    id: "proj-1",
+    demandTag: "Commercial Benchmark",
+    demandCategory: "Translucent Light",
+    featureKey: "95+ CRI Uniform Daylighting",
+  },
+  {
+    id: "proj-18",
+    demandTag: "#1 Luxury Residential Trend",
+    demandCategory: "Mirror Lacquer",
+    featureKey: "85%+ Visual Optical Reflection",
+  },
+  {
+    id: "proj-32",
+    demandTag: "Architectural Flagship",
+    demandCategory: "3D Wave Form",
+    featureKey: "Compound Curvature & Acoustics",
+  },
+  {
+    id: "proj-24",
+    demandTag: "Bespoke Art Statement",
+    demandCategory: "Printed Canvas",
+    featureKey: "UV Printed Art + Starlight Fiber",
+  },
+  {
+    id: "proj-10",
+    demandTag: "High-Traffic Retail",
+    demandCategory: "Floating Halo",
+    featureKey: "Large-Span Floating Halo Ring Light",
+  },
+  {
+    id: "proj-26",
+    demandTag: "100% Moisture Proof",
+    demandCategory: "Spa & Wellness",
+    featureKey: "Steam & Humidity Immune • Zero Sagging",
+  },
+];
+
 export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ preview = false }) => {
   const [activeCategory, setActiveCategory] = useState<string>("All");
+  const [inDemandFilter, setInDemandFilter] = useState<string>("All");
   const [selectedProject, setSelectedProject] = useState<ProjectPhoto | null>(null);
   const [quoteOpen, setQuoteOpen] = useState(false);
   const [viewMode, setViewMode] = useState<"grid" | "sections">("grid");
@@ -77,17 +118,25 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ preview = fals
     },
   ];
 
-  // In preview mode: show 6 iconic projects across sectors
-  const PREVIEW_IDS = ["proj-comm-1", "proj-ret-1", "proj-res-1", "proj-hosp-1", "proj-3d-1", "proj-comm-2"];
-  const previewProjects = REAL_PROJECT_GALLERY.filter(p => PREVIEW_IDS.includes(p.id));
+  // In preview mode: populate the 6 highly in-demand products with metadata safely
+  const inDemandProjects = IN_DEMAND_META.map((meta) => {
+    const found = REAL_PROJECT_GALLERY.find((p) => p.id === meta.id) || REAL_PROJECT_GALLERY[0];
+    return {
+      ...found,
+      ...meta,
+    };
+  });
+
+  const displayedPreviewProjects =
+    inDemandFilter === "All"
+      ? inDemandProjects
+      : inDemandProjects.filter((p) => p.demandCategory === inDemandFilter);
 
   // In full mode: filter according to category
   const filteredProjects =
     activeCategory === "All"
       ? REAL_PROJECT_GALLERY
       : REAL_PROJECT_GALLERY.filter((p) => p.category === activeCategory);
-
-  const displayedProjects = preview ? previewProjects : filteredProjects;
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
@@ -112,15 +161,15 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ preview = fals
         id="projects"
         className="py-20 md:py-28 bg-[#F7F7F2] text-[#252925] border-b border-[#254C38]/10 scroll-mt-20"
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-10">
           {/* Section Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="space-y-3 max-w-2xl">
               <div className="flex items-center gap-2 text-xs font-bold tracking-[0.2em] uppercase text-[#254C38]">
-                <span className="w-2 h-2 rounded-full bg-[#254C38]" />
+                <span className="w-2 h-2 rounded-full bg-[#254C38] animate-pulse" />
                 <span>
                   {preview
-                    ? "Section 06 • Portfolio Preview (6 of 36 Projects)"
+                    ? "Featured Portfolio • Most In-Demand Architectural Products"
                     : "Complete Architectural Portfolio (36 Verified Projects)"}
                 </span>
               </div>
@@ -129,12 +178,25 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ preview = fals
               </h2>
               <p className="text-base sm:text-lg text-[#5E645E] font-normal">
                 {preview
-                  ? "A curated selection of our stretch ceiling installations for prestigious corporations, luxury residences, flagship retail, and 5-star hospitality."
+                  ? "Explore our most requested stretch ceiling systems across commercial headquarters, luxury penthouses, flagship retail, and wellness spas."
                   : "Authentic stretch ceiling installations executed by Zenceil across corporate towers, luxury residences, retail gallerias, and 5-star hotels throughout India."}
               </p>
             </div>
 
-            {/* FULL MODE ONLY: View Mode Switcher */}
+            {/* PREVIEW MODE: Direct Link to Full Projects */}
+            {preview && (
+              <div className="self-start md:self-end">
+                <Link
+                  href="/projects"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white border border-[#254C38]/20 text-xs font-bold text-[#254C38] hover:bg-[#254C38] hover:text-[#F7F7F2] transition-all shadow-xs group cursor-pointer"
+                >
+                  <span>Explore All 36 Projects</span>
+                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            )}
+
+            {/* FULL MODE: View Switcher */}
             {!preview && (
               <div className="flex items-center gap-1.5 p-1 rounded-full bg-white/80 border border-[#254C38]/15 self-start md:self-end shadow-xs">
                 <button
@@ -159,20 +221,37 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ preview = fals
                 </button>
               </div>
             )}
-
-            {/* PREVIEW MODE ONLY: Link to Full Projects */}
-            {preview && (
-              <div className="self-start md:self-end">
-                <Link
-                  href="/projects"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-[#254C38]/20 text-xs font-bold text-[#254C38] hover:bg-[#254C38] hover:text-[#F7F7F2] transition-all shadow-xs group"
-                >
-                  <span>Explore All 36 Projects</span>
-                  <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
-                </Link>
-              </div>
-            )}
           </div>
+
+          {/* PREVIEW MODE: Interactive Filter Tabs for High-Demand Products */}
+          {preview && (
+            <div className="flex items-center gap-2 flex-wrap pt-1">
+              <button
+                onClick={() => setInDemandFilter("All")}
+                className={`px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider transition-all duration-200 cursor-pointer flex items-center gap-2 ${
+                  inDemandFilter === "All"
+                    ? "bg-[#254C38] text-[#F7F7F2] shadow-sm"
+                    : "bg-white/80 text-[#252925] border border-[#254C38]/15 hover:border-[#254C38]/40"
+                }`}
+              >
+                <span>All In-Demand (6)</span>
+              </button>
+
+              {IN_DEMAND_META.map((meta) => (
+                <button
+                  key={meta.demandCategory}
+                  onClick={() => setInDemandFilter(meta.demandCategory)}
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-medium tracking-wide transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
+                    inDemandFilter === meta.demandCategory
+                      ? "bg-[#254C38] text-[#F7F7F2] shadow-sm font-semibold"
+                      : "bg-white/80 text-[#5E645E] border border-[#254C38]/10 hover:text-[#252925] hover:border-[#254C38]/30"
+                  }`}
+                >
+                  <span>{meta.demandCategory}</span>
+                </button>
+              ))}
+            </div>
+          )}
 
           {/* FULL MODE ONLY: Category Filter Pills */}
           {!preview && viewMode === "grid" && (
@@ -202,28 +281,75 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ preview = fals
             </div>
           )}
 
-          {/* PREVIEW MODE: Sector Summary Pills */}
+          {/* PREVIEW MODE: HIGH-DEMAND ANIMATED CARD SHOWCASE */}
           {preview && (
-            <div className="flex items-center gap-2 flex-wrap pt-1 text-xs text-[#5E645E]">
-              <span className="font-semibold text-[#252925]">Sectors Executed:</span>
-              <span className="px-3 py-1 rounded-full bg-white border border-[#254C38]/10 font-medium">Commercial (9)</span>
-              <span className="px-3 py-1 rounded-full bg-white border border-[#254C38]/10 font-medium">Retail & Malls (8)</span>
-              <span className="px-3 py-1 rounded-full bg-white border border-[#254C38]/10 font-medium">Luxury Residences (7)</span>
-              <span className="px-3 py-1 rounded-full bg-white border border-[#254C38]/10 font-medium">Hospitality & Spas (7)</span>
-              <span className="px-3 py-1 rounded-full bg-white border border-[#254C38]/10 font-medium">3D & Acoustic Forms (5)</span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {displayedPreviewProjects.map((project) => (
+                <div
+                  key={project.id}
+                  onClick={() => setSelectedProject(project)}
+                  className="group relative rounded-3xl overflow-hidden bg-[#E8E8DF] border border-[#254C38]/15 hover:border-[#254C38]/50 shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer flex flex-col before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent hover:before:translate-x-full before:transition-transform before:duration-1000 before:z-20"
+                >
+                  {/* Image Aspect Box - Always Preserves Overhead Rooftop & Ceiling View */}
+                  <div className="relative aspect-[4/3] w-full overflow-hidden">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover object-top origin-top group-hover:scale-108 transition-transform duration-700 ease-out"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+
+                    {/* Ambient Lighting Gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#252925]/95 via-[#252925]/35 to-transparent opacity-85 group-hover:opacity-90 transition-opacity" />
+
+                    {/* In-Demand Live Pulse Badge */}
+                    <div className="absolute top-4 left-4 z-10 flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#252925]/85 backdrop-blur-md text-[11px] font-semibold text-white border border-white/20 shadow-md">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+                      </span>
+                      <span>{project.demandTag}</span>
+                    </div>
+
+                    {/* Quick View Button */}
+                    <div className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-[#254C38] text-white flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 shadow-md">
+                      <ArrowUpRight size={16} />
+                    </div>
+
+                    {/* In-Card Title Info */}
+                    <div className="absolute bottom-4 left-5 right-5 text-white z-10 space-y-1.5">
+                      <div className="flex items-center gap-1.5 text-[11px] text-white/80 font-medium">
+                        <MapPin size={11} className="text-emerald-300 shrink-0" />
+                        <span className="truncate">{project.location}</span>
+                      </div>
+
+                      <h3 className="text-base sm:text-lg font-bold font-manrope leading-snug drop-shadow-md">
+                        {project.title}
+                      </h3>
+
+                      <div className="flex items-center gap-2 pt-1 flex-wrap">
+                        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-md text-[10px] text-emerald-200 border border-white/10 font-mono">
+                          <Sparkles size={10} className="text-emerald-300 shrink-0" />
+                          <span>{project.featureKey}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           )}
 
-          {/* MODE 1: GRID VIEW (6 cards in preview, or filtered in full mode) */}
-          {(preview || viewMode === "grid") && (
+          {/* FULL MODE ONLY: GRID VIEW (ALL 36 PROJECTS) */}
+          {!preview && viewMode === "grid" && (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {displayedProjects.map((project) => (
+              {filteredProjects.map((project) => (
                 <div
                   key={project.id}
                   onClick={() => setSelectedProject(project)}
                   className="group relative rounded-3xl overflow-hidden bg-[#E8E8DF] border border-[#254C38]/15 hover:border-[#254C38]/40 shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer flex flex-col"
                 >
-                  {/* Image Aspect Box - Guaranteed Ceiling Visibility */}
                   <div className="relative aspect-[4/3] w-full overflow-hidden">
                     <Image
                       src={project.image}
@@ -234,18 +360,15 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ preview = fals
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#252925]/90 via-[#252925]/25 to-transparent opacity-75 group-hover:opacity-90 transition-opacity" />
 
-                    {/* Category Pill Tag */}
                     <div className="absolute top-4 left-4 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md text-[11px] font-bold text-[#252925] border border-white/40 shadow-xs">
                       {getCategoryIcon(project.category)}
                       <span>{project.category}</span>
                     </div>
 
-                    {/* Quick View Button */}
                     <div className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-[#254C38] text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md">
                       <ArrowUpRight size={16} />
                     </div>
 
-                    {/* In-Card Title Info */}
                     <div className="absolute bottom-4 left-5 right-5 text-white z-10 space-y-1">
                       <div className="flex items-center gap-1 text-[11px] text-white/80 font-medium">
                         <MapPin size={11} className="text-emerald-300 shrink-0" />
@@ -297,7 +420,6 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ preview = fals
                 const secProjects = REAL_PROJECT_GALLERY.filter((p) => p.category === sec.id);
                 return (
                   <div key={sec.id} className="space-y-6 pt-6 first:pt-0 border-t first:border-t-0 border-[#254C38]/15">
-                    {/* Section Header Banner */}
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
                       <div className="space-y-1">
                         <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-widest uppercase text-[#254C38]">
@@ -316,7 +438,6 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ preview = fals
                       </span>
                     </div>
 
-                    {/* Section Cards Grid */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                       {secProjects.map((project) => (
                         <div
