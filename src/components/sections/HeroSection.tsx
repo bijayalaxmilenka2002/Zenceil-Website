@@ -32,7 +32,7 @@ export const HeroSection: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative w-full pt-16 md:pt-20 bg-[#F7F7F2] overflow-hidden"
+      className="relative w-full pt-24 md:pt-28 bg-[#F7F7F2] overflow-hidden"
     >
       {/* 100% FULL-BLEED EDGE-TO-EDGE HERO VISUAL (ZERO SIDE BORDER SPACE) */}
       <div className="w-full">
