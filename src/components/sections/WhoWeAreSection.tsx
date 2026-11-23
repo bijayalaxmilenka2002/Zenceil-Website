@@ -138,7 +138,7 @@ export const WhoWeAreSection: React.FC = () => {
                 src="/images/original/home-product-img.png"
                 alt="Zenceil Architectural Stretch Ceiling Interior Installation"
                 fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                className="object-cover object-top origin-top group-hover:scale-105 transition-transform duration-700 ease-out"
                 sizes="(max-width: 1024px) 100vw, 500px"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#252925]/75 via-transparent to-transparent opacity-80" />

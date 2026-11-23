@@ -53,12 +53,12 @@ export const HeroSection: React.FC = () => {
                   alt={slide.title}
                   fill
                   priority={index === 0}
-                  className="object-cover object-center transition-transform duration-[2500ms] ease-out"
+                  className="object-cover object-top origin-top transition-transform duration-[2500ms] ease-out"
                   sizes="100vw"
                 />
 
-                {/* Subtle Ambient Vignette for optimal contrast */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-black/10 pointer-events-none" />
+                {/* Subtle Ambient Vignette - Dark at bottom for text, crystal-clear at top for roof ceiling */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent pointer-events-none" />
               </div>
             );
           })}

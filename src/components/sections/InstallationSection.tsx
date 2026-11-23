@@ -58,7 +58,7 @@ export const InstallationSection: React.FC = () => {
                       src={step.image}
                       alt={`${step.title} - Zenceil Process`}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                      className="object-cover object-top origin-top group-hover:scale-105 transition-transform duration-500 ease-out"
                       sizes="(max-width: 1024px) 100vw, 300px"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#252925]/50 via-transparent to-transparent opacity-60" />

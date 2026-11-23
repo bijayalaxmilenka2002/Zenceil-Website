@@ -56,7 +56,7 @@ export const ProductsSection: React.FC = () => {
                       src={product.image}
                       alt={`${product.name} Stretch Ceiling - Zenceil`}
                       fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                      className="object-cover object-top origin-top group-hover:scale-105 transition-transform duration-700 ease-out"
                       sizes="(max-width: 1024px) 100vw, 400px"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#252925]/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
@@ -118,7 +118,7 @@ export const ProductsSection: React.FC = () => {
                 src={selectedProduct.image}
                 alt={selectedProduct.name}
                 fill
-                className="object-cover"
+                className="object-cover object-top origin-top"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#252925]/85 via-transparent to-transparent" />
               <button
