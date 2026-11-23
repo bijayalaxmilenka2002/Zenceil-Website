@@ -102,7 +102,7 @@ export const Navbar: React.FC = () => {
             </a>
 
             {/* CENTER: Navigation Links */}
-            <nav className="hidden md:flex items-center space-x-8">
+            <nav className="hidden md:flex items-center space-x-7 lg:space-x-9">
               {navLinks.map((link) => (
                 <a
                   key={link.label}
@@ -111,10 +111,10 @@ export const Navbar: React.FC = () => {
                     e.preventDefault();
                     handleNavClick(link.href);
                   }}
-                  className="text-sm font-semibold text-[#252925] hover:text-[#254C38] transition-colors relative group py-1"
+                  className="text-base lg:text-[17px] font-bold text-[#252925] hover:text-[#254C38] transition-colors relative group py-1.5"
                 >
                   {link.label}
-                  <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#254C38] transition-all duration-300 group-hover:w-full" />
+                  <span className="absolute bottom-0 left-0 w-0 h-[2.5px] bg-[#254C38] transition-all duration-300 group-hover:w-full rounded-full" />
                 </a>
               ))}
             </nav>
@@ -123,10 +123,10 @@ export const Navbar: React.FC = () => {
             <div className="hidden md:flex items-center gap-4">
               <button
                 onClick={() => setQuoteModalOpen(true)}
-                className="px-6 py-2.5 rounded-full text-xs font-bold tracking-wider uppercase bg-[#254C38] text-[#F7F7F2] hover:bg-[#1a3627] transition-all duration-200 shadow-sm hover:shadow flex items-center gap-1.5 active:scale-95 cursor-pointer"
+                className="px-6 py-2.5 rounded-full text-xs sm:text-sm font-bold tracking-wider uppercase bg-[#254C38] text-[#F7F7F2] hover:bg-[#1a3627] transition-all duration-200 shadow-sm hover:shadow flex items-center gap-2 active:scale-95 cursor-pointer"
               >
                 <span>Get a Quote</span>
-                <ArrowUpRight size={14} />
+                <ArrowUpRight size={15} />
               </button>
             </div>
 
@@ -161,7 +161,7 @@ export const Navbar: React.FC = () => {
                     e.preventDefault();
                     handleNavClick(link.href);
                   }}
-                  className="text-base font-semibold text-[#252925] py-2 border-b border-[#252925]/5 hover:text-[#254C38] transition"
+                  className="text-lg font-bold text-[#252925] py-2.5 border-b border-[#252925]/5 hover:text-[#254C38] transition"
                 >
                   {link.label}
                 </a>
