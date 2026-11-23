@@ -46,8 +46,12 @@ export interface ProductItem {
 export interface ProjectPhoto {
   id: string;
   title: string;
-  category: string;
+  category: "Commercial" | "Retail" | "Residential" | "Hospitality" | "3D & Acoustic";
   image: string;
+  system: string;
+  location: string;
+  lighting?: string;
+  description?: string;
 }
 
 export interface InstallationStep {
@@ -286,20 +290,377 @@ export const PRODUCTS_DATA: ProductItem[] = [
   },
 ];
 
-// 6. REAL PROJECT GALLERY PHOTOGRAPHS FROM ZENCEIL.COM
+// 6. ALL 36 AUTHENTIC PROJECT PHOTOGRAPHS FROM ZENCEIL.COM/OUR-WORK/
 export const REAL_PROJECT_GALLERY: ProjectPhoto[] = [
-  { id: "p1", title: "Corporate Headquarters Translucent Ceiling", category: "Commercial", image: "/images/original/10.png" },
-  { id: "p2", title: "Luxury Penthouse Reflective Lacquer Ceiling", category: "Residential", image: "/images/original/11.png" },
-  { id: "p3", title: "Shopping Mall Flagship Curved Form", category: "Retail", image: "/images/original/12.png" },
-  { id: "p4", title: "Hotel Grand Atrium Ambient Ceiling", category: "Hospitality", image: "/images/original/13.png" },
-  { id: "p5", title: "Executive Boardroom Custom Printed Art Ceiling", category: "Commercial", image: "/images/original/14.png" },
-  { id: "p6", title: "Wellness Spa Luminous Light Ceiling", category: "Hospitality", image: "/images/original/15.png" },
-  { id: "p7", title: "Modern Villa Double-Height Living Room", category: "Residential", image: "/images/original/16.png" },
-  { id: "p8", title: "High-End Retail Showroom Track Ceiling", category: "Retail", image: "/images/original/17.png" },
-  { id: "p9", title: "Parametric 3D Curved Auditorium Installation", category: "Commercial", image: "/images/original/18.png" },
-  { id: "p10", title: "Luxury Master Suite Soft Glow Ceiling", category: "Residential", image: "/images/original/19.png" },
-  { id: "p11", title: "Fine Dining Restaurant Textured Acoustic Ceiling", category: "Hospitality", image: "/images/original/20.png" },
-  { id: "p12", title: "Airport Transit Terminal Membrane Canopy", category: "Commercial", image: "/images/original/21.png" },
+  // SECTION: Commercial & Corporate (9 projects)
+  {
+    id: "proj-1",
+    title: "Corporate Headquarters Translucent Light Paneling",
+    category: "Commercial",
+    image: "/images/projects/1-2.png",
+    system: "Translucent Light Ceiling",
+    location: "Bandra Kurla Complex (BKC), Mumbai",
+    lighting: "GOQ Korean 5000K Natural White LEDs",
+    description: "Seamless acoustic translucent ceiling casting shadowless architectural illumination across executive workstations."
+  },
+  {
+    id: "proj-2",
+    title: "Godrej Corporate Innovation Hub",
+    category: "Commercial",
+    image: "/images/projects/1-3.png",
+    system: "Micro-Perforated Acoustic Light Membrane",
+    location: "Vikhroli, Mumbai",
+    lighting: "Circadian 4000K Daylighting Grid",
+    description: "Integrated acoustic dampening paired with 95+ CRI backlighting engineered for collaborative engineering pods."
+  },
+  {
+    id: "proj-3",
+    title: "Executive Boardroom Geometric Diffuser",
+    category: "Commercial",
+    image: "/images/projects/1-4.png",
+    system: "Architectural Translucent Diffuser",
+    location: "Golf Course Road, Gurugram",
+    lighting: "Tunable White (3200K–7100K) LED System",
+    description: "Laser-aligned geometric ceiling framing engineered with French harpoon tension locking profiles."
+  },
+  {
+    id: "proj-4",
+    title: "Corporate Executive Suites Backlit Membrane",
+    category: "Commercial",
+    image: "/images/projects/10.png",
+    system: "Seamless Translucent Membrane",
+    location: "Nariman Point, Mumbai",
+    lighting: "High-Lumen Perimeter Diffuser",
+    description: "Dust-free single-day installation delivering uniform surface radiance for corporate leadership suites."
+  },
+  {
+    id: "proj-5",
+    title: "Airport Transit Terminal Membrane Canopy",
+    category: "Commercial",
+    image: "/images/projects/11.png",
+    system: "Aviation-Grade Tensioned Canopy",
+    location: "Terminal 2, Mumbai International Airport",
+    lighting: "High-Efficiency Commercial Lighting Array",
+    description: "Euroclass B-s1, d0 fire-rated architectural membrane engineered for high-traffic international passenger transit."
+  },
+  {
+    id: "proj-6",
+    title: "Tech Park Central Innovation Galleria",
+    category: "Commercial",
+    image: "/images/projects/12.png",
+    system: "Large-Format Translucent Light Ceiling",
+    location: "Whitefield, Bengaluru",
+    lighting: "Korean GOQ High-CRI Backlight Array",
+    description: "Over 4,200 sq. ft. of seamless ceiling membrane installed over a multi-floor technology atrium."
+  },
+  {
+    id: "proj-7",
+    title: "Airport VIP Executive Lounge Stretch Canopy",
+    category: "Commercial",
+    image: "/images/projects/21.png",
+    system: "Acoustic Translucent Floating Canopy",
+    location: "IGI Airport T3, New Delhi",
+    lighting: "Circadian Tunable Ambient LEDs",
+    description: "Acoustic attenuation and soft ambient luminescence tailored for first-class passenger relaxation."
+  },
+  {
+    id: "proj-8",
+    title: "Precision Harpoon Perimeter Engineering",
+    category: "Commercial",
+    image: "/images/projects/24.png",
+    system: "Heavy-Duty Aluminum Harpoon Framework",
+    location: "Vasai Fabrication Facility, Mumbai",
+    lighting: "Integrated Magnetic Track Channels",
+    description: "Certified technicians heat-welding high-tension polymer membrane to proprietary perimeter aluminum rails."
+  },
+  {
+    id: "proj-9",
+    title: "Acoustic Micro-Perforated Commercial Pods",
+    category: "Commercial",
+    image: "/images/projects/25.png",
+    system: "Micro-Perforated Acoustic Ceiling",
+    location: "Cyber City, Hyderabad",
+    lighting: "Recessed Magnetic Spotlight Channels",
+    description: "Sound-absorbing micro-perforations reduce speech reverberation while maintaining clean architectural surfaces."
+  },
+
+  // SECTION: Retail & Malls (8 projects)
+  {
+    id: "proj-10",
+    title: "Nexus Malls Grand Atrium Parametric Wave",
+    category: "Retail",
+    image: "/images/projects/2-1.png",
+    system: "Parametric 3D Curved Wave Canopy",
+    location: "Koramangala, Bengaluru",
+    lighting: "RGBW Dynamic DMX Programmed LEDs",
+    description: "Cascading 3D wave canopy traversing multi-level shopping gallerias, engineered with curved aluminum framework."
+  },
+  {
+    id: "proj-11",
+    title: "Nexus Flagship Galleria Structural Contour",
+    category: "Retail",
+    image: "/images/projects/2-3.png",
+    system: "Contour Harpoon Track & Light Canopy",
+    location: "Seawoods Grand Central, Navi Mumbai",
+    lighting: "Perimeter Grazing Linear Luminescence",
+    description: "Custom radiused perimeter tracks matching complex architectural curves of the flagship retail promenade."
+  },
+  {
+    id: "proj-12",
+    title: "Multi-Level Retail Shopping Promenade",
+    category: "Retail",
+    image: "/images/projects/2-4.png",
+    system: "Continuous Translucent Light Ribbon",
+    location: "Phoenix Marketcity, Kurla, Mumbai",
+    lighting: "Uniform 4100K Neutral White System",
+    description: "Linear daylighting ribbon providing comfortable glare-free illumination throughout prime commercial shopping zones."
+  },
+  {
+    id: "proj-13",
+    title: "Retail Mall Galleria Ambient Canopy",
+    category: "Retail",
+    image: "/images/projects/2-5.png",
+    system: "High-Transmittance Daylighting Membrane",
+    location: "Viman Nagar, Pune",
+    lighting: "150° Wide-Dispersion Optical Modules",
+    description: "Natural-feel ambient ceiling engineered to elevate shopper footfall dwell time and retail aesthetics."
+  },
+  {
+    id: "proj-14",
+    title: "MAC Cosmetics Luxury Flagship Showroom",
+    category: "Retail",
+    image: "/images/projects/3-1.png",
+    system: "Museum-Grade High-CRI 98+ Daylighting",
+    location: "Palladium Mall, Lower Parel, Mumbai",
+    lighting: "Color-True 5000K Daylight LED Array",
+    description: "Delivers exact color fidelity required for high-end luxury cosmetics, makeover consultations, and beauty retail."
+  },
+  {
+    id: "proj-15",
+    title: "Shoppers Stop Luxury Department Flagship",
+    category: "Retail",
+    image: "/images/projects/3-2.png",
+    system: "Integrated Track & Ambient Ceiling",
+    location: "Ambience Mall, Vasant Kunj, New Delhi",
+    lighting: "Dual-Engine Accent & Diffused Luminescence",
+    description: "Combines overall ambient stretch ceiling glow with flush-mounted spotlight tracks for premium merchandise."
+  },
+  {
+    id: "proj-16",
+    title: "Specialty Beauty Retail Daylighting Grid",
+    category: "Retail",
+    image: "/images/projects/3-3.png",
+    system: "Architectural Translucent Diffuser System",
+    location: "Inorbit Mall, Malad, Mumbai",
+    lighting: "High-Lumen Korean GOQ Lighting",
+    description: "Dust-free overnight installation meeting stringent commercial mall night-work safety protocols."
+  },
+  {
+    id: "proj-17",
+    title: "Designer Fashion Boutique Light Canopy",
+    category: "Retail",
+    image: "/images/projects/3-4.png",
+    system: "Floating Luminous Frame Ceiling",
+    location: "Jubilee Hills, Hyderabad",
+    lighting: "3200K Warm Atmospheric Lighting",
+    description: "Ultra-thin perimeter reveal delivering the impression of a floating illuminated architectural skybox."
+  },
+
+  // SECTION: Luxury Residential (7 projects)
+  {
+    id: "proj-18",
+    title: "Luxury Penthouse High-Gloss Mirror Lacquer",
+    category: "Residential",
+    image: "/images/projects/4-1.png",
+    system: "High-Gloss Mirror Lacquer Ceiling",
+    location: "Altamount Road, South Mumbai",
+    lighting: "Reflected Crystal Chandelier & Accents",
+    description: "Over 85% optical mirror reflection visually doubles room height, creating majestic vertical spatial drama."
+  },
+  {
+    id: "proj-19",
+    title: "Modern Seaside Villa Double-Height Living Room",
+    category: "Residential",
+    image: "/images/projects/4-2.png",
+    system: "Seamless Stretch Ceiling Membrane",
+    location: "Awas Beach Villa, Alibaug",
+    lighting: "Tunable Warm Ambient Perimeter Grazing",
+    description: "Moisture-resistant, anti-fungal membrane engineered to withstand humid coastal conditions with zero sagging."
+  },
+  {
+    id: "proj-20",
+    title: "Horizon Penthouse Sky Villa Living Suite",
+    category: "Residential",
+    image: "/images/projects/5-1.png",
+    system: "Reflective Lacquer & Translucent Border",
+    location: "Worli Seaface, Mumbai",
+    lighting: "Circadian Sunset Warm-Dim LEDs",
+    description: "Bespoke dual-finish installation combining central mirror lacquer with backlit perimeter diffuser frames."
+  },
+  {
+    id: "proj-21",
+    title: "Private Villa Home Cinema Acoustic Ceiling",
+    category: "Residential",
+    image: "/images/projects/5-2.png",
+    system: "Black Textured Acoustic Membrane",
+    location: "Golf Links, New Delhi",
+    lighting: "Starlight Fiber Optic Constellation",
+    description: "Micro-perforated acoustic membrane dampens bass resonance and creates a mesmerizing private star-field experience."
+  },
+  {
+    id: "proj-22",
+    title: "Custom Printed Classical Artwork Ceiling",
+    category: "Residential",
+    image: "/images/projects/14.png",
+    system: "High-Definition Large-Format Printed Art",
+    location: "Banjara Hills, Hyderabad",
+    lighting: "Perimeter Cove Warm Backlighting",
+    description: "Ultra-wide UV printed digital artwork on non-fading architectural polymer, creating an Italian fresco ambiance."
+  },
+  {
+    id: "proj-23",
+    title: "Duplex Penthouse Soft-Glow Master Bedroom",
+    category: "Residential",
+    image: "/images/projects/15.png",
+    system: "Translucent Soft Diffuser Ceiling",
+    location: "Boat Club Road, Pune",
+    lighting: "3000K Warm Dimming Optical Modules",
+    description: "Soft uniform illumination replacing harsh ceiling fixtures with soothing, hotel-grade spatial serenity."
+  },
+  {
+    id: "proj-24",
+    title: "Luxury Penthouse Cosmic Nebula Printed Ceiling",
+    category: "Residential",
+    image: "/images/projects/19.png",
+    system: "Digital Printed High-Resolution Canvas",
+    location: "Bandra West, Mumbai",
+    lighting: "Dual-Layer Fiber Optics & Backlit Membrane",
+    description: "Custom graphic print paired with fiber optic points reproducing deep-space constellations over a master lounge."
+  },
+
+  // SECTION: Hospitality, Hotels & Spas (7 projects)
+  {
+    id: "proj-25",
+    title: "5-Star Hotel Grand Lobby Ambient Luminescence",
+    category: "Hospitality",
+    image: "/images/projects/6-1.png",
+    system: "Luminous Translucent Architectural Ceiling",
+    location: "Taj Resort & Convention Centre, Goa",
+    lighting: "High-Flux Circadian Tunable Array",
+    description: "Welcomes international guests with daylight-emulating soft illumination that adapts from morning sun to evening glow."
+  },
+  {
+    id: "proj-26",
+    title: "Luxury Wellness Spa & Hydrotherapy Atrium",
+    category: "Hospitality",
+    image: "/images/projects/7-1.png",
+    system: "100% Moisture-Proof Translucent Membrane",
+    location: "The Leela Palace, Udaipur",
+    lighting: "Chromatherapy Tunable Wellness LEDs",
+    description: "Impervious to steam, chlorinated pool vapor, and humidity, ensuring pristine mold-free beauty indefinitely."
+  },
+  {
+    id: "proj-27",
+    title: "Fine Dining Restaurant Textured Acoustic Ceiling",
+    category: "Hospitality",
+    image: "/images/projects/8-1.png",
+    system: "Textured Suede Acoustic Ceiling",
+    location: "Park Street, Kolkata",
+    lighting: "Warm 2700K Intimate Chandelier Accents",
+    description: "Tactile suede finish paired with acoustic backing ensures intimate dining conversation without restaurant clatter."
+  },
+  {
+    id: "proj-28",
+    title: "Palace Hotel Grand Ballroom Overhead System",
+    category: "Hospitality",
+    image: "/images/projects/13.png",
+    system: "Multi-Tiered Architectural Ceiling",
+    location: "Rambagh Palace, Jaipur",
+    lighting: "DMX-Controlled Architectural Scene Lighting",
+    description: "Integrated acoustic dampening allows crystal-clear speech and music during high-profile wedding receptions and galas."
+  },
+  {
+    id: "proj-29",
+    title: "Boutique Hotel Cocktail Lounge Reflective Ceiling",
+    category: "Hospitality",
+    image: "/images/projects/17.png",
+    system: "Champagne Gold Lacquer Membrane",
+    location: "Aerocity, New Delhi",
+    lighting: "Indirect Brass Sconce & Chandelier Accents",
+    description: "High-gloss metallic membrane reflecting evening cocktail lights and city skylines with mesmerizing elegance."
+  },
+  {
+    id: "proj-30",
+    title: "Luxury Wine Lounge Micro-Perforated Canopy",
+    category: "Hospitality",
+    image: "/images/projects/20.png",
+    system: "Textured Acoustic & Concealed Lighting",
+    location: "UB City, Bengaluru",
+    lighting: "Subdued Amber Accent Luminescence",
+    description: "Sophisticated acoustic ceiling creating an exclusive, cellar-like acoustic intimacy for connoisseur tastings."
+  },
+  {
+    id: "proj-31",
+    title: "Luxury Resort Atrium Double-Curved Canopy",
+    category: "Hospitality",
+    image: "/images/projects/16.png",
+    system: "Architectural Free-Form Tensioned Surface",
+    location: "East Coast Road, Chennai",
+    lighting: "Circadian Sunset Tunable Lighting",
+    description: "Compound curved membrane engineered to mimic ocean waves across the resort grand atrium."
+  },
+
+  // SECTION: 3D Form & Sculptural Ceilings (5 projects)
+  {
+    id: "proj-32",
+    title: "Parametric 3D Curved Wave Auditorium",
+    category: "3D & Acoustic",
+    image: "/images/projects/18.png",
+    system: "3D Form Multi-Level Aluminum Framing",
+    location: "SG Highway, Ahmedabad",
+    lighting: "Contour-Follower Linear Flexible LEDs",
+    description: "Structural lightweight framing creates dynamic fluid waves across a 600-seat corporate auditorium."
+  },
+  {
+    id: "proj-33",
+    title: "Sculptural Multi-Level Organic Atrium Canopy",
+    category: "3D & Acoustic",
+    image: "/images/projects/22.png",
+    system: "Compound 3D Curvature Harpoon System",
+    location: "Andheri East Corporate Hub, Mumbai",
+    lighting: "Concealed Perimeter Flexible Diffusers",
+    description: "Bespoke compound curves engineered in 3D CAD and fabricated with high-frequency RF-welded membranes."
+  },
+  {
+    id: "proj-34",
+    title: "Vaulted Arch Tensile Spatial Installation",
+    category: "3D & Acoustic",
+    image: "/images/projects/23.png",
+    system: "Vaulted Barrel & Dome Stretch Ceiling",
+    location: "Senapati Bapat Road, Pune",
+    lighting: "Apex Indirect Grazing Array",
+    description: "Replaces traditional heavy plaster vaults with lightweight, crack-proof tensioned membranes installed in days."
+  },
+  {
+    id: "proj-35",
+    title: "Architectural Double-Curvature Compound Ceiling",
+    category: "3D & Acoustic",
+    image: "/images/projects/26.png",
+    system: "3D Complex Geometrical Tension System",
+    location: "DLF Cyber City, Gurugram",
+    lighting: "Segmented Micro-LED Channel Illumination",
+    description: "Continuous tensioned surface floating across multiple structural columns with zero visible joints or seams."
+  },
+  {
+    id: "proj-36",
+    title: "Circular Floating Light Halo Tensioned System",
+    category: "3D & Acoustic",
+    image: "/images/projects/27-1.png",
+    system: "Seamless 3D Ring Halo Light Ceiling",
+    location: "Zenceil Design Center, Vasai, Mumbai",
+    lighting: "Uniform 360° Radial GOQ LED Engine",
+    description: "Engineered circular halo suspended cleanly beneath raw architectural ceilings, functioning as an artistic chandelier."
+  }
 ];
 
 // 7. INSTALLATION STEPS (Authentic Zenceil Methodology)

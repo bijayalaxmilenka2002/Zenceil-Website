@@ -4,7 +4,7 @@ import { ClientLogosSection } from "@/components/sections/ClientLogosSection";
 import { WhoWeAreSection } from "@/components/sections/WhoWeAreSection";
 import { ExpertiseSection } from "@/components/sections/ExpertiseSection";
 import { ProductsSection } from "@/components/sections/ProductsSection";
-import { ProjectsGallerySection } from "@/components/sections/ProjectsGallerySection";
+import { ProjectsSection } from "@/components/sections/ProjectsSection";
 import { InstallationSection } from "@/components/sections/InstallationSection";
 import { BrandQuotesSection } from "@/components/sections/BrandQuotesSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
@@ -31,8 +31,8 @@ export default function HomePage() {
       {/* SECTION 05: OUR PRODUCTS (TRANSLUCENT, PRINTED, TEXTURE, LACQUER, 3D FORM) */}
       <ProductsSection />
 
-      {/* SECTION 06: REAL WORK PORTFOLIO GALLERY (ORIGINAL PROJECT PHOTOS) */}
-      <ProjectsGallerySection />
+      {/* SECTION 06: OUR WORK & REAL PROJECTS (36 EXECUTED PROJECTS ACROSS INDIA) */}
+      <ProjectsSection />
 
       {/* SECTION 07: INSTALLATION PROCESS (4-STEP TIMELINE) */}
       <InstallationSection />
