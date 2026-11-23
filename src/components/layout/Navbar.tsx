@@ -28,6 +28,7 @@ import {
 } from "lucide-react";
 
 interface ProductDropdownItem {
+  id: string;
   name: string;
   finish: string;
   desc: string;
@@ -36,8 +37,8 @@ interface ProductDropdownItem {
 }
 
 interface ProjectDropdownItem {
-  name: string;
   category: string;
+  name: string;
   count: number;
   tag: string;
   desc: string;
@@ -47,46 +48,51 @@ interface ProjectDropdownItem {
 
 const PRODUCT_ITEMS: ProductDropdownItem[] = [
   {
+    id: "translucent",
     name: "Translucent Ceilings",
     finish: "01 • Diffused Lighting",
     desc: "Even, shadowless daylighting with integrated GOQ LEDs",
-    href: "/#products",
+    href: "/#product-translucent",
     icon: SunMedium,
   },
   {
+    id: "printed",
     name: "Printed Ceilings",
     finish: "02 • High-Res Graphics",
     desc: "Infinite custom UV prints, celestial skies & motifs",
-    href: "/#products",
+    href: "/#product-printed",
     icon: Palette,
   },
   {
+    id: "texture",
     name: "Textured Ceilings",
     finish: "03 • Acoustic Relief",
     desc: "Tactile micro-grain surfaces with acoustic dampening",
-    href: "/#products",
+    href: "/#product-texture",
     icon: Layers,
   },
   {
+    id: "lacquer",
     name: "Lacquer Ceilings",
     finish: "04 • High-Gloss Mirror",
     desc: "85%+ optical reflection visually doubling room height",
-    href: "/#products",
+    href: "/#product-lacquer",
     icon: Sparkles,
   },
   {
+    id: "3d-form",
     name: "3D Form Ceilings",
     finish: "05 • Parametric Waves",
     desc: "Compound curves, floating halo rings & fluid canopies",
-    href: "/#products",
+    href: "/#product-3d-form",
     icon: Box,
   },
 ];
 
 const PROJECT_ITEMS: ProjectDropdownItem[] = [
   {
-    name: "All Landmark Projects",
     category: "All",
+    name: "All Landmark Projects",
     count: 36,
     tag: "Comprehensive Archive",
     desc: "Browse our entire nationwide portfolio of realized installations",
@@ -94,8 +100,8 @@ const PROJECT_ITEMS: ProjectDropdownItem[] = [
     icon: Grid,
   },
   {
-    name: "Commercial & Corporate",
     category: "Commercial",
+    name: "Commercial & Corporate",
     count: 9,
     tag: "Corporate Campuses",
     desc: "Executive boardrooms, high-tech atriums & airport terminals",
@@ -103,8 +109,8 @@ const PROJECT_ITEMS: ProjectDropdownItem[] = [
     icon: Building2,
   },
   {
-    name: "Retail & Malls",
     category: "Retail",
+    name: "Retail & Malls",
     count: 8,
     tag: "Flagship Gallerias",
     desc: "Atrium wave canopies, luxury boutiques & luminous storefronts",
@@ -112,8 +118,8 @@ const PROJECT_ITEMS: ProjectDropdownItem[] = [
     icon: ShoppingBag,
   },
   {
-    name: "Luxury Residential",
     category: "Residential",
+    name: "Luxury Residential",
     count: 7,
     tag: "Bespoke Villas & Penthouses",
     desc: "Double-height living rooms, mirror penthouses & cinema ceilings",
@@ -121,8 +127,8 @@ const PROJECT_ITEMS: ProjectDropdownItem[] = [
     icon: Home,
   },
   {
-    name: "Hospitality & Spas",
     category: "Hospitality",
+    name: "Hospitality & Spas",
     count: 7,
     tag: "5-Star Resorts & Wellness",
     desc: "Grand hotel lobbies, moisture-proof hydrotherapy & fine dining",
@@ -130,8 +136,8 @@ const PROJECT_ITEMS: ProjectDropdownItem[] = [
     icon: Hotel,
   },
   {
-    name: "3D & Acoustic Forms",
     category: "3D & Acoustic",
+    name: "3D & Acoustic Forms",
     count: 5,
     tag: "Parametric Engineering",
     desc: "Sculptural multi-level curved clouds & suspended halo rings",
@@ -145,6 +151,7 @@ export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [quoteModalOpen, setQuoteModalOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<"products" | "projects" | null>(null);
+  const [isPinned, setIsPinned] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const [mobileProjectsOpen, setMobileProjectsOpen] = useState(false);
   
@@ -165,16 +172,28 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close on outside click or escape key
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       if (!target.closest("[data-navbar-menu]")) {
         setActiveDropdown(null);
+        setIsPinned(false);
       }
     };
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setActiveDropdown(null);
+        setIsPinned(false);
+      }
+    };
+
     document.addEventListener("click", handleClickOutside);
+    document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("click", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
       if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
     };
   }, []);
@@ -187,12 +206,24 @@ export const Navbar: React.FC = () => {
   };
 
   const handleMouseLeave = () => {
+    if (isPinned) return; // Keep open if user explicitly clicked to open
     if (dropdownTimeoutRef.current) {
       clearTimeout(dropdownTimeoutRef.current);
     }
     dropdownTimeoutRef.current = setTimeout(() => {
       setActiveDropdown(null);
-    }, 180);
+    }, 300);
+  };
+
+  const toggleDropdown = (menu: "products" | "projects") => {
+    if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
+    if (activeDropdown === menu) {
+      setActiveDropdown(null);
+      setIsPinned(false);
+    } else {
+      setActiveDropdown(menu);
+      setIsPinned(true);
+    }
   };
 
   const navLinks = [
@@ -206,6 +237,7 @@ export const Navbar: React.FC = () => {
 
   const handleNavClick = (link: typeof navLinks[0]) => {
     setActiveDropdown(null);
+    setIsPinned(false);
     setMobileMenuOpen(false);
 
     if (link.isRoute) {
@@ -230,39 +262,52 @@ export const Navbar: React.FC = () => {
     }
   };
 
-  const handleProductItemClick = (href: string) => {
+  const handleProductSelect = (productId: string, e?: React.MouseEvent) => {
+    if (e) e.preventDefault();
     setActiveDropdown(null);
+    setIsPinned(false);
     setMobileMenuOpen(false);
 
     if (pathname === "/") {
-      const element = document.getElementById("products");
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+      window.dispatchEvent(new CustomEvent("zenceil-highlight-product", { detail: productId }));
+      const el = document.getElementById(`product-${productId}`);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
       }
+      window.history.pushState(null, "", `/#product-${productId}`);
     } else {
-      router.push(href);
+      router.push(`/#product-${productId}`);
     }
   };
 
-  const handleProjectCategoryClick = (category: string) => {
+  const handleAllProductsClick = (e?: React.MouseEvent) => {
+    if (e) e.preventDefault();
     setActiveDropdown(null);
+    setIsPinned(false);
     setMobileMenuOpen(false);
 
-    if (category === "All") {
-      if (pathname === "/projects") {
-        window.history.pushState(null, "", "/projects");
-        window.dispatchEvent(new CustomEvent("zenceil-category-change", { detail: "All" }));
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      } else {
-        router.push("/projects");
+    if (pathname === "/") {
+      const el = document.getElementById("products");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
       }
-      return;
+      window.history.pushState(null, "", "/#products");
+    } else {
+      router.push("/#products");
     }
+  };
 
-    const url = `/projects?category=${encodeURIComponent(category)}`;
+  const handleProjectCategorySelect = (category: string, e?: React.MouseEvent) => {
+    if (e) e.preventDefault();
+    setActiveDropdown(null);
+    setIsPinned(false);
+    setMobileMenuOpen(false);
+
+    const url = category === "All" ? "/projects" : `/projects?category=${encodeURIComponent(category)}`;
     if (pathname === "/projects") {
       window.history.pushState(null, "", url);
       window.dispatchEvent(new CustomEvent("zenceil-category-change", { detail: category }));
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
       router.push(url);
     }
@@ -271,6 +316,7 @@ export const Navbar: React.FC = () => {
   const handleLogoClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setActiveDropdown(null);
+    setIsPinned(false);
     setMobileMenuOpen(false);
     if (pathname === "/") {
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -341,8 +387,8 @@ export const Navbar: React.FC = () => {
               <Logo theme="light" />
             </a>
 
-            {/* CENTER: Navigation Links with Interactive Dropdowns */}
-            <nav className="hidden md:flex items-center space-x-7 lg:space-x-8">
+            {/* CENTER: Navigation Links with Interactive Clickable & Hover Dropdowns */}
+            <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
               {navLinks.map((link) => {
                 const isActive = link.isRoute
                   ? pathname === "/projects"
@@ -353,18 +399,24 @@ export const Navbar: React.FC = () => {
                   return (
                     <div
                       key={link.label}
-                      className="relative py-1.5"
+                      className="relative py-1"
                       onMouseEnter={() => handleMouseEnter(link.dropdownKey)}
                       onMouseLeave={handleMouseLeave}
                     >
                       <button
-                        onClick={() => handleNavClick(link)}
-                        className={`text-base lg:text-[17px] transition-colors relative group py-1 tracking-[-0.01em] cursor-pointer inline-flex items-center gap-1.5 ${
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          toggleDropdown(link.dropdownKey);
+                        }}
+                        className={`text-base lg:text-[17px] transition-colors relative group py-1.5 px-1.5 tracking-[-0.01em] cursor-pointer inline-flex items-center gap-1.5 select-none rounded-lg hover:bg-[#254C38]/5 ${
                           isActive || isOpen
                             ? "text-[#254C38] font-bold"
                             : "font-medium text-[#252925]/90 hover:text-[#254C38]"
                         }`}
                         aria-expanded={isOpen}
+                        aria-haspopup="true"
                       >
                         <span>{link.label}</span>
                         <ChevronDown
@@ -374,18 +426,22 @@ export const Navbar: React.FC = () => {
                           }`}
                         />
                         <span
-                          className={`absolute bottom-0 left-0 h-[1.5px] bg-[#254C38] transition-all duration-300 rounded-full ${
-                            isActive || isOpen ? "w-full" : "w-0 group-hover:w-full"
+                          className={`absolute bottom-0 left-1.5 right-1.5 h-[2px] bg-[#254C38] transition-all duration-300 rounded-full ${
+                            isActive || isOpen ? "opacity-100" : "opacity-0 group-hover:opacity-100"
                           }`}
                         />
                       </button>
 
-                      {/* Dropdown Container */}
+                      {/* Dropdown Container with Hitbox Bridge */}
                       {isOpen && (
-                        <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50 animate-fadeIn">
+                        <div 
+                          className="absolute top-full left-1/2 -translate-x-1/2 pt-2.5 z-50 animate-fadeIn"
+                          onMouseEnter={() => handleMouseEnter(link.dropdownKey)}
+                          onMouseLeave={handleMouseLeave}
+                        >
                           {link.dropdownKey === "products" ? (
                             /* PRODUCTS DROPDOWN CARD */
-                            <div className="w-[380px] bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-[#254C38]/15 overflow-hidden p-2.5 space-y-1">
+                            <div className="w-[390px] bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-[#254C38]/15 overflow-hidden p-2.5 space-y-1">
                               <div className="px-3 pt-2 pb-1.5 flex items-center justify-between border-b border-[#254C38]/10 text-xs text-[#5E645E]">
                                 <span className="font-bold uppercase tracking-wider text-[11px] text-[#254C38]">
                                   Stretch Ceiling Solutions
@@ -397,10 +453,11 @@ export const Navbar: React.FC = () => {
 
                               <div className="py-1 space-y-0.5">
                                 {PRODUCT_ITEMS.map((item) => (
-                                  <button
-                                    key={item.name}
-                                    onClick={() => handleProductItemClick(item.href)}
-                                    className="w-full group/item flex items-center gap-3.5 p-2.5 rounded-xl hover:bg-[#254C38]/8 text-left transition-all duration-200 cursor-pointer"
+                                  <Link
+                                    key={item.id}
+                                    href={item.href}
+                                    onClick={(e) => handleProductSelect(item.id, e)}
+                                    className="w-full group/item flex items-center gap-3.5 p-2.5 rounded-xl hover:bg-[#254C38]/8 text-left transition-all duration-200 cursor-pointer block"
                                   >
                                     <div className="w-9 h-9 rounded-xl bg-[#254C38]/10 text-[#254C38] flex items-center justify-center shrink-0 group-hover/item:bg-[#254C38] group-hover/item:text-[#F7F7F2] transition-colors shadow-sm">
                                       <item.icon size={18} />
@@ -418,24 +475,25 @@ export const Navbar: React.FC = () => {
                                         {item.desc}
                                       </p>
                                     </div>
-                                  </button>
+                                  </Link>
                                 ))}
                               </div>
 
                               {/* Bottom CTA */}
                               <div className="pt-2 border-t border-[#254C38]/10">
-                                <button
-                                  onClick={() => handleProductItemClick("/#products")}
-                                  className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold text-[#254C38] hover:bg-[#254C38]/10 transition-colors cursor-pointer group/cta"
+                                <Link
+                                  href="/#products"
+                                  onClick={(e) => handleAllProductsClick(e)}
+                                  className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold text-[#254C38] hover:bg-[#254C38]/10 transition-colors cursor-pointer group/cta block"
                                 >
                                   <span>Explore All 5 Products &amp; Finishes</span>
-                                  <ArrowRight size={14} className="group-hover/cta:translate-x-1 transition-transform" />
-                                </button>
+                                  <ArrowRight size={14} className="group-hover/cta:translate-x-1 transition-transform inline" />
+                                </Link>
                               </div>
                             </div>
                           ) : (
                             /* PROJECTS DROPDOWN CARD */
-                            <div className="w-[410px] bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-[#254C38]/15 overflow-hidden p-2.5 space-y-1">
+                            <div className="w-[415px] bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-[#254C38]/15 overflow-hidden p-2.5 space-y-1">
                               <div className="px-3 pt-2 pb-1.5 flex items-center justify-between border-b border-[#254C38]/10 text-xs text-[#5E645E]">
                                 <span className="font-bold uppercase tracking-wider text-[11px] text-[#254C38]">
                                   Architectural Archive
@@ -447,10 +505,11 @@ export const Navbar: React.FC = () => {
 
                               <div className="py-1 space-y-0.5">
                                 {PROJECT_ITEMS.map((item) => (
-                                  <button
-                                    key={item.name}
-                                    onClick={() => handleProjectCategoryClick(item.category)}
-                                    className="w-full group/item flex items-center gap-3.5 p-2.5 rounded-xl hover:bg-[#254C38]/8 text-left transition-all duration-200 cursor-pointer"
+                                  <Link
+                                    key={item.category}
+                                    href={item.href}
+                                    onClick={(e) => handleProjectCategorySelect(item.category, e)}
+                                    className="w-full group/item flex items-center gap-3.5 p-2.5 rounded-xl hover:bg-[#254C38]/8 text-left transition-all duration-200 cursor-pointer block"
                                   >
                                     <div className="w-9 h-9 rounded-xl bg-[#254C38]/10 text-[#254C38] flex items-center justify-center shrink-0 group-hover/item:bg-[#254C38] group-hover/item:text-[#F7F7F2] transition-colors shadow-sm">
                                       <item.icon size={18} />
@@ -468,19 +527,20 @@ export const Navbar: React.FC = () => {
                                         {item.desc}
                                       </p>
                                     </div>
-                                  </button>
+                                  </Link>
                                 ))}
                               </div>
 
                               {/* Bottom CTA */}
                               <div className="pt-2 border-t border-[#254C38]/10">
-                                <button
-                                  onClick={() => handleProjectCategoryClick("All")}
-                                  className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold text-[#254C38] hover:bg-[#254C38]/10 transition-colors cursor-pointer group/cta"
+                                <Link
+                                  href="/projects"
+                                  onClick={(e) => handleProjectCategorySelect("All", e)}
+                                  className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold text-[#254C38] hover:bg-[#254C38]/10 transition-colors cursor-pointer group/cta block"
                                 >
                                   <span>Explore Full 36-Project Archive</span>
-                                  <ArrowRight size={14} className="group-hover/cta:translate-x-1 transition-transform" />
-                                </button>
+                                  <ArrowRight size={14} className="group-hover/cta:translate-x-1 transition-transform inline" />
+                                </Link>
                               </div>
                             </div>
                           )}
@@ -494,7 +554,7 @@ export const Navbar: React.FC = () => {
                   <button
                     key={link.label}
                     onClick={() => handleNavClick(link)}
-                    className={`text-base lg:text-[17px] transition-colors relative group py-1.5 tracking-[-0.01em] cursor-pointer ${
+                    className={`text-base lg:text-[17px] transition-colors relative group py-1.5 px-1.5 tracking-[-0.01em] cursor-pointer rounded-lg hover:bg-[#254C38]/5 ${
                       isActive
                         ? "text-[#254C38] font-bold"
                         : "font-medium text-[#252925]/90 hover:text-[#254C38]"
@@ -502,8 +562,8 @@ export const Navbar: React.FC = () => {
                   >
                     <span>{link.label}</span>
                     <span
-                      className={`absolute bottom-0 left-0 h-[1.5px] bg-[#254C38] transition-all duration-300 rounded-full ${
-                        isActive ? "w-full" : "w-0 group-hover:w-full"
+                      className={`absolute bottom-0 left-1.5 right-1.5 h-[2px] bg-[#254C38] transition-all duration-300 rounded-full ${
+                        isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
                       }`}
                     />
                   </button>
@@ -552,8 +612,9 @@ export const Navbar: React.FC = () => {
                   return (
                     <div key={link.label} className="border-b border-[#252925]/5 py-1">
                       <button
+                        type="button"
                         onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
-                        className="w-full flex items-center justify-between text-left text-base sm:text-lg py-2 font-medium text-[#252925] hover:text-[#254C38] transition cursor-pointer"
+                        className="w-full flex items-center justify-between text-left text-base sm:text-lg py-2.5 font-medium text-[#252925] hover:text-[#254C38] transition cursor-pointer"
                       >
                         <div className="flex items-center gap-2">
                           <span>Products</span>
@@ -572,30 +633,29 @@ export const Navbar: React.FC = () => {
                       {mobileProductsOpen && (
                         <div className="pl-2 pr-1 pb-2 space-y-1 animate-fadeIn">
                           {PRODUCT_ITEMS.map((item) => (
-                            <button
-                              key={item.name}
-                              onClick={() => handleProductItemClick(item.href)}
-                              className="w-full text-left p-2 rounded-xl flex items-center gap-3 hover:bg-[#254C38]/10 transition-colors"
+                            <Link
+                              key={item.id}
+                              href={item.href}
+                              onClick={(e) => handleProductSelect(item.id, e)}
+                              className="w-full text-left p-2.5 rounded-xl flex items-center gap-3 hover:bg-[#254C38]/10 transition-colors block"
                             >
-                              <div className="w-7 h-7 rounded-lg bg-[#254C38]/10 text-[#254C38] flex items-center justify-center shrink-0">
-                                <item.icon size={15} />
+                              <div className="w-8 h-8 rounded-lg bg-[#254C38]/10 text-[#254C38] flex items-center justify-center shrink-0">
+                                <item.icon size={16} />
                               </div>
                               <div className="min-w-0">
                                 <div className="text-xs font-bold text-[#252925]">{item.name}</div>
                                 <div className="text-[10px] text-[#5E645E] truncate">{item.finish}</div>
                               </div>
-                            </button>
+                            </Link>
                           ))}
-                          <button
-                            onClick={() => {
-                              setMobileMenuOpen(false);
-                              handleNavClick(link);
-                            }}
-                            className="w-full text-left p-2 text-xs font-bold text-[#254C38] flex items-center justify-between pt-2.5 border-t border-[#254C38]/10"
+                          <Link
+                            href="/#products"
+                            onClick={(e) => handleAllProductsClick(e)}
+                            className="w-full text-left p-2.5 text-xs font-bold text-[#254C38] flex items-center justify-between pt-2.5 border-t border-[#254C38]/10 block"
                           >
                             <span>Explore All 5 Products &amp; Finishes</span>
-                            <ArrowRight size={13} />
-                          </button>
+                            <ArrowRight size={13} className="inline" />
+                          </Link>
                         </div>
                       )}
                     </div>
@@ -606,8 +666,9 @@ export const Navbar: React.FC = () => {
                   return (
                     <div key={link.label} className="border-b border-[#252925]/5 py-1">
                       <button
+                        type="button"
                         onClick={() => setMobileProjectsOpen(!mobileProjectsOpen)}
-                        className="w-full flex items-center justify-between text-left text-base sm:text-lg py-2 font-medium text-[#252925] hover:text-[#254C38] transition cursor-pointer"
+                        className="w-full flex items-center justify-between text-left text-base sm:text-lg py-2.5 font-medium text-[#252925] hover:text-[#254C38] transition cursor-pointer"
                       >
                         <div className="flex items-center gap-2">
                           <span className={pathname === "/projects" ? "text-[#254C38] font-bold" : ""}>
@@ -628,14 +689,15 @@ export const Navbar: React.FC = () => {
                       {mobileProjectsOpen && (
                         <div className="pl-2 pr-1 pb-2 space-y-1 animate-fadeIn">
                           {PROJECT_ITEMS.map((item) => (
-                            <button
-                              key={item.name}
-                              onClick={() => handleProjectCategoryClick(item.category)}
-                              className="w-full text-left p-2 rounded-xl flex items-center justify-between hover:bg-[#254C38]/10 transition-colors"
+                            <Link
+                              key={item.category}
+                              href={item.href}
+                              onClick={(e) => handleProjectCategorySelect(item.category, e)}
+                              className="w-full text-left p-2.5 rounded-xl flex items-center justify-between hover:bg-[#254C38]/10 transition-colors block"
                             >
                               <div className="flex items-center gap-3 min-w-0">
-                                <div className="w-7 h-7 rounded-lg bg-[#254C38]/10 text-[#254C38] flex items-center justify-center shrink-0">
-                                  <item.icon size={15} />
+                                <div className="w-8 h-8 rounded-lg bg-[#254C38]/10 text-[#254C38] flex items-center justify-center shrink-0">
+                                  <item.icon size={16} />
                                 </div>
                                 <div className="min-w-0">
                                   <div className="text-xs font-bold text-[#252925] truncate">{item.name}</div>
@@ -645,15 +707,16 @@ export const Navbar: React.FC = () => {
                               <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-[#254C38]/10 text-[#254C38] shrink-0">
                                 {item.count}
                               </span>
-                            </button>
+                            </Link>
                           ))}
-                          <button
-                            onClick={() => handleProjectCategoryClick("All")}
-                            className="w-full text-left p-2 text-xs font-bold text-[#254C38] flex items-center justify-between pt-2.5 border-t border-[#254C38]/10"
+                          <Link
+                            href="/projects"
+                            onClick={(e) => handleProjectCategorySelect("All", e)}
+                            className="w-full text-left p-2.5 text-xs font-bold text-[#254C38] flex items-center justify-between pt-2.5 border-t border-[#254C38]/10 block"
                           >
                             <span>Explore Full 36-Project Archive</span>
-                            <ArrowRight size={13} />
-                          </button>
+                            <ArrowRight size={13} className="inline" />
+                          </Link>
                         </div>
                       )}
                     </div>

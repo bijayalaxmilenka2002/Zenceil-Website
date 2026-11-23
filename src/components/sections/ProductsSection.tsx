@@ -9,6 +9,40 @@ import { ArrowUpRight, Check, X, Layers, Cpu, Eye, Thermometer, Sun, Shield } fr
 export const ProductsSection: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<ProductItem | null>(null);
   const [quoteOpen, setQuoteOpen] = useState(false);
+  const [highlightedProduct, setHighlightedProduct] = useState<string | null>(null);
+
+  React.useEffect(() => {
+    const handleHighlight = (e: Event) => {
+      const customEvent = e as CustomEvent<string>;
+      if (customEvent.detail) {
+        setHighlightedProduct(customEvent.detail);
+        setTimeout(() => {
+          const el = document.getElementById(`product-${customEvent.detail}`);
+          if (el) {
+            el.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+        }, 50);
+        setTimeout(() => setHighlightedProduct(null), 3000);
+      }
+    };
+
+    window.addEventListener("zenceil-highlight-product", handleHighlight);
+    return () => window.removeEventListener("zenceil-highlight-product", handleHighlight);
+  }, []);
+
+  React.useEffect(() => {
+    if (typeof window !== "undefined" && window.location.hash.startsWith("#product-")) {
+      const targetId = window.location.hash.replace("#product-", "");
+      setHighlightedProduct(targetId);
+      setTimeout(() => {
+        const el = document.getElementById(`product-${targetId}`);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      }, 300);
+      setTimeout(() => setHighlightedProduct(null), 3000);
+    }
+  }, []);
 
   return (
     <>
@@ -46,7 +80,12 @@ export const ProductsSection: React.FC = () => {
               return (
                 <div
                   key={product.id}
-                  className={`group rounded-3xl overflow-hidden bg-white/80 border border-[#254C38]/10 hover:border-[#254C38]/30 transition-all duration-500 shadow-sm hover:shadow-xl flex flex-col ${
+                  id={`product-${product.id}`}
+                  className={`group rounded-3xl overflow-hidden bg-white/80 border transition-all duration-500 shadow-sm hover:shadow-xl flex flex-col scroll-mt-28 ${
+                    highlightedProduct === product.id
+                      ? "ring-4 ring-[#254C38] border-[#254C38] shadow-2xl scale-[1.01]"
+                      : "border-[#254C38]/10 hover:border-[#254C38]/30"
+                  } ${
                     isWide ? "lg:col-span-1 lg:last:col-span-2" : ""
                   }`}
                 >
