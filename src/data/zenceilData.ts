@@ -213,7 +213,7 @@ export const PRODUCTS_DATA: ProductItem[] = [
     number: "03",
     name: "Texture",
     description: "Add depth and character to your interiors. Textured stretch ceilings provide rich tactile surface reliefs, acoustic dampening, and elegant architectural sophistication.",
-    image: "/images/original/3-1.png",
+    image: "/images/original/3-3.png",
     visualDirection: "Detailed tactile textured stretch ceiling membrane with micro-grain relief.",
     features: [
       "Acoustic Dampening Micro-Perforations",
