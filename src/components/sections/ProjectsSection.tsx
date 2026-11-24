@@ -76,6 +76,13 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ preview = fals
     if (initialCategory) {
       const decoded = decodeURIComponent(initialCategory);
       setActiveCategory(decoded);
+      setViewMode("grid");
+      setTimeout(() => {
+        const gallery = document.getElementById("projects-gallery") || document.getElementById("projects");
+        if (gallery) {
+          gallery.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 250);
     }
   }, [initialCategory]);
 
@@ -84,10 +91,41 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ preview = fals
       const customEvent = e as CustomEvent<string>;
       if (customEvent.detail) {
         setActiveCategory(customEvent.detail);
+        setViewMode("grid");
+        setTimeout(() => {
+          const gallery = document.getElementById("projects-gallery") || document.getElementById("projects");
+          if (gallery) {
+            gallery.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 100);
       }
     };
     window.addEventListener("zenceil-category-change", handleCategoryEvent);
     return () => window.removeEventListener("zenceil-category-change", handleCategoryEvent);
+  }, []);
+
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      const checkUrlCategory = () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const cat = urlParams.get("category");
+        if (cat) {
+          const decoded = decodeURIComponent(cat);
+          setActiveCategory(decoded);
+          setViewMode("grid");
+          setTimeout(() => {
+            const gallery = document.getElementById("projects-gallery") || document.getElementById("projects");
+            if (gallery) {
+              gallery.scrollIntoView({ behavior: "smooth" });
+            }
+          }, 300);
+        }
+      };
+
+      checkUrlCategory();
+      window.addEventListener("popstate", checkUrlCategory);
+      return () => window.removeEventListener("popstate", checkUrlCategory);
+    }
   }, []);
 
   const categories = [
@@ -271,6 +309,9 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ preview = fals
               ))}
             </div>
           )}
+
+          {/* Anchor for direct category scroll from Navbar dropdown */}
+          <div id="projects-gallery" className="scroll-mt-28" />
 
           {/* FULL MODE ONLY: Category Filter Pills */}
           {!preview && viewMode === "grid" && (

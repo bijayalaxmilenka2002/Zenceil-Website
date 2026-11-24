@@ -13,16 +13,24 @@ export const ProductsSection: React.FC = () => {
 
   React.useEffect(() => {
     const handleHighlight = (e: Event) => {
-      const customEvent = e as CustomEvent<string>;
-      if (customEvent.detail) {
-        setHighlightedProduct(customEvent.detail);
+      const customEvent = e as CustomEvent<string | { id: string; openModal?: boolean }>;
+      const detail = customEvent.detail;
+      const productId = typeof detail === "string" ? detail : detail?.id;
+      const shouldOpenModal = typeof detail === "object" ? detail?.openModal : false;
+
+      if (productId) {
+        setHighlightedProduct(productId);
+        const prod = PRODUCTS_DATA.find((p) => p.id === productId);
+        if (prod && shouldOpenModal) {
+          setSelectedProduct(prod);
+        }
         setTimeout(() => {
-          const el = document.getElementById(`product-${customEvent.detail}`);
+          const el = document.getElementById(`product-${productId}`);
           if (el) {
             el.scrollIntoView({ behavior: "smooth", block: "center" });
           }
-        }, 50);
-        setTimeout(() => setHighlightedProduct(null), 3000);
+        }, 80);
+        setTimeout(() => setHighlightedProduct(null), 3500);
       }
     };
 
@@ -31,16 +39,33 @@ export const ProductsSection: React.FC = () => {
   }, []);
 
   React.useEffect(() => {
-    if (typeof window !== "undefined" && window.location.hash.startsWith("#product-")) {
-      const targetId = window.location.hash.replace("#product-", "");
-      setHighlightedProduct(targetId);
-      setTimeout(() => {
-        const el = document.getElementById(`product-${targetId}`);
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth", block: "center" });
+    if (typeof window !== "undefined") {
+      const checkHashOrQuery = () => {
+        const hash = window.location.hash;
+        const urlParams = new URLSearchParams(window.location.search);
+        let targetId = urlParams.get("product");
+        if (!targetId && hash.startsWith("#product-")) {
+          targetId = hash.replace("#product-", "");
         }
-      }, 300);
-      setTimeout(() => setHighlightedProduct(null), 3000);
+        if (targetId) {
+          const prod = PRODUCTS_DATA.find((p) => p.id === targetId);
+          if (prod) {
+            setSelectedProduct(prod);
+          }
+          setHighlightedProduct(targetId);
+          setTimeout(() => {
+            const el = document.getElementById(`product-${targetId}`);
+            if (el) {
+              el.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+          }, 300);
+          setTimeout(() => setHighlightedProduct(null), 3500);
+        }
+      };
+
+      checkHashOrQuery();
+      window.addEventListener("hashchange", checkHashOrQuery);
+      return () => window.removeEventListener("hashchange", checkHashOrQuery);
     }
   }, []);
 
@@ -81,10 +106,11 @@ export const ProductsSection: React.FC = () => {
                 <div
                   key={product.id}
                   id={`product-${product.id}`}
-                  className={`group rounded-2xl sm:rounded-3xl overflow-hidden bg-[#FFFFFF] border transition-all duration-500 shadow-sm hover:shadow-xl flex flex-col scroll-mt-28 ${
+                  onClick={() => setSelectedProduct(product)}
+                  className={`group rounded-2xl sm:rounded-3xl overflow-hidden bg-[#FFFFFF] border transition-all duration-500 shadow-sm hover:shadow-xl flex flex-col scroll-mt-28 cursor-pointer ${
                     highlightedProduct === product.id
                       ? "ring-4 ring-[#302820] border-[#302820] shadow-2xl scale-[1.01]"
-                      : "border-[#302820]/10 hover:border-[#FFFFFF]/50"
+                      : "border-[#302820]/10 hover:border-[#302820]/30 hover:-translate-y-1"
                   } ${
                     isWide ? "lg:col-span-1 lg:last:col-span-2" : ""
                   }`}

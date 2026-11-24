@@ -263,30 +263,34 @@ export const Navbar: React.FC = () => {
   };
 
   const handleProductSelect = (productId: string, e?: React.MouseEvent) => {
-    if (e) e.preventDefault();
     setActiveDropdown(null);
     setIsPinned(false);
     setMobileMenuOpen(false);
 
     if (pathname === "/") {
-      window.dispatchEvent(new CustomEvent("zenceil-highlight-product", { detail: productId }));
+      if (e) e.preventDefault();
+      window.dispatchEvent(
+        new CustomEvent("zenceil-highlight-product", {
+          detail: { id: productId, openModal: true },
+        })
+      );
       const el = document.getElementById(`product-${productId}`);
       if (el) {
         el.scrollIntoView({ behavior: "smooth", block: "center" });
       }
       window.history.pushState(null, "", `/#product-${productId}`);
     } else {
-      router.push(`/#product-${productId}`);
+      router.push(`/?product=${productId}#product-${productId}`);
     }
   };
 
   const handleAllProductsClick = (e?: React.MouseEvent) => {
-    if (e) e.preventDefault();
     setActiveDropdown(null);
     setIsPinned(false);
     setMobileMenuOpen(false);
 
     if (pathname === "/") {
+      if (e) e.preventDefault();
       const el = document.getElementById("products");
       if (el) {
         el.scrollIntoView({ behavior: "smooth" });
@@ -298,18 +302,29 @@ export const Navbar: React.FC = () => {
   };
 
   const handleProjectCategorySelect = (category: string, e?: React.MouseEvent) => {
-    if (e) e.preventDefault();
     setActiveDropdown(null);
     setIsPinned(false);
     setMobileMenuOpen(false);
 
-    const url = category === "All" ? "/projects" : `/projects?category=${encodeURIComponent(category)}`;
+    const targetUrl =
+      category === "All"
+        ? "/projects#projects-gallery"
+        : `/projects?category=${encodeURIComponent(category)}#projects-gallery`;
+
     if (pathname === "/projects") {
-      window.history.pushState(null, "", url);
-      window.dispatchEvent(new CustomEvent("zenceil-category-change", { detail: category }));
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (e) e.preventDefault();
+      window.history.pushState(null, "", targetUrl);
+      window.dispatchEvent(
+        new CustomEvent("zenceil-category-change", { detail: category })
+      );
+      const galleryEl =
+        document.getElementById("projects-gallery") ||
+        document.getElementById("projects");
+      if (galleryEl) {
+        galleryEl.scrollIntoView({ behavior: "smooth" });
+      }
     } else {
-      router.push(url);
+      router.push(targetUrl);
     }
   };
 
@@ -403,34 +418,42 @@ export const Navbar: React.FC = () => {
                       onMouseEnter={() => handleMouseEnter(link.dropdownKey)}
                       onMouseLeave={handleMouseLeave}
                     >
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          toggleDropdown(link.dropdownKey);
-                        }}
-                        className={`text-[15px] xl:text-[17px] transition-colors relative group py-1.5 px-2 tracking-[-0.01em] cursor-pointer inline-flex items-center gap-1.5 select-none rounded-lg hover:bg-[#302820]/5 ${
-                          isActive || isOpen
-                            ? "text-[#302820] font-bold"
-                            : "font-medium text-[#302820]/90 hover:text-[#302820]"
-                        }`}
-                        aria-expanded={isOpen}
-                        aria-haspopup="true"
-                      >
-                        <span>{link.label}</span>
-                        <ChevronDown
-                          size={14}
-                          className={`transition-transform duration-200 ${
-                            isOpen ? "rotate-180 text-[#302820]" : "text-[#6E6256] group-hover:text-[#302820]"
+                      <div className="inline-flex items-center rounded-lg hover:bg-[#302820]/5 transition-colors">
+                        <Link
+                          href={link.href}
+                          onClick={() => handleNavClick(link)}
+                          className={`text-[15px] xl:text-[17px] transition-colors relative group py-1.5 pl-2.5 pr-1 tracking-[-0.01em] cursor-pointer inline-flex items-center select-none ${
+                            isActive || isOpen
+                              ? "text-[#302820] font-bold"
+                              : "font-medium text-[#302820]/90 hover:text-[#302820]"
                           }`}
-                        />
-                        <span
-                          className={`absolute bottom-0 left-2 right-2 h-[2px] bg-[#302820] transition-all duration-300 rounded-full ${
-                            isActive || isOpen ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-                          }`}
-                        />
-                      </button>
+                        >
+                          <span>{link.label}</span>
+                          <span
+                            className={`absolute bottom-0 left-2.5 right-1 h-[2px] bg-[#302820] transition-all duration-300 rounded-full ${
+                              isActive || isOpen ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                            }`}
+                          />
+                        </Link>
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            toggleDropdown(link.dropdownKey);
+                          }}
+                          className="py-1.5 pr-2 pl-0.5 text-[#6E6256] hover:text-[#302820] cursor-pointer transition-colors"
+                          aria-label={`Toggle ${link.label} menu`}
+                          aria-expanded={isOpen}
+                        >
+                          <ChevronDown
+                            size={14}
+                            className={`transition-transform duration-200 ${
+                              isOpen ? "rotate-180 text-[#302820]" : "text-[#6E6256]"
+                            }`}
+                          />
+                        </button>
+                      </div>
 
                       {/* Dropdown Container */}
                       {isOpen && (
