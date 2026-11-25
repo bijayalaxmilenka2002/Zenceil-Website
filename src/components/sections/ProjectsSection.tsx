@@ -15,8 +15,7 @@ import {
   Box, 
   MapPin, 
   Zap, 
-  Layers,
-  Sparkles
+  Layers
 } from "lucide-react";
 import { QuoteModal } from "@/components/ui/QuoteModal";
 
@@ -66,7 +65,9 @@ const IN_DEMAND_META = [
 ];
 
 export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ preview = false, initialCategory }) => {
-  const [activeCategory, setActiveCategory] = useState<string>(initialCategory || "All");
+  const [activeCategory, setActiveCategory] = useState<string>(
+    initialCategory ? decodeURIComponent(initialCategory) : "All"
+  );
   const [inDemandFilter, setInDemandFilter] = useState<string>("All");
   const [selectedProject, setSelectedProject] = useState<ProjectPhoto | null>(null);
   const [quoteOpen, setQuoteOpen] = useState(false);
@@ -75,14 +76,15 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ preview = fals
   React.useEffect(() => {
     if (initialCategory) {
       const decoded = decodeURIComponent(initialCategory);
-      setActiveCategory(decoded);
-      setViewMode("grid");
-      setTimeout(() => {
+      const timer = setTimeout(() => {
+        setActiveCategory(decoded);
+        setViewMode("grid");
         const gallery = document.getElementById("projects-gallery") || document.getElementById("projects");
         if (gallery) {
           gallery.scrollIntoView({ behavior: "smooth" });
         }
-      }, 250);
+      }, 50);
+      return () => clearTimeout(timer);
     }
   }, [initialCategory]);
 

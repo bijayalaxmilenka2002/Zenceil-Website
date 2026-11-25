@@ -393,14 +393,14 @@ export const Navbar: React.FC = () => {
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 flex items-center justify-between">
             {/* LEFT: Authentic Zenceil Logo */}
-            <a
+            <Link
               href="/"
               onClick={handleLogoClick}
               className="focus:outline-none flex items-center cursor-pointer"
               aria-label="Zenceil Stretch Ceiling Home"
             >
               <Logo theme="light" />
-            </a>
+            </Link>
 
             {/* CENTER: Navigation Links (Desktop: lg screens and above) */}
             <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
