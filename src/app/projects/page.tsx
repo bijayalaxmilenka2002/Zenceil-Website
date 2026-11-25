@@ -170,8 +170,8 @@ export default async function ProjectsPage({
       {/* Footer */}
       <FooterSection />
 
-      {/* 1-Minute Timed Consultation Lead Modal */}
-      <TimedLeadModal delayMs={60000} />
+      {/* 15-Second Timed Consultation Lead Modal */}
+      <TimedLeadModal delayMs={15000} />
     </main>
   );
 }

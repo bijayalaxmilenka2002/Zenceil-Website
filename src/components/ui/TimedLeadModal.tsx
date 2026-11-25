@@ -4,10 +4,10 @@ import React, { useState, useEffect, useCallback } from "react";
 import { X, Send, CheckCircle, PhoneCall, Sparkles, MessageSquare } from "lucide-react";
 
 interface TimedLeadModalProps {
-  delayMs?: number; // Default 60000ms = 1 minute
+  delayMs?: number; // Default 15000ms = 15 seconds
 }
 
-export const TimedLeadModal: React.FC<TimedLeadModalProps> = ({ delayMs = 60000 }) => {
+export const TimedLeadModal: React.FC<TimedLeadModalProps> = ({ delayMs = 15000 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({

@@ -71,8 +71,8 @@ export default function HomePage() {
       {/* SECTION 11: FOOTER */}
       <FooterSection />
 
-      {/* 1-MINUTE TIMED LEAD INQUIRY MODAL WITH TOP-RIGHT CUT/DISMISS */}
-      <TimedLeadModal delayMs={60000} />
+      {/* 15-SECOND TIMED LEAD INQUIRY MODAL WITH TOP-RIGHT CUT/DISMISS */}
+      <TimedLeadModal delayMs={15000} />
     </main>
   );
 }
