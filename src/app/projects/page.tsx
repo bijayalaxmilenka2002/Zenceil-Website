@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Navbar } from "@/components/layout/Navbar";
 import { ProjectsSection } from "@/components/sections/ProjectsSection";
 import { FooterSection } from "@/components/sections/FooterSection";
+import { TimedLeadModal } from "@/components/ui/TimedLeadModal";
 import { ArrowLeft, Building2, CheckCircle2, ShieldCheck, Sparkles } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -168,6 +169,9 @@ export default async function ProjectsPage({
 
       {/* Footer */}
       <FooterSection />
+
+      {/* 1-Minute Timed Consultation Lead Modal */}
+      <TimedLeadModal delayMs={60000} />
     </main>
   );
 }

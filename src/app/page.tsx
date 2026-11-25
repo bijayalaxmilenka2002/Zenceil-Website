@@ -10,6 +10,7 @@ import { BrandQuotesSection } from "@/components/sections/BrandQuotesSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { FooterSection } from "@/components/sections/FooterSection";
+import { TimedLeadModal } from "@/components/ui/TimedLeadModal";
 import { ARCHITECTURAL_FAQS } from "@/data/zenceilData";
 
 export default function HomePage() {
@@ -69,6 +70,9 @@ export default function HomePage() {
 
       {/* SECTION 11: FOOTER */}
       <FooterSection />
+
+      {/* 1-MINUTE TIMED LEAD INQUIRY MODAL WITH TOP-RIGHT CUT/DISMISS */}
+      <TimedLeadModal delayMs={60000} />
     </main>
   );
 }
