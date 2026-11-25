@@ -85,15 +85,15 @@ export const TimedLeadModal: React.FC<TimedLeadModalProps> = ({ delayMs = 15000 
         className="relative w-full max-w-lg bg-[#EDE7DC] rounded-3xl shadow-2xl border border-[#302820]/15 overflow-hidden text-[#302820] animate-fadeIn"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* CUT / CLOSE BUTTON IN RIGHT-SIDE CORNER */}
+        {/* CUT / CLOSE BUTTON IN RIGHT-SIDE CORNER (WHITE COLOR) */}
         <button
           type="button"
           onClick={handleClose}
           aria-label="Close and remove form"
-          className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-[#302820]/10 hover:bg-[#302820] text-[#302820] hover:text-[#EDE7DC] transition-all flex items-center justify-center cursor-pointer shadow-xs border border-[#302820]/10 group"
+          className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-white/20 hover:bg-white text-white hover:text-[#302820] transition-all flex items-center justify-center cursor-pointer shadow-md border border-white/30 group active:scale-95"
           title="Cut & Remove Form"
         >
-          <X size={18} className="transition-transform group-hover:scale-110" />
+          <X size={18} className="text-white group-hover:text-[#302820] stroke-[2.5] transition-transform group-hover:scale-110" />
         </button>
 
         {/* Modal Header */}

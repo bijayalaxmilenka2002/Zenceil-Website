@@ -50,9 +50,9 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
           <button
             onClick={onClose}
             aria-label="Close modal"
-            className="p-1.5 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+            className="w-8 h-8 rounded-full bg-white/20 hover:bg-white text-white hover:text-[#302820] transition-all flex items-center justify-center cursor-pointer shadow-xs border border-white/25"
           >
-            <X size={20} />
+            <X size={18} className="stroke-[2.5]" />
           </button>
         </div>
 
