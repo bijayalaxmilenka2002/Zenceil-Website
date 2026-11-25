@@ -119,6 +119,59 @@ export default function RootLayout({
           name: "India",
         },
         priceRange: "$$$$",
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "4.9",
+          reviewCount: "148",
+          bestRating: "5",
+          worstRating: "1",
+        },
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "Stretch Ceiling Systems & Architectural Solutions",
+          itemListElement: [
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Translucent Backlit Stretch Ceilings",
+                description: "Even daylight diffusion, tunable CCT white & RGBW smart LED integration.",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "High-Definition Printed Stretch Ceilings",
+                description: "UV cured photographic and acoustic custom ceiling membranes.",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Acoustic Textured Stretch Ceilings",
+                description: "Micro-perforated sound absorption membranes in matte and suede finishes.",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Mirror Lacquer Reflective Ceilings",
+                description: "High-gloss mirror stretch ceilings providing vertical space multiplication.",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "3D Form & Sculptural Organic Ceilings",
+                description: "Engineered curved aluminum sub-structures for waves, vaults, and halos.",
+              },
+            },
+          ],
+        },
         openingHoursSpecification: [
           {
             "@type": "OpeningHoursSpecification",

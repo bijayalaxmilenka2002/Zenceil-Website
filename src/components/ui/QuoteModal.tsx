@@ -98,10 +98,11 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
                   <input
                     type="text"
                     required
+                    autoComplete="name"
                     placeholder="e.g. Ar. Rajesh Mehta"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#302820]/20 bg-white focus:outline-none focus:border-[#302820] focus:ring-1 focus:ring-[#302820] text-sm text-[#302820]"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#302820]/20 bg-white focus:outline-none focus:border-[#302820] focus:ring-1 focus:ring-[#302820] text-base sm:text-sm text-[#302820]"
                   />
                 </div>
 
@@ -112,10 +113,11 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
                   <input
                     type="tel"
                     required
+                    autoComplete="tel"
                     placeholder="+91 98765 43210"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#302820]/20 bg-white focus:outline-none focus:border-[#302820] focus:ring-1 focus:ring-[#302820] text-sm text-[#302820]"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#302820]/20 bg-white focus:outline-none focus:border-[#302820] focus:ring-1 focus:ring-[#302820] text-base sm:text-sm text-[#302820]"
                   />
                 </div>
               </div>
@@ -128,10 +130,11 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
                   <input
                     type="email"
                     required
+                    autoComplete="email"
                     placeholder="architect@domain.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#302820]/20 bg-white focus:outline-none focus:border-[#302820] focus:ring-1 focus:ring-[#302820] text-sm text-[#302820]"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#302820]/20 bg-white focus:outline-none focus:border-[#302820] focus:ring-1 focus:ring-[#302820] text-base sm:text-sm text-[#302820]"
                   />
                 </div>
 
@@ -142,10 +145,11 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
                   <input
                     type="text"
                     required
+                    autoComplete="address-level2"
                     placeholder="e.g. Mumbai, Delhi, Bengaluru"
                     value={formData.city}
                     onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#302820]/20 bg-white focus:outline-none focus:border-[#302820] focus:ring-1 focus:ring-[#302820] text-sm text-[#302820]"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#302820]/20 bg-white focus:outline-none focus:border-[#302820] focus:ring-1 focus:ring-[#302820] text-base sm:text-sm text-[#302820]"
                   />
                 </div>
               </div>
@@ -160,7 +164,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
                     <select
                       value={formData.projectType}
                       onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                      className="w-full pl-9 pr-3.5 py-2.5 rounded-xl border border-[#302820]/20 bg-white focus:outline-none focus:border-[#302820] text-sm text-[#302820]"
+                      className="w-full pl-9 pr-3.5 py-2.5 rounded-xl border border-[#302820]/20 bg-white focus:outline-none focus:border-[#302820] text-base sm:text-sm text-[#302820]"
                     >
                       <option value="Commercial Office">Commercial / Corporate Office</option>
                       <option value="Luxury Residence">Luxury Residence / Penthouse</option>
@@ -181,7 +185,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
                     <select
                       value={formData.ceilingType}
                       onChange={(e) => setFormData({ ...formData, ceilingType: e.target.value })}
-                      className="w-full pl-9 pr-3.5 py-2.5 rounded-xl border border-[#302820]/20 bg-white focus:outline-none focus:border-[#302820] text-sm text-[#302820]"
+                      className="w-full pl-9 pr-3.5 py-2.5 rounded-xl border border-[#302820]/20 bg-white focus:outline-none focus:border-[#302820] text-base sm:text-sm text-[#302820]"
                     >
                       <option value="Translucent">Translucent (Backlit Illumination)</option>
                       <option value="Printed">Printed (Custom Graphic Art)</option>
@@ -202,7 +206,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
                   placeholder="e.g. 1,200 sq. ft."
                   value={formData.estimatedArea}
                   onChange={(e) => setFormData({ ...formData, estimatedArea: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-[#302820]/20 bg-white focus:outline-none focus:border-[#302820] text-sm text-[#302820]"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-[#302820]/20 bg-white focus:outline-none focus:border-[#302820] text-base sm:text-sm text-[#302820]"
                 />
               </div>
 
@@ -215,7 +219,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose }) => {
                   placeholder="Briefly describe your design intent or timeline..."
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-[#302820]/20 bg-white focus:outline-none focus:border-[#302820] text-sm resize-none text-[#302820]"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-[#302820]/20 bg-white focus:outline-none focus:border-[#302820] text-base sm:text-sm resize-none text-[#302820]"
                 />
               </div>
 

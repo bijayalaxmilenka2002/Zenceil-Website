@@ -784,3 +784,43 @@ export const CONTACT_DETAILS = {
     { name: "YouTube", href: "https://www.youtube.com/@stretchceilinginteriors7362" },
   ],
 };
+
+// 12. ARCHITECTURAL FAQS FOR CLIENT GUIDANCE & SEO SCHEMA
+export interface FAQItem {
+  question: string;
+  answer: string;
+  category: "Installation" | "Durability" | "Integration" | "Acoustics";
+}
+
+export const ARCHITECTURAL_FAQS: FAQItem[] = [
+  {
+    category: "Installation",
+    question: "How long does a stretch ceiling installation take compared to conventional POP or gypsum?",
+    answer: "A standard room installation takes only 4 to 8 hours with zero dust, zero debris, and no need to vacate furniture. Unlike gypsum or POP ceilings which take 2 to 3 weeks of wet plastering, sanding, and repainting, Zenceil's prefabricated polymer membrane is mounted swiftly on precision aluminum perimeter tracks in a single clean visit.",
+  },
+  {
+    category: "Durability",
+    question: "Are Zenceil stretch ceilings 100% moisture-proof and water-resistant?",
+    answer: "Yes. Zenceil membranes are completely non-porous, hydrophobic, and impervious to moisture, steam, chlorinated vapors, and condensation. They never rot, mold, flake, or harbor mildew, making them the #1 architectural choice for luxury bathrooms, indoor swimming pools, spas, and coastal properties across India.",
+  },
+  {
+    category: "Integration",
+    question: "Can recessed lights, magnetic track systems, AC vents, and sprinklers be integrated?",
+    answer: "Absolutely. We install reinforced internal mounting reinforcement rings (transom platforms) behind the membrane before tensioning. This permits flawless integration of recessed LED downlights, magnetic low-voltage linear tracks, chandeliers, HVAC linear slot diffusers, smoke detectors, and fire sprinklers with zero sagging.",
+  },
+  {
+    category: "Durability",
+    question: "What is the warranty period and expected lifespan of a Zenceil stretch ceiling?",
+    answer: "Zenceil provides a comprehensive 10-year manufacturer warranty guaranteeing the membrane will not sag, warp, discolour, peel, or suffer weld rupture. The expected lifespan of our German/French polymer formulation exceeds 20+ years of maintenance-free performance.",
+  },
+  {
+    category: "Installation",
+    question: "Can the ceiling be uninstalled for plumbing or electrical servicing behind it?",
+    answer: "Yes. Our proprietary perimeter harpoon locking profile allows certified Zenceil technicians to safely unclip any section of the ceiling for electrical wiring, AC duct servicing, or plumbing leak repairs, and then re-tension it back to its original flawless finish without leaving any marks or needing replacement.",
+  },
+  {
+    category: "Acoustics",
+    question: "How do acoustic stretch ceilings improve sound dampening in noisy spaces?",
+    answer: "Zenceil acoustic ceilings utilize micro-perforated membranes (up to 250,000 microscopic perforations per m²) paired with acoustic absorbent fleece backing. This dampens reverberation, reduces echo, and absorbs sound waves across voice frequencies, achieving an exceptional Noise Reduction Coefficient (NRC) of up to 0.85.",
+  },
+];

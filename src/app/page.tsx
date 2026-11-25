@@ -8,11 +8,32 @@ import { ProjectsSection } from "@/components/sections/ProjectsSection";
 import { InstallationSection } from "@/components/sections/InstallationSection";
 import { BrandQuotesSection } from "@/components/sections/BrandQuotesSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
+import { FAQSection } from "@/components/sections/FAQSection";
 import { FooterSection } from "@/components/sections/FooterSection";
+import { ARCHITECTURAL_FAQS } from "@/data/zenceilData";
 
 export default function HomePage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: ARCHITECTURAL_FAQS.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
     <main className="min-h-screen flex flex-col bg-[#EDE7DC] text-[#302820]">
+      {/* FAQ Schema for Google Rich Snippets */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+
       {/* Sticky Header Navigation */}
       <Navbar />
 
@@ -43,7 +64,10 @@ export default function HomePage() {
       {/* SECTION 09: CUSTOMER TESTIMONIALS */}
       <TestimonialsSection />
 
-      {/* SECTION 10: FOOTER */}
+      {/* SECTION 10: ARCHITECTURAL FAQS & SPECIFICATIONS */}
+      <FAQSection />
+
+      {/* SECTION 11: FOOTER */}
       <FooterSection />
     </main>
   );
