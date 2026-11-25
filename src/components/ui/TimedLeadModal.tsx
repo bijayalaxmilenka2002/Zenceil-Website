@@ -4,10 +4,10 @@ import React, { useState, useEffect, useCallback } from "react";
 import { X, Send, CheckCircle, PhoneCall, Sparkles, MessageSquare } from "lucide-react";
 
 interface TimedLeadModalProps {
-  delayMs?: number; // Default 15000ms = 15 seconds
+  delayMs?: number; // Default 6000ms = 6 seconds for guaranteed visibility on every visit
 }
 
-export const TimedLeadModal: React.FC<TimedLeadModalProps> = ({ delayMs = 15000 }) => {
+export const TimedLeadModal: React.FC<TimedLeadModalProps> = ({ delayMs = 6000 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
@@ -19,36 +19,28 @@ export const TimedLeadModal: React.FC<TimedLeadModalProps> = ({ delayMs = 15000 
 
   const handleClose = useCallback(() => {
     setIsOpen(false);
-    try {
-      sessionStorage.setItem("zenceil_timed_popup_dismissed", "true");
-    } catch {
-      // In case storage is restricted
-    }
   }, []);
 
   useEffect(() => {
-    let isTest = false;
-    try {
-      const urlParams = new URLSearchParams(window.location.search);
-      isTest = urlParams.get("popup") === "test";
-      const isDismissed = sessionStorage.getItem("zenceil_timed_popup_dismissed");
-      if (isDismissed && !isTest) return;
-    } catch {
-      // Ignore storage errors
-    }
-
+    // Show popup reliably after delayMs on every visit (standard website behavior)
     const timer = setTimeout(() => {
-      try {
-        const dismissedCheck = sessionStorage.getItem("zenceil_timed_popup_dismissed");
-        if (!dismissedCheck || isTest) {
-          setIsOpen(true);
-        }
-      } catch {
-        setIsOpen(true);
-      }
-    }, isTest ? 300 : delayMs);
+      setIsOpen(true);
+    }, delayMs);
 
-    return () => clearTimeout(timer);
+    // Also show if visitor starts scrolling down past hero
+    const handleScroll = () => {
+      if (window.scrollY > 450) {
+        setIsOpen(true);
+        window.removeEventListener("scroll", handleScroll);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [delayMs]);
 
   useEffect(() => {
@@ -57,43 +49,40 @@ export const TimedLeadModal: React.FC<TimedLeadModalProps> = ({ delayMs = 15000 
         handleClose();
       }
     };
-    window.addEventListener("keydown", handleKeyDown);
+    if (isOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, handleClose]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
-    try {
-      sessionStorage.setItem("zenceil_timed_popup_dismissed", "true");
-    } catch {
-      // In case storage is restricted
-    }
   };
 
   if (!isOpen) return null;
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#211B15]/75 backdrop-blur-sm animate-fadeIn"
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 bg-[#211B15]/80 backdrop-blur-sm animate-fadeIn"
       role="dialog"
       aria-modal="true"
       aria-labelledby="timed-lead-title"
       onClick={handleClose}
     >
       <div
-        className="relative w-full max-w-lg bg-[#EDE7DC] rounded-3xl shadow-2xl border border-[#302820]/15 overflow-hidden text-[#302820] animate-fadeIn"
+        className="relative w-full max-w-lg bg-[#EDE7DC] rounded-3xl shadow-2xl border border-[#302820]/20 overflow-hidden text-[#302820] animate-fadeIn transition-all"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* CUT / CLOSE BUTTON IN RIGHT-SIDE CORNER (WHITE COLOR) */}
+        {/* CUT / CLOSE BUTTON IN RIGHT-SIDE CORNER (PROMINENT WHITE) */}
         <button
           type="button"
           onClick={handleClose}
           aria-label="Close and remove form"
-          className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-white/20 hover:bg-white text-white hover:text-[#302820] transition-all flex items-center justify-center cursor-pointer shadow-md border border-white/30 group active:scale-95"
+          className="absolute top-4 right-4 z-30 w-9 h-9 rounded-full bg-white/25 hover:bg-white text-white hover:text-[#302820] transition-all flex items-center justify-center cursor-pointer shadow-md border border-white/40 group active:scale-95"
           title="Cut & Remove Form"
         >
-          <X size={18} className="text-white group-hover:text-[#302820] stroke-[2.5] transition-transform group-hover:scale-110" />
+          <X size={20} className="text-white group-hover:text-[#302820] stroke-[2.5] transition-transform group-hover:scale-110" />
         </button>
 
         {/* Modal Header */}
